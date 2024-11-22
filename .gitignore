@@ -1,0 +1,12 @@
+.fr-nTgXml
+/env
+/css
+/js
+/lib
+/planificadores
+.htaccess
+error_log
+/sql
+*base.php
+*.sql
+cfg/base.php
