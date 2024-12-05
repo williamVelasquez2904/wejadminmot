@@ -10,11 +10,12 @@ $row = $mcruce->lista_encab() ;
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>Id-18 </th>
+					<th>Id-27 </th>
 					<th>Monto</th>
 					<th>Fecha</th>
 					<th>Ttular</th>
 					<th>Referencia</th>
+					<th>Archivo</th>
 					<th>Estatus</th>
 					<th>Opciones</th>
 				</tr>
@@ -27,6 +28,15 @@ $row = $mcruce->lista_encab() ;
 						<td><?php echo $r->pago_fecha ?></td>
 						<td><?php echo $r->pago_titular ?></td>
 						<td><?php echo $r->pago_ref ?></td>
+						<td>
+							<div class="btn-group">
+								<button class="btn btn-success btn-xs" title="Ver imágen" onclick="modal('vst-cruce-ver_img_cruce',
+								'encab_ide=<?php echo $r->cruce_encab_ide ?> ?>')">
+									<i class="fa fa-edit"></i>
+								</button>
+							</div>
+							<?php echo $r->cruce_encab_img ?>
+						</td>
 						<td><?php echo $r->cruce_encab_status ?></td>
 						<td>
 							<div class="btn-group">

@@ -6,7 +6,7 @@ foreach($row as $r):
 endforeach; 
 ?>	
 	<?php 
-	echo $fn->modalWidth("60%");
+	echo $fn->modalWidth("80%");
 	echo $fn->modalHeader('Ver imagen cruce: '.$ruta_img) ?>
 	<div class="modal-body">
 		<div class="msj"></div>

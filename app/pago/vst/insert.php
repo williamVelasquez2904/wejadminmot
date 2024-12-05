@@ -12,7 +12,7 @@ require '../../../cfg/base.php';
 	<div class="modal-body">
 		<div class="msj"></div>
 
-		<fieldset><legend>[insert.php 21-11-2024]  - INSERT PAGO</legend>
+		<fieldset><legend>[insert.php 05-12-2024]  - INSERT PAGO</legend>
 		<div class="clearfix"></div>
 
 		<div class="form-group col-sm-2">

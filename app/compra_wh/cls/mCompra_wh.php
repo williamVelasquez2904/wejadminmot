@@ -132,16 +132,37 @@
 	}
 
 	public function update_matriz() {
-		$sql = "SELECT sf_compra_wh_matriz(?,?,?,?,?,?,?) AS res";
+		$sql = "SELECT sf_compra_wh_matriz(?,?,?,?,?,?,?,?) AS res";
 		extract($_POST); 
-/*		var_dump("<pre>");
-		var_dump($estatus);
-		var_dump("</pre>");*/
-				
-		/*$datos = array(	$ide, $estatus, $fec_envio,	$fec_recep,	2,	$_SESSION['s_usua_ide']);*/
-		$datos = array(	$ide, $estatus, $fec_envio,	$fec_recep,$nota_sustituida,2,$_SESSION['s_usua_ide']);			
-
+		$datos = array($ide,$estatus,$fec_envio,$fec_recep,$nota_sustituida,$destino,2,$_SESSION['s_usua_ide']);			
 		return Enlace::sql($sql,$datos,4,'res');
+	}
+
+	public function delete() {
+		extract($_POST);
+		$sql = "SELECT sf_compra_wh(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
+		$datos = array(
+			$ide, // Identificador
+			0,
+			0,
+			0,
+			date('Y-m-d',strtotime('0000-00-00')),
+			0, // porcentaje
+			0, //monto contado
+			0, //monto credito
+			0,
+			0,
+			0,
+			0,
+			0,
+			1,	//tienda		
+			3, 	 //  operación
+			$_SESSION['s_usua_ide'] #Usuario que realiza operación
+		);
+
+		//$datos = array($ide,0,0,0,0,0,0,'0000-00-00',0,0,0,0,3,$_SESSION['s_usua_ide']);
+
+		return Enlace::sql($sql,$datos,1,'res');
 	}
 
 

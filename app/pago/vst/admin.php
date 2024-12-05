@@ -1,7 +1,7 @@
 <div class="btn-group pull-right">
 	<button class="btn btn-inverse" onclick="modal('vst-pago-insert','')">
 		<i class="fa fa-plus"></i>
-		[admin.php] 30-09-2024 - Agregar Pago
+		[admin.php] 05-12-2024 - Agregar Pago
 	</button>
 </div>
 <div class="clearfix"></div>

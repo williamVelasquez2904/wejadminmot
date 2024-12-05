@@ -15,7 +15,7 @@ $fecha_hoy = date('d-m-Y');
 	<div class="datosnota" id="myDIV">
 	<div class="msj"></div>
 
-	<fieldset><legend>[admin.php] (16-10-2024).- Datos de la Compra</legend>
+	<fieldset><legend>[admin.php] (05-12-2024).- Datos de la Compra</legend>
 
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Proveedor</label>
@@ -80,13 +80,13 @@ $fecha_hoy = date('d-m-Y');
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Sub-Total en Bs.  </label>
 			<div class="col-sm-12 col-xs-12">
-				<input type="number" name="mto_subtotal" id="mto_subtotal" class="form-control" value="0.00" min="0.01" onchange="calculaMontoCredito();">
+				<input type="number" name="mto_subtotal" id="mto_subtotal" class="form-control" value="0.00" min="0.01" onchange="calculaMontoCredito();" onclick="calculaMontoCredito();">
 			</div>
 		</div>		
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Factor de cambio</label>
 			<div class="col-sm-12 col-xs-12">
-				<input type="number" name="tasa" id="tasa" class="form-control" value="0.00" min="0.01" onchange="calculaMontoCredito();">
+				<input type="number" name="tasa" id="tasa" class="form-control" value="0.00" min="0.01" onchange="calculaMontoCredito();" onclick="calculaMontoCredito();">
 			</div>
 		</div>		
 		<div class="form-group col-sm-1 col-xs-12">
@@ -177,10 +177,10 @@ $fecha_hoy = date('d-m-Y');
 	</div>
 </form>
 
-<!-- <button class="btn btn-info btn-sm" title="Recalcular" onclick="recalcular();">
+<button class="btn btn-info btn-sm" title="Recalcular" onclick="recalcular();">
 	<i class="fa fa-search"></i>
 	Recalcular 
-</button> -->
+</button>
 
 <div class="clearfix"></div>
 <div class="space-10"></div>
@@ -207,18 +207,26 @@ $fecha_hoy = date('d-m-Y');
 		document.getElementById('mto_credito').value=calculaMontoCredito();
 		document.getElementById('mto_contado').value=calculaMontoContado();
 		document.getElementById('mto_flete').value=calculaMontoFlete();
-		//alert("Montos recalculados...");
+		alert("Montos recalculados...");
+		return;
 	}	
 	function round(value, decimals) {
   		return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 	}
 
 	function calculaMontoCredito(){
-		//factor= 0;
-		montoCredito=0;
-		//factor =(100-document.getElementById('porc').value)/100; 
 		tasa = 0;
-		tasa = document.getElementById('tasa').value;
+		mto_subtotal=0;
+		montoCredito=0;
+
+		var elemento = document.getElementById('tasa');		
+		if (elemento !== null) { 
+			tasa = document.getElementById('tasa').value;
+		}
+		var elemento = document.getElementById('mto_subtotal');
+		if (elemento !== null) { 
+			mto_subtotal=document.getElementById('mto_subtotal');
+		}		
 		if (document.getElementById('mto_subtotal').value > 0 )
 			montoCredito = round(document.getElementById('mto_subtotal').value/tasa,2);
 
@@ -428,12 +436,12 @@ $fecha_hoy = date('d-m-Y');
 							/*alert('Valor de orden: '+f_orden_ide);*/
 								//load('vst-compra_wh-lista','orden_ide='+f_orden_ide,'.lista');
 								if(confirm('Registro agregado correctamente.\n¿Desea agregar otro registro?')==true) {
-									alert("Paso")
+									/*alert("Paso")*/
 									load('vst-compra_wh-lista','','.lista');
 									$(formulario).each(function(){ this.reset() })
 									/*document.getElementById('tipo').selected="";*/  //revisar 12/10/2024 sabado
 									document.getElementById('tipo').value="";
-									document.getElementById('porc').value="";
+									document.getElementById('porc').value=f_porc;
 									document.getElementById('clien_ide').value=f_clien_ide;
 
 								} else {

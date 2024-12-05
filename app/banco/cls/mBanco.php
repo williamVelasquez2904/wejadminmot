@@ -1,4 +1,4 @@
-<?php class mBanco {
+<?php class mBanco { 
 
 	function __clone() {}
 	function __construct() {}

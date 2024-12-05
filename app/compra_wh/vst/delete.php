@@ -45,9 +45,11 @@
 			},
 
 			submitHandler: function (form) {
-				$.post('prc-mbanco-delete',$(formulario).serialize(),function(data){
+				$.post('prc-mcompra_wh-delete',$(formulario).serialize(),function(data){
+					/*alert(data);*/
 					if(data==1) {
-						load('vst-banco-lista','','.lista');
+						/*load('vst-banco-lista','','.lista');*/
+						load('vst-compra_wh-lista','','.lista');
 						alert('Registro eliminado correctamente');
 						cerrarmodal();
 					} else {

@@ -1,4 +1,4 @@
-<?php require '../../../cfg/base.php'; ?>
+<?php require '../../../cfg/base.php'; ?> 
 <?php foreach($mcliente->poride($clien_ide) as $r): ?>
 	<form action="" class="op2-pac well">
 		<div class="msj-pac"></div>

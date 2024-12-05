@@ -1,7 +1,7 @@
 <div class="btn-group pull-right">
 	<button class="btn btn-inverse" onclick="modal('vst-cruce-insert','')">
 		<i class="fa fa-plus"></i>
-		[admin.php] 18-11-24 - Agregar Cruce
+		[admin.php] 26-11-24 - Agregar Cruce
 	</button>
 </div>
 <div class="clearfix"></div>

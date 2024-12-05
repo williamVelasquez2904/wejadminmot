@@ -8,7 +8,7 @@
 ?>
 	<div class="modal-body">
 		<div class="msj"></div>
-		<fieldset><legend>[insert.php] 19-11-2024  - Agregar Cruce</legend>
+		<fieldset><legend>[insert.php] 26-11-2024  - Agregar Cruce</legend>
 
 		<div class="form-group col-sm-8 col-xs-12">
 			<label for="" class="label control-label col-sm-12 bolder">Seleccione Pago</label>
@@ -23,7 +23,7 @@
 		</div>				
 		<div class="clearfix"></div>
 
-		<div class="form-group col-sm-3 col-xs-12">
+		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Fecha</label>
 			<div class="col-sm-12 col-xs-12">
 				<div class="input-group">
@@ -48,6 +48,12 @@
 					<input type="text" class="form-control" name="mto" id="mto" value="100" >
 				</div>
 		</div>
+		<div class="form-group col-sm-5">
+			<label for="" class="label control-label col-sm-12 bolder">Archivo img </label>
+			<div class="col-sm-12">
+				<input type="text" name="arch_img" id="arch_img" class="form-control" value="">
+			</div>
+		</div>		
 		<div class="clearfix"></div>
 	</div>
 	<?php echo $fn->modalFooter(1) ?>

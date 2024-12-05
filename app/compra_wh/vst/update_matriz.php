@@ -2,9 +2,9 @@
 ?>
 <?php foreach($mcompra_wh->poride($ide) as $r):  ?>
 	<form action="" class="op2 form-horizontal">
-		<?php echo $fn->modalHeader("Editar Nota : $ide") ?>
+		<?php echo $fn->modalHeader("[update_matriz.php] 03-12-2024 | Actualizar  Nota : $ide") ?>
 		<div class="modal-body">
-			<div class="msj"></div>
+			<div class="msj_upd"></div>
 
 			<div class="form-group">
 				<label for="" class="control-label col-sm-3 col-xs-12 bolder">Proveedor</label>
@@ -63,6 +63,19 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="form-group">
+				<label for="" class="control-label col-sm-3 col-xs-12 bolder">Destino</label>
+				<div class="col-sm-9 col-xs-12">
+					<select class="form-control chosen" name="destino" id="destino" >
+						<option value=0 <?php if ($r->compra_destino == 0) echo 'selected' ?> >Directo - (Dirección de la NOTA)- No flete</option>
+						<option value=1 <?php if ($r->compra_destino == 1) echo 'selected' ?> >Oficina - (S/C) - SI tiene flete</option>
+						<option value=3 <?php if ($r->compra_destino == 3) echo 'selected' ?> >Ingreso a Taller</option>					
+					</select>
+				</div>
+			</div>
+
+
 		</div>
 		<?php echo $fn->modalFooter(1) ?>
 		<input type="hidden" class="form-control" name="ide" value="<?php echo $r->compra_ide ?>">
@@ -132,10 +145,11 @@
 
 				$.post('prc-mcompra_wh-update_matriz',$(formulario).serialize(),function(data){
 					if(!isNaN(data)) {
-						load('vst-compra_wh-lista_matriz','','.lista_matriz');
-						alerta('.msj','success','Registro modificado correctamente');
+						/*load('vst-compra_wh-lista_matriz','','.lista_matriz');*/
+						load('vst-compra_wh-lista','','.lista');
+						alerta('.msj_upd','success','Registro modificado correctamente');
 					} else {
-						alerta('.msj','danger',data)
+						alerta('.msj_upd','danger',data)
 					}
 				})
 			},

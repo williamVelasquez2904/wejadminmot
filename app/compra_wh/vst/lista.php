@@ -10,17 +10,18 @@ $row = $mcompra_wh->lista(); ?>
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
-					<th width="5%">Id</th>
-					<th width="8%">Fecha Factura</th>
-					<th width="30%">Cliente</th>
-					<th width="8%">Num Factura</th>
-					<th width="5%">% Descuento</th>
-					<th width="8%">Monto Contado </th>
-					<th width="8%">Monto Crédito </th>
-					<th width="8%">Flete</th>
+					<th width="3%">Id</th>
+					<th width="5%">Fecha Factura</th>
+					<th width="25%">Cliente</th>
+					<th width="6%">Num Fac.</th>
+					<th width="5%">% Desc.</th>
+					<th width="7%">Monto Contado </th>
+					<th width="7%">Monto Crédito </th>
+					<th width="5%">Destino </th>
+					<th width="5%">Flete</th>
 					<th width="5%">Condición</th>	
 					<th width="5%">Estatus</th>						
-					<th width="10%">Opciones</th>				
+					<th width="7%">Opciones</th>				
 				</tr>
 			</thead>
 			<tbody>
@@ -78,6 +79,27 @@ $row = $mcompra_wh->lista(); ?>
 	  					/*$color_fondo = "#9f33ff"; */
 	  					$estatus_text   = 'En desglose';
 	  					$color_fondo = ""; 
+	  					break;
+	  				case 5:  // En desglose
+	  				    /*$estilo      = "color:#000000; font-size:12px; background-color: #fb5e17;";*/
+	  				    /*$estilo      = "color:#000000; font-size:12px; background-color: #FF0000;";  // rojo*/
+	  				    $estilo      = "color:#000000; font-size: 12px; background-color: #17a589;";
+	  					/*$color_letra = "#1b00ff"; */
+	  					//$color_fondo = "#FFFFFF"; 
+	  					/*$color_fondo = "#9f33ff"; */
+	  					$estatus_text   = $r->compra_estatus.' - '.'SUSTITUIDA';
+	  					$color_fondo = ""; 
+	  					break;
+	  				case 6:  // 
+	  				    /*$estilo      = "color:#000000; font-size:12px; background-color: #fb5e17;";*/
+	  				    /*$estilo      = "color:#000000; font-size:12px; background-color: #FF0000;";  // rojo*/
+	  				    $estilo      = "color:#000000; font-size: 12px; background-color: #17a589;";
+	  					/*$color_letra = "#1b00ff"; */
+	  					//$color_fondo = "#FFFFFF"; 
+	  					/*$color_fondo = "#9f33ff"; */
+	  					$estatus_text   = $r->compra_estatus.' - '.'Sustituye';
+	  					$color_fondo = ""; 
+	  					break;
 	  				default:						    
 	    				break;
 	  					$condicion_text="Error.Admin.".$r->compra_condicion;
@@ -86,6 +108,7 @@ $row = $mcompra_wh->lista(); ?>
 
 					$color_destino ='';
 					$texto_destino ='';
+					$texto_destino_corto= "";
 					$color_tipo=$r->tipvta_color;					
 					$tipo_text ="";
 					$tipo_text =$r->tipvta_descrip;   // ojo 
@@ -94,16 +117,22 @@ $row = $mcompra_wh->lista(); ?>
 					switch ($r->compra_destino) {
 	  				case 0:
 	  					//$color_letra = ""; 
-	  					$texto_destino= "";
+	  					$texto_destino= " Directo";
+	  					$texto_destino_corto= " Directo ";
 	    				break;
 	  				case 1:
 	  					//$color_letra = "#FF0000"; 
-	  					$texto_destino= " - SAN CRISTÓBAL";
+	  					$texto_destino= "  SAN CRISTÓBAL";
+	  					$texto_destino_corto= " SC ";
 	  					break;
 	  				case 2:
 	  					//$color_letra = "#ff00ff"; 
 	  					$texto_destino= "";
 	    				break;
+	  				case 3:
+	  					$texto_destino= " Taller";
+	  					$texto_destino_corto= " Ingreso a Taller ";	  					
+	    				break;	    				
 	  				default:						    
 	  					 //$color_letra="Error.Admin.".$r->compra_destino;
 	    				break;
@@ -124,13 +153,14 @@ $row = $mcompra_wh->lista(); ?>
 						<td align="center"><?php echo $r->compra_porc_desc ?></td>
 						<td align="right"><?php echo number_format($monto,2,",",".") ?></td>
 						<td align="right"><?php echo number_format($monto_credito,2,",",".") ?></td>
+						<td align="right"><?php echo $r->compra_destino.' - '.$texto_destino_corto ?></td>
 						<td align="right"><?php echo number_format($r->compra_flete,2,",",".") ?></td>
 						<td align="center"><?php echo $condicion_text ?></td>
 						<td align="center"><?php echo $estatus_text  ?></td>
 						<td align="center">
 							<div class="btn-group">
-								<button class="btn btn-success btn-xs" title="Actualizar"
-								onclick="modal('vst-compracom-update','ide=<?php echo $r->compra_encab_ide ?>')">
+								<button class="btn btn-success btn-xs" title="Actualizar   30 nov"
+								onclick="modal('vst-compra_wh-update_matriz','ide=<?php echo $r->compra_ide ?>')">
 									<i class="fa fa-edit"></i>
 								</button>
 							

@@ -1,4 +1,4 @@
-<?php require '../../../cfg/base.php';
+<?php require '../../../cfg/base.php'; 
 //$ide=1;
 //extract($_POST);
 //var_dump($ide);
@@ -7,9 +7,18 @@ $r = $mcruce->lista_detalle($ide)  //	 encabezado    ?>
 	<!-- <?php //echo $fn->modalHeader("[insert_detalle.php]. 13-Nov-24 -  Detalles del cruce : ".$r[0]->cruce_encab_ide." - ".$r[0]->pago_titular) ?>   -->
 	<?php echo $fn->modalHeader("[insert_detalle.php]. 18-Nov-24 -  Detalles del cruce : ") ?>  
 	<div class="modal-body">
+
 		<div class="msj"></div>
 		<form action="" class="op_insert_det_cruce">	
-			<fieldset><legend> DATOS DE LA NOTA ASOCIADA AL CRUCE  </legend>
+			<fieldset><legend> DATOS DE LA NOTA ASOCIADA AL CRUCE  
+
+			</legend>
+
+				<div class="btn-group">
+					<button class="btn btn-success btn-xs" title="Ver imágen" onclick="modal('vst-cruce-ver_img_cruce','encab_ide=<?php echo $ide ?> ?>')">
+					<i class="fa fa-edit"></i>
+					</button>
+				</div>
 				<div class="form-group col-sm-4 col-xs-12">
 					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Seleccione la Nota</label>
 					<div class="col-sm-12 col-xs-12">
