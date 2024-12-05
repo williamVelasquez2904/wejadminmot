@@ -9,5 +9,4 @@
 error_log
 /sql
 *base.php
-*.sql
 cfg/base.php
