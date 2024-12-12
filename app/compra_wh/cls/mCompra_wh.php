@@ -17,21 +17,20 @@
 	}
 
 	public function lista_matriz() { 
-		$sql ="	SELECT * FROM vw_wh_tbl_compra 
+
+/*		$sql ="	SELECT * FROM vw_wh_tbl_compra 
 			WHERE 
 			compra_prov_ide != 1 AND  /*1 = Taller */
+/*			
 			compra_tienda= ".$_SESSION['s_usua_tienda']." 
 			AND vw_wh_tbl_compra.compra_ide
 			AND  compra_borrado=0 ORDER BY compra_ide ";
-
+*/
 		$sql ="	SELECT * FROM vw_wh_tbl_compra 
 			WHERE 
 			compra_prov_ide != 1 AND  /*1 = Taller */
 			compra_tienda= ".$_SESSION['s_usua_tienda']." 
 			AND  compra_borrado=0 ORDER BY compra_ide ";
-
-		var_dump($sql)	;
-
 		return Enlace::sql($sql,'',3,'');
 	}
 

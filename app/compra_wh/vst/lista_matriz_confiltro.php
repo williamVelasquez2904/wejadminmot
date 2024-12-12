@@ -121,12 +121,14 @@ $suma_comision=0.0;
 					//0 Contado, 1 Credito
 
 					if ($r->compra_condicion ==0 ){
-						$comision=($monto*$tasa_comision)/100;
-						$comision=round($comision,2);
+						$comision= round(($monto*$tasa_comision)/100,3);
+						//$comision=($monto*$tasa_comision)/100;
+						//$comision=round($comision,2);
 					} 
 					if ($r->compra_condicion ==1 ){
-						$comision=($monto*$tasa_comision)/100;   // validar luego con walter 
-						$comision=round($comision,2);
+						//$comision=($monto*$tasa_comision)/100;   // validar luego con walter 
+						$comision= round(($monto*$tasa_comision)/100,3);
+						//$comision=round($comision,2);
 					} 
 					$suma_comision=$suma_comision+$comision;
 					//$texto_comparacion="Comision diferente";

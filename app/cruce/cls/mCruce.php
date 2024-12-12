@@ -16,11 +16,9 @@
 	}	
 
 	public function insert_encab() {
-		$sql = "SELECT sf_cruce_encab(?,?,?,?,?,?,?,?) AS res";
+		$sql = "SELECT sf_cruce_encab(?,?,?,?,?,?,?,?,?) AS res";
 		extract($_POST);
-   /*     `ide` INT(11),`fec` DATE,  `pago` INT,  `mto` double,  `ope` INT, `usu` INT*/
-
-		$datos = array(0,date('Y-m-d',strtotime($fec)),$hora,$pago,$mto,$arch_img,1,$_SESSION['s_usua_ide']);
+		$datos = array(0,date('Y-m-d',strtotime($fec)),$hora,$pago,$mto,$arch_img,$tipo,1,$_SESSION['s_usua_ide']);
 		return Enlace::sql($sql,$datos,4,'res');
 	}
 

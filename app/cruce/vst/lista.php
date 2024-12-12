@@ -1,18 +1,16 @@
 <?php require '../../../cfg/base.php'; ?>
 <?php 
-//$row = $mcruce->poride($ide) ;
-/*$row = $mcruce->lista_encab($ide) ;*/
 $row = $mcruce->lista_encab() ;
-//var_dump($row);
 ?>
 <?php if(count($row)>0): ?>
 	<div class="table-responsive">
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>Id-27 </th>
+					<th>Id-10122024 </th>
 					<th>Monto</th>
 					<th>Fecha</th>
+					<th>Tipo</th>
 					<th>Ttular</th>
 					<th>Referencia</th>
 					<th>Archivo</th>
@@ -23,9 +21,14 @@ $row = $mcruce->lista_encab() ;
 			<tbody>
 				<?php foreach($row as $r): ?>
 					<tr>
+						<?php  
+						$a= 0;
+						$a = $r->cruce_encab_tipo;?>
 						<td align="center"><?php echo $r->cruce_encab_ide ?></td>
 						<td><?php echo $r->cruce_encab_monto ?></td>
 						<td><?php echo $r->pago_fecha ?></td>
+<!-- 						 											($a > $b ? 'más grande' : 'más pequeño'); -->
+						<td><?php echo $r->cruce_encab_tipo ." - ". ($a == 0 ? 'Cruce' : 'DEVOLUCION') ?></td>
 						<td><?php echo $r->pago_titular ?></td>
 						<td><?php echo $r->pago_ref ?></td>
 						<td>

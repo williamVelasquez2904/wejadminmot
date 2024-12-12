@@ -13,7 +13,7 @@ $suma_comision=0;
 				<tr>
 					<?php $ancho="6%" ?>
 
-					<th width="3%">Id</th>
+					<th width="3%">Id lista matriz</th>
 					<th width="<?php echo $ancho; ?>">Proveedor</th>
 					<th width="<?php echo $ancho; ?>">Fecha Factura</th>
 					<th width="<?php echo $ancho; ?>">Fecha envio</th>
@@ -77,8 +77,6 @@ $suma_comision=0;
 	    				break;
 	  					$condicion_text="Error.Admin.".$r->compra_condicion;
 					}
-
-
 					
 					//var_dump($r->compra_destino);
 					switch ($r->compra_destino) {
@@ -141,14 +139,18 @@ $suma_comision=0;
 					$comision=0;
 					//0 Contado, 1 Credito
 
+
 					if ($r->compra_condicion ==0 ){  //  0 Contado, 1 Credito
-						$comision= ($monto*$tasa_comision)/100;
+						$comision= round(($monto*$tasa_comision)/100,3);
 						$deuda   = $r->compra_monto-$r->abono;
 					} 
 					if ($r->compra_condicion ==1 ){
-						$comision=($monto*$tasa_comision)/100;   // validar luego con walter 
+
+						$comision= round(($monto*$tasa_comision)/100,3);
+						//$comision=($monto*$tasa_comision)/100;   // validar luego con walter 
 						$deuda   = $r->compra_monto_credito-$r->abono;
 					} 
+					
 					$suma_comision=$suma_comision+$comision;
 					?>
 

@@ -1,4 +1,4 @@
-<?php require '../../../cfg/base.php'; 
+<?php require '../../../cfg/base.php';
 /*agrega encabezado del cruce*/
 ?>
 <form action="" class="op1">
@@ -10,7 +10,17 @@
 		<div class="msj"></div>
 		<fieldset><legend>[insert.php] 26-11-2024  - Agregar Cruce</legend>
 
-		<div class="form-group col-sm-8 col-xs-12">
+		<div class="form-group col-sm-2 col-xs-12">
+			<label for="" class="label control-label col-sm-12 bolder">Tipo</label>
+			<div class="col-sm-12 col-xs-12">
+				<select class="form-control chosen" name="tipo" id="tipo">
+					<option value=0>Cruce</option>
+					<option value=1>Devolución</option>
+				</select>
+			</div>
+		</div>		
+
+		<div class="form-group col-sm-10 col-xs-12">
 			<label for="" class="label control-label col-sm-12 bolder">Seleccione Pago</label>
 			<div class="col-sm-12 col-xs-12">
 				<select class="form-control chosen" name="pago" id="pago">
@@ -42,13 +52,13 @@
 				</div>
 		</div>	
 
-		<div class="form-group col-sm-3 col-xs-12">
+		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto</label>
 				<div class="col-sm-12 col-xs-12">
-					<input type="text" class="form-control" name="mto" id="mto" value="100" >
+					<input type="text" class="form-control" name="mto" id="mto" value="" >
 				</div>
 		</div>
-		<div class="form-group col-sm-5">
+		<div class="form-group col-sm-6">
 			<label for="" class="label control-label col-sm-12 bolder">Archivo img </label>
 			<div class="col-sm-12">
 				<input type="text" name="arch_img" id="arch_img" class="form-control" value="">
