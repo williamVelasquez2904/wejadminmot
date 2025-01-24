@@ -2,7 +2,7 @@
 ?>
 <?php foreach($mcompra_wh->poride($ide) as $r):  ?>
 	<form action="" class="op2 form-horizontal">
-		<?php echo $fn->modalHeader("[update_matriz.php] 23-01-2025 | Actualizar  Nota : $ide") ?>
+		<?php echo $fn->modalHeader("[update_matriz.php] 24-01-2025 | Actualizar  Nota : $ide") ?>
 		<div class="modal-body">
 			<div class="msj_upd"></div>
 

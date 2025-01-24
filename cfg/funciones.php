@@ -1,4 +1,4 @@
-<?php class Funciones { // 22/01/2025
+<?php class Funciones { // 24/01/2025
 
 	function __clone() {}
 	function __construct() {}

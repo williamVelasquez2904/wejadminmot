@@ -2,7 +2,7 @@
 <form action="" class="op1">
 	
 <?php 
-$titulo="[venta.php] (21-01-2025) PROCESAR VENTA. $ide --- ORIGEN: $origen_ide ";
+$titulo="[venta.php] (24-01-2025) PROCESAR VENTA. $ide --- ORIGEN: $origen_ide ";
 echo $fn->modalWidth('80%');
 echo $fn->modalHeader($titulo);
 
@@ -15,11 +15,14 @@ if ($origen_ide==1){
 }
 
 foreach($mcompra_wh->poride($ide) as $r): 
-	$condicion=0;
+	$condicion         = 0;
 	$mensaje_condicion = Funciones::descrip_condicion($r->compra_condicion);
 	$mensaje_destino   = Funciones::descrip_destino($r->compra_destino);
-	$row_cliente = $mcliente->poride($r->clien_ide);
-	$nota_venta="";
+	$lista_igual_porc  = array(0,2);
+	if (in_array($r->compra_destino,$lista_igual_porc)) $venta_porc_desc=$r->compra_porc_desc;
+	$row_cliente       = $mcliente->poride($r->clien_ide);
+	$nota_venta        = "";
+
 	if ($origen_ide==1){
 		$nota_venta=$r->compra_num;
 	} // directa
@@ -197,13 +200,14 @@ endforeach;
 						<select class="form-control chosen" onchange="calculaMontoContado_venta();" id="porc_asig" name="porc_asig" >			
 							<option value="0" selected>0</option>
 							<option value="5" >5%</option>
-							<option value="10" >10%</option>
-							<option value="15" >15%</option>
-							<option value="20" >20%</option>
-							<option value="25" >25%</option>
-							<option value="30" >30%</option>
-							<option value="33" >33%</option>
-							<option value="35" >35%</option>
+							<option value="10" <?php if ($venta_porc_desc==10) echo "selected"?>>10%</option >
+							<option value="15" <?php if ($venta_porc_desc==15) echo "selected"?>>15%</option>
+							<option value="20" <?php if ($venta_porc_desc==20) echo "selected"?>>20%</option>
+							<option value="25" <?php if ($venta_porc_desc==25) echo "selected"?>>25%</option>
+							<option value="30" <?php if ($venta_porc_desc==30) echo "selected"?>>30%</option>
+							<option value="33" <?php if ($venta_porc_desc==33) echo "selected"?>>33%</option>
+							<option value="35" <?php if ($venta_porc_desc==35) echo "selected"?>>35%</option>
+							<option value="38" <?php if ($venta_porc_desc==38) echo "selected"?>>38%</option>
 						</select>
 					</div>
 		</div>

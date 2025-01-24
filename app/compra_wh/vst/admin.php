@@ -14,7 +14,7 @@ $fecha_hoy = date('d-m-Y');
 	<div class="datosnota" id="myDIV">
 	<div class="msj"></div>
 
-	<fieldset><legend>[admin.php] (23-01-2025). Datos de la Compra</legend>
+	<fieldset><legend>[admin.php] (24-01-2025). Datos de la Compra</legend>
 
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Proveedor</label>
