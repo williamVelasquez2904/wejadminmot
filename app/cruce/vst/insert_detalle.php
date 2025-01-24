@@ -3,9 +3,9 @@
 //extract($_POST);
 //var_dump($ide);
 echo $fn->modalWidth('80%');
-$r = $mcruce->lista_detalle($ide)  //	 encabezado    ?> 
+$r = $mcruce->lista_detalle($ide)  //	ide de encabezado    ?> 
 	<!-- <?php //echo $fn->modalHeader("[insert_detalle.php]. 13-Nov-24 -  Detalles del cruce : ".$r[0]->cruce_encab_ide." - ".$r[0]->pago_titular) ?>   -->
-	<?php echo $fn->modalHeader("[insert_detalle.php]. 18-Nov-24 -  Detalles del cruce : ") ?>  
+	<?php echo $fn->modalHeader("[insert_detalle.php]. 13-Dic-24 -  Detalles del cruce : ") ?>  
 	<div class="modal-body">
 
 		<div class="msj"></div>

@@ -1,4 +1,4 @@
-<?php class Funciones { // 31/10/2024
+<?php class Funciones { // 22/01/2025
 
 	function __clone() {}
 	function __construct() {}
@@ -217,6 +217,31 @@
 		}
 
 		return $valor_comision;
+	}
+
+	static function descrip_destino($destino) {
+		$descrip_destino="";
+		switch ($destino) {	
+			case 0:
+				$descrip_destino="0. Directo - (Dirección de la NOTA)";
+				break;
+			case 1:
+				$descrip_destino="1. Oficina - (S/C) ";
+				break;
+			case 2:
+				$descrip_destino="2. Oficina - (S/C) - Directo al cliente";
+				break;
+			case 3:
+				$descrip_destino="3. Ingreso a Taller";
+				break;
+			default:
+				$descrip_destino="SIN CODIGO";
+				break;				
+
+		} // fin 
+		return($descrip_destino);
+
+
 	}
 
 	static function descrip_condicion($condicion) {

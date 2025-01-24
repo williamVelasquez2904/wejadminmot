@@ -1,4 +1,4 @@
-<?php class mCompra_wh { 
+<?php class mCompra_wh {
 
 	function __clone() {}
 	function __construct() {}
@@ -12,7 +12,8 @@
 		$sql ="	SELECT * FROM vw_wh_tbl_compra WHERE compra_tienda= ".$_SESSION['s_usua_tienda']." 
 		AND vw_wh_tbl_compra.compra_ide not in (select venta_compra_ide from  wh_tbl_venta )
 		AND vw_wh_tbl_compra.compra_ide not in (select desgnota_nota_ide from vw_desglose_nota  where desgnota_status=1)
-		AND  compra_borrado=0 ORDER BY compra_ide ";
+		AND compra_borrado=0 
+		AND compra_fecha >= '2025-01-01' ORDER BY compra_ide ";
 		return Enlace::sql($sql,'',3,'');
 	}
 
@@ -30,7 +31,9 @@
 			WHERE 
 			compra_prov_ide != 1 AND  /*1 = Taller */
 			compra_tienda= ".$_SESSION['s_usua_tienda']." 
-			AND  compra_borrado=0 ORDER BY compra_ide ";
+			AND  compra_borrado=0 
+			AND compra_fecha >= '2025-01-01'
+			ORDER BY compra_ide ";
 		return Enlace::sql($sql,'',3,'');
 	}
 
@@ -131,12 +134,15 @@
 	}
 
 	public function update_matriz() {
-		$sql = "SELECT sf_compra_wh_matriz(?,?,?,?,?,?,?,?) AS res";
+		$sql = "SELECT sf_compra_wh_matriz(?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
 		extract($_POST); 
-		$datos = array($ide,$estatus,$fec_envio,$fec_recep,$nota_sustituida,$destino,2,$_SESSION['s_usua_ide']);			
+/*		var_dump("<pre>");
+		var_dump($prov_ide);
+		var_dump("</pre>");
+*/		$datos = array($ide,$prov_ide,$fec,$nro,$mto_contado,$mto_credito,$mto_dev,$estatus,$fec_envio,$fec_recep,$nota_sustituida,$destino,2,$_SESSION['s_usua_ide']);			
 		return Enlace::sql($sql,$datos,4,'res');
 	}
-
+ 
 	public function delete() {
 		extract($_POST);
 		$sql = "SELECT sf_compra_wh(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";

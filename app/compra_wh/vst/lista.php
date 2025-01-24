@@ -10,16 +10,18 @@ $row = $mcompra_wh->lista(); ?>
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
-					<th width="3%">Id</th>
-					<th width="5%">Fecha Factura</th>
-					<th width="25%">Cliente</th>
+					<th width="3%">Id </th>
+					<th width="7%">Prov</th>
+					<th width="5%">Fecha Fac.</th>
+					<th width="5%">Fecha Recep.</th>
+					<th width="18%">Cliente [15-01-25] lista.php</th>
 					<th width="6%">Num Fac.</th>
-					<th width="5%">% Desc.</th>
-					<th width="7%">Monto Contado </th>
-					<th width="7%">Monto Crédito </th>
-					<th width="5%">Destino </th>
+					<th width="3%">% Desc.</th>
+					<th width="5%">Monto Contado </th>
+					<!-- <th width="7%">Monto Crédito </th> -->
+					<th width="7%">Destino </th>
 					<th width="5%">Flete</th>
-					<th width="5%">Condición</th>	
+					<!-- <th width="5%">Condición</th>	 -->
 					<th width="5%">Estatus</th>						
 					<th width="7%">Opciones</th>				
 				</tr>
@@ -113,7 +115,7 @@ $row = $mcompra_wh->lista(); ?>
 					$tipo_text ="";
 					$tipo_text =$r->tipvta_descrip;   // ojo 
 
-					//var_dump($r->compra_destino);
+
 					switch ($r->compra_destino) {
 	  				case 0:
 	  					//$color_letra = ""; 
@@ -127,6 +129,8 @@ $row = $mcompra_wh->lista(); ?>
 	  					break;
 	  				case 2:
 	  					//$color_letra = "#ff00ff"; 
+	  					$texto_destino= "  SC- AL CLIENTE";
+	  					$texto_destino_corto= " SC / DIRECTO AL CLIENTE ";	  				
 	  					$texto_destino= "";
 	    				break;
 	  				case 3:
@@ -146,20 +150,27 @@ $row = $mcompra_wh->lista(); ?>
 					<tr  style="<?php echo $estilo; ?>">
 
 						<td ><?php echo $r->compra_ide ?></td>
-						<td align="center"><?php echo date_format(date_create($r->compra_fecha),'d-m-Y') ?></td>
+						<td align="center"><?php echo $r->prove_razonsocial ?></td>
+						<!-- <td align="center"><?php //echo date_format(date_create($r->compra_fecha),'d-m-Y') ?></td> -->
+						<td align="center"><?php echo implode('-', array_reverse(explode('-', $r->compra_fecha)));?></td>
+						<td align="center"><?php echo implode('-', array_reverse(explode('-', $r->compra_fecha_recep)));?></td>						
 						<td align="left"><?php echo $r->nombre1.'<b>'.$texto_destino.'</b> -  ' .'<b>'.$r->compra_sustitucion.'</b>' ?> <font color="<?php echo $color_tipo; ?>"><b><?php echo $tipo_text; ?></b></font> </td>
 						<!-- <td align="left"><?php //echo $r->nombre1.$texto_destino ?></td> -->
 						<td align="center"><?php echo $r->compra_num ?></td>
 						<td align="center"><?php echo $r->compra_porc_desc ?></td>
 						<td align="right"><?php echo number_format($monto,2,",",".") ?></td>
-						<td align="right"><?php echo number_format($monto_credito,2,",",".") ?></td>
-						<td align="right"><?php echo $r->compra_destino.' - '.$texto_destino_corto ?></td>
+						<!-- <td align="right"><?php //echo number_format($monto_credito,2,",",".") ?></td> -->
+
+						<!-- <td align="right"><?php //echo $r->compra_destino.' - '.$texto_destino_corto ?></td> -->
+						<td align="right"><?php echo $texto_destino_corto ?></td>						
+
+
 						<td align="right"><?php echo number_format($r->compra_flete,2,",",".") ?></td>
-						<td align="center"><?php echo $condicion_text ?></td>
+						<!-- <td align="center"><?php //echo $condicion_text ?></td> -->
 						<td align="center"><?php echo $estatus_text  ?></td>
 						<td align="center">
 							<div class="btn-group">
-								<button class="btn btn-success btn-xs" title="Actualizar   30 nov"
+								<button class="btn btn-success btn-xs" title="Actualizar"
 								onclick="modal('vst-compra_wh-update_matriz','ide=<?php echo $r->compra_ide ?>')">
 									<i class="fa fa-edit"></i>
 								</button>
@@ -172,7 +183,7 @@ $row = $mcompra_wh->lista(); ?>
 								'orden_ide=<?php echo $r->compra_encab_orden_ide ?>&compra_encab_ide=<?php echo $r->compra_encab_ide ?>&compra_encab_fecha=<?php echo $r->compra_encab_fecha ?>')">
 									<i class="fa fa-search"></i>
 								</button>
-								<?php if  ( ($r->compra_estatus==0) && ($r->compra_destino==0) ) { ?>	
+								<?php if  ( ($r->compra_estatus==0  || $r->compra_estatus==6  ) && ($r->compra_destino==0) || $r->compra_destino==2 ) { ?>	
 									<button class="btn btn-info btn-xs" title="venta.php Pasar a cobranza" onclick="modal('vst-venta-venta','ide=<?php echo $r->compra_ide ?>&origen_ide=<?php echo $origen_ide ?>')">
 										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 									</button>									

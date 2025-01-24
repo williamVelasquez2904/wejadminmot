@@ -6,12 +6,21 @@
 	public function lista() {
 		/*$sql = "SELECT * FROM vw_venta WHERE venta_tienda= ".$_SESSION['s_usua_tienda']." AND venta_borrado=0 ORDER BY  venta_ide DESC";*/
 		$sql = "SELECT * FROM vw_venta LEFT JOIN vw_abonoventa on vw_venta.venta_ide = vw_abonoventa.recnota_venta_ide WHERE venta_tienda= ".$_SESSION['s_usua_tienda']." AND venta_borrado=0";
-		$sql = "SELECT * FROM vw_venta WHERE venta_tienda= ".$_SESSION['s_usua_tienda']." AND venta_borrado=0 ORDER BY  venta_ide DESC";
+		$sql = "SELECT * FROM vw_venta WHERE venta_tienda= ".$_SESSION['s_usua_tienda']." AND venta_borrado=0 
+		AND venta_fecha_registro >='2025-01-01'
+		ORDER BY  venta_ide DESC";
 		return Enlace::sql($sql,'',3,'');
 	}
  
 	public function lista_sinabono() { 
-		$sql = "SELECT * FROM vw_venta2 WHERE venta_tienda= ".$_SESSION['s_usua_tienda']." AND venta_borrado=0 ORDER BY  venta_ide DESC";
+		$sql = "SELECT * FROM vw_venta2 WHERE venta_tienda= ".$_SESSION['s_usua_tienda']." AND venta_borrado=0 
+		AND venta_fecha_registro >='2025-01-01'
+		
+		ORDER BY  venta_ide DESC";
+
+/*		$sql = "SELECT * FROM vw_venta2 WHERE venta_tienda= ".$_SESSION['s_usua_tienda']." AND venta_borrado=0 
+		ORDER BY  venta_ide DESC";
+*/		
 		return Enlace::sql($sql,'',3,'');
 	}	
 

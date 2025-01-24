@@ -1,7 +1,7 @@
 <div class="btn-group pull-right">
 	<button class="btn btn-inverse" onclick="modal('vst-desglose-insert','')">
 		<i class="fa fa-plus"></i>
-		Agregar Desglose
+		Agregar Desglose [admin.php]. 08-01-2025
 	</button>
 </div>
 <div class="clearfix"></div>

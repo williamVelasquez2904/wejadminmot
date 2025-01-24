@@ -4,7 +4,10 @@
 	function __construct() {}
 
 	public function lista() {
-		$sql = "SELECT * FROM vw_wh_tbl_compra WHERE compra_tienda= ".$_SESSION['s_usua_tienda']." AND compra_borrado=0 ORDER BY compra_ide";
+		$sql = "SELECT * FROM vw_wh_tbl_compra WHERE compra_tienda= ".$_SESSION['s_usua_tienda']." 
+		AND compra_borrado=0 
+		AND 
+		ORDER BY compra_ide";
 		return Enlace::sql($sql,'',3,'');
 	}
 

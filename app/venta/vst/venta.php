@@ -2,7 +2,7 @@
 <form action="" class="op1">
 	
 <?php 
-$titulo="[venta.php] (19-09-2024) PROCESAR VENTA. $ide --- ORIGEN: $origen_ide ";
+$titulo="[venta.php] (21-01-2025) PROCESAR VENTA. $ide --- ORIGEN: $origen_ide ";
 echo $fn->modalWidth('80%');
 echo $fn->modalHeader($titulo);
 
@@ -17,6 +17,7 @@ if ($origen_ide==1){
 foreach($mcompra_wh->poride($ide) as $r): 
 	$condicion=0;
 	$mensaje_condicion = Funciones::descrip_condicion($r->compra_condicion);
+	$mensaje_destino   = Funciones::descrip_destino($r->compra_destino);
 	$row_cliente = $mcliente->poride($r->clien_ide);
 	$nota_venta="";
 	if ($origen_ide==1){
@@ -105,6 +106,14 @@ endforeach;
 				</div>
 
 				<div class="form-group col-sm-2 col-xs-12">
+					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Destino Compra</label>
+					<div class="col-sm-12 col-xs-12">
+							<input type="text" class="form-control" name="compra_destino" value="<?php echo $mensaje_destino;  ?>" disabled>
+					</div>
+				</div>
+
+
+				<div class="form-group col-sm-2 col-xs-12">
 					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Condición de la Nota</label>
 					<div class="col-sm-12 col-xs-12">
 							<input type="text" class="form-control" name="condicion_nota" value="<?php echo $mensaje_condicion;  ?>" disabled>
@@ -185,7 +194,7 @@ endforeach;
 					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">% Asignado</label>
 					<div class="col-sm-12 col-xs-12">
 						<!-- <select class="form-control chosen" onchange="calculaMontoContado_venta();" id="porc_desc" name="porc_desc" > -->
-						<select class="form-control chosen" onchange="calculaMontoContado_venta();" id="porc_asig" name="porc_asig" >							
+						<select class="form-control chosen" onchange="calculaMontoContado_venta();" id="porc_asig" name="porc_asig" >			
 							<option value="0" selected>0</option>
 							<option value="5" >5%</option>
 							<option value="10" >10%</option>
@@ -194,6 +203,7 @@ endforeach;
 							<option value="25" >25%</option>
 							<option value="30" >30%</option>
 							<option value="33" >33%</option>
+							<option value="35" >35%</option>
 						</select>
 					</div>
 		</div>
@@ -435,6 +445,7 @@ endforeach;
 							load('vst-compra_wh-lista','','.lista');
 							if(confirm('Registro agregado correctamente.\n¿Desea agregar otro registro?')==true) {
 								$(formulario).each(function(){ this.reset() })
+								cerrarmodal();
 							} else {
 								cerrarmodal();
 							}

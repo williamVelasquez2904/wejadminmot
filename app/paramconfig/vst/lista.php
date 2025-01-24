@@ -1,17 +1,16 @@
 <?php require '../../../cfg/base.php'; ?>
-<?php 
-$row = $mcruce->lista_encab() ;
-?>
+<?php $row = $mpago->lista() ?>
 <?php if(count($row)>0): ?>
 	<div class="table-responsive">
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>Id-13Dic2024 </th>
+					<th>Id</th>
+					<th>Forma de Pago</th>
+					<th>Titular</th>
 					<th>Monto</th>
 					<th>Fecha</th>
-					<th>Tipo</th>
-					<th>Ttular</th>
+					<th>Hora</th>
 					<th>Referencia</th>
 					<th>Archivo</th>
 					<th>Estatus</th>
@@ -21,34 +20,27 @@ $row = $mcruce->lista_encab() ;
 			<tbody>
 				<?php foreach($row as $r): ?>
 					<tr>
-						<?php  
-						$a= 0;
-						$a = $r->cruce_encab_tipo;?>
-						<td align="center"><?php echo $r->cruce_encab_ide ?></td>
-						<td><?php echo $r->cruce_encab_monto ?></td>
-						<td><?php echo $r->pago_fecha ?></td>
-<!-- 						 											($a > $b ? 'más grande' : 'más pequeño'); -->
-						<td><?php echo $r->cruce_encab_tipo ." - ". ($a == 0 ? 'Cruce' : 'DEVOLUCION') ?></td>
+						<td align="center"><?php echo $r->pago_ide ?></td>
+						<td><?php echo $r->forpago_descrip ?></td>
 						<td><?php echo $r->pago_titular ?></td>
+						<td><?php echo $r->pago_monto ?></td>
+						<td><?php echo implode('-', array_reverse(explode('-', $r->pago_fecha))); ?></td>
+						<td><?php echo $r->pago_hora ?></td>
 						<td><?php echo $r->pago_ref ?></td>
-						<td>
+						<td><?php echo $r->pago_img ?>
 							<div class="btn-group">
-								<button class="btn btn-success btn-xs" title="Ver imágen" onclick="modal('vst-cruce-ver_img_cruce',
-								'encab_ide=<?php echo $r->cruce_encab_ide ?> ?>')">
+								<button class="btn btn-success btn-xs" title="Ver pago" onclick="modal('vst-pago-ver_img_pago',
+								'pago_ide=<?php echo $r->pago_ide ?> ?>')">
 									<i class="fa fa-edit"></i>
 								</button>
 							</div>
-							<?php echo $r->cruce_encab_img ?>
 						</td>
-						<td><?php echo $r->cruce_encab_status ?></td>
+						<td><?php echo funciones::descrip_estatus('pago',($r->pago_status)) ?></td>
 						<td>
 							<div class="btn-group">
 								<button class="btn btn-success btn-xs" title="Actualizar" onclick="modal('vst-pago-update','ide=<?php echo $r->banco_ide ?>')">
 									<i class="fa fa-edit"></i>
 								</button>
-								<button class="btn btn-success btn-xs" title="18-11 Detalle cruce" onclick="modal('vst-cruce-insert_detalle','ide=<?php echo $r->cruce_encab_ide ?>')">
-									<i class="fa fa-edit"></i>
-								</button>								
 								<button class="btn btn-danger btn-xs" title="Borrar" onclick="modal('vst-pago-delete','ide=<?php echo $r->banco_ide ?>')">
 									<i class="fa fa-trash"></i>
 								</button>

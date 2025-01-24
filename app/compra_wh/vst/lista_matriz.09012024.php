@@ -1,4 +1,4 @@
-<?php require '../../../cfg/base.php'; ?>
+<?php require '../../../cfg/base.php'; ?> 
 <?php
 $monto=0;  // monto contado
 $monto_credito=0;
@@ -9,9 +9,31 @@ $suma_comision=0;
 <?php if(count($row)>0):?>
 	<div class="table-responsive">
 		<table class="table table-hover table-bordered">
-			<?php 
-				include 'plantilla_matriz_encab.php';
-			?>
+			<thead>
+				<tr>
+					<?php $ancho="6%" ?>
+
+					<th width="3%">Id lista matriz</th>
+					<th width="<?php echo $ancho; ?>">Proveedor</th>
+					<th width="<?php echo $ancho; ?>">Fecha Factura</th>
+					<th width="<?php echo $ancho; ?>">Fecha envio</th>
+					<th width="<?php echo $ancho; ?>">Fecha recep</th>
+					<th width="20%">Cliente </th>
+					<th width="<?php echo $ancho; ?>">Num Factura</th>
+					<th width="<?php echo $ancho; ?>">% Descuento</th>
+					<th width="<?php echo $ancho; ?>">Tipo</th>
+					<th width="<?php echo $ancho; ?>">Comisión</th>
+					<th width="<?php echo $ancho; ?>">Contado </th>
+					<th width="<?php echo $ancho; ?>">Monto Crédito </th>
+					<th width="<?php echo $ancho; ?>">Abono </th>
+					<th width="<?php echo $ancho; ?>">Cruce</th>
+					<th width="<?php echo $ancho; ?>">Deuda </th>
+					<th width="<?php echo $ancho; ?>">Flete</th>
+					<th width="<?php echo $ancho; ?>">Condición</th>	
+					<th width="<?php echo $ancho; ?>">Estatus</th>	
+					<th width="3%">Opciones</th>				
+				</tr>
+			</thead>
 			<tbody>
 				<?php foreach($row as $r): 
 					$_SESSION['color_tipo']="";
@@ -26,13 +48,6 @@ $suma_comision=0;
 					$estatus_text   = '';
 					$tipo_text ="";
 					$deuda     =0;
-					$comision_ex=0;
-					$saldo =0;
-
-
-					$monto=round($r->compra_monto,2);
-					$saldo = $r->abono - $monto; 
-
 					if ($r->compra_tipo!==1){
 						$tipo_text =$r->tipvta_descrip;
 					}
@@ -53,13 +68,7 @@ $suma_comision=0;
 	  				case 1:
 	  				    /*$estilo      = "color:#000000; font-size:12px; background-color: #fb5e17;";*/
 	  				    /*$estilo      = "color:#000000; font-size:12px; background-color: #FF0000;";  // rojo*/
-
-	  				    if ($saldo == 0) 
-	  				    	$estilo      = "color:#ff0000; font-size: 14px; background-color: #fb5e17;";
-
-	  				    if ($saldo <> 0) 
-	  				    	$estilo      = "color:#000000; font-size: 12px; background-color: #fb5e17;";
-
+	  				    $estilo      = "color:#000000; font-size: 12px; background-color: #fb5e17;";
 	  					$color_letra = "#1b00ff"; 
 	  					//$color_fondo = "#FFFFFF"; 
 	  					$color_fondo = "#fb5e17"; 
@@ -122,8 +131,7 @@ $suma_comision=0;
 					}
 
 
-					$monto_dev=round($r->compra_devol,2);
-
+					$monto=round($r->compra_monto,2);
 					$monto_credito=round($r->compra_monto_credito,2);
 					$tasa_comision=0;
 					$tasa_comision=$r->tipvta_com_compra;
@@ -133,13 +141,7 @@ $suma_comision=0;
 
 
 					if ($r->compra_condicion ==0 ){  //  0 Contado, 1 Credito
-
-
-
-						/*$comision= round(($monto*$tasa_comision)/100,3);*/
-
-
-						$comision= round((($monto-$monto_dev)*$tasa_comision)/100,3);
+						$comision= round(($monto*$tasa_comision)/100,3);
 						$deuda   = $r->compra_monto-$r->abono;
 					} 
 					if ($r->compra_condicion ==1 ){
@@ -151,10 +153,53 @@ $suma_comision=0;
 					
 					$suma_comision=$suma_comision+$comision;
 					?>
+
 					<tr  style="<?php echo $estilo; ?>">
-						<?php
-							  include 'plantilla_matriz_detalle.php'; 
-						?>
+						<!-- <tr  bgcolor="<?php //echo $color_fondo; ?>" style="color: <?php //echo $color_letra;  ?>;"> -->
+
+						<td ><?php echo $r->compra_ide ?></td>
+						<td ><?php echo $r->prove_razonsocial ?></td>
+						
+						<td align="center"><?php echo implode('-', array_reverse(explode('-', $fecha_factura)));?></td>
+						<td align="center"><?php echo implode('-', array_reverse(explode('-', $r->compra_fecha_envio)));?></td>
+						<td align="center"><?php echo implode('-', array_reverse(explode('-', $r->compra_fecha_recep)));?></td>						
+						<td align="left"><?php echo $r->nombre1.'<b>'.$texto_destino.'</b> -  ' .'<b>'.$r->compra_sustitucion.'</b>' ?> <font color="<?php echo $color_tipo; ?>"><b><?php echo $tipo_text; ?></b></font> </td>
+						<td align="center"><?php echo $r->compra_num ?></td>
+						<td align="center"><?php echo $r->compra_porc_desc ?></td>
+						<td align="center"><?php echo $r->tipvta_descrip ?></td>
+						<td align="right"><?php echo number_format($comision,2,",",".") ?></td>
+						<td align="right"><?php echo number_format($monto,2,",",".") ?></td>
+
+						<td align="right"><?php echo number_format($monto_credito,2,",",".") ?></td>
+						<td align="right"><?php echo number_format($r->abono,2,",",".") ?></td>
+						<td align="right"><?php //echo //number_format($r->abono,2,",",".") ?>
+							<div class="btn-group">
+								<button class="btn btn-success btn-xs" title="lista detalle" onclick="modal('vst-cruce-lista_detalle',
+								'ide=<?php echo $r->compra_ide; ?>')">
+									<i class="fa fa-edit"></i>
+								</button>								
+								<button class="btn btn-success btn-xs" title="Ver en cruce" onclick="modal('vst-cruce-ver_img_cruce',
+								'encab_ide=<?php echo $r->crudeta_encab_ide ?>')">
+									<i class="fa fa-edit"></i>
+								</button>
+							</div>
+						</td>
+						<td align="right"><?php echo number_format($deuda,2,",",".") ?></td>						
+						<td align="right"><?php echo number_format($r->compra_flete,2,",",".") ?></td>
+
+						<td align="center"><?php echo $condicion_text ?></td>
+
+						<td align="center"><?php echo '<b>'.$estatus_text.'</b>' ?></td>
+						<!-- <td align="center"><?php //echo '<b>'.$r->compra_estatus.'</b>' ?></td> -->
+
+						<td align="center">
+							<div class="btn-group"> 
+								<button class="btn btn-success btn-xs" title="Actualizar"
+								onclick="modal('vst-compra_wh-update_matriz','ide=<?php echo $r->compra_ide ?>')">
+									<i class="fa fa-edit"></i>
+								</button>
+							</div>
+						</td>						
 					</tr>
 				<?php endforeach; ?>
 			</tbody>

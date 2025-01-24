@@ -11,7 +11,7 @@ require '../../../cfg/base.php';
 <form action="" class="opventa">
 	<div class="msj"></div>
 <div class="clearfix"></div>
-	<fieldset><legend>[admin_venta.php] 110924 - SELECCIONE CLIENTE</legend>	
+	<fieldset><legend>[admin_venta.php] 08-01-2025. SELECCIONE CLIENTE</legend>	
 		<div class="form-group col-sm-5 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Cliente</label>
 			<div class="col-sm-12 col-xs-12">

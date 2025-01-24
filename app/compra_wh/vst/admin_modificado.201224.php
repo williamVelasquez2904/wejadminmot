@@ -1,4 +1,5 @@
 <?php 
+
 date_default_timezone_set('America/El_Salvador');
 $fecha_hoy = date('d-m-Y');
 ?>
@@ -14,7 +15,7 @@ $fecha_hoy = date('d-m-Y');
 	<div class="datosnota" id="myDIV">
 	<div class="msj"></div>
 
-	<fieldset><legend>[admin.php] (23-01-2025). Datos de la Compra</legend>
+	<fieldset><legend>[admin.php] (20-12-2024).- Datos de la Compra</legend>
 
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Proveedor</label>
@@ -40,6 +41,7 @@ $fecha_hoy = date('d-m-Y');
 				</select>
 			</div>
 		</div>	
+
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Nro. Factura</label>
 			<div class="col-sm-12 col-xs-12">
@@ -78,7 +80,7 @@ $fecha_hoy = date('d-m-Y');
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Sub-Total en Bs.  </label>
 			<div class="col-sm-12 col-xs-12">
-				<input type="number" name="mto_subtotal" id="mto_subtotal" class="form-control" value="0.00" min="0.01" onchange="calculaMontoCredito();" onclick="calculaMontoCredito();">
+				<input type="text" name="mto_subtotal" id="mto_subtotal" class="form-control" value="0.00" min="0.01" onchange="calculaMontoCredito();" onclick="calculaMontoCredito();">
 			</div>
 		</div>		
 		<div class="form-group col-sm-2 col-xs-12">
@@ -143,9 +145,8 @@ $fecha_hoy = date('d-m-Y');
 			<label for="" class="label control-label col-sm-12 bolder">Destino</label>
 			<div class="col-sm-12 col-xs-12">
 				<select class="form-control chosen" name="destino" id="destino" onchange="habilitarFlete();">
-					<option value=0>Directo - (Dirección de la NOTA)- No flete</option> <!-- Si tiene carrito -->
-					<option value=1>Oficina - (S/C) - SI tiene flete (Desglose)</option><!-- Calcular Flete directo  -->
-					<option value=2>Oficina - (S/C) - Directo al cliente</option>       <!-- Si tiene carrito -->
+					<option value=0>Directo - (Dirección de la NOTA)- No flete</option>
+					<option value=1>Oficina - (S/C) - SI tiene flete</option>
 					<option value=3>Ingreso a Taller</option>					
 				</select>
 			</div>
@@ -218,20 +219,39 @@ $fecha_hoy = date('d-m-Y');
 		mto_subtotal=0;
 		montoCredito=0;
 
-		var elemento = document.getElementById('tasa');		
-		if (elemento !== null) { 
+		/*var elemento = document.getElementById('tasa');		*/
+		if (document.getElementById('tasa').value !== null) { 
 			tasa = document.getElementById('tasa').value;
 		}
-		var elemento = document.getElementById('mto_subtotal');
-		if (elemento !== null) { 
+		let  elemento = document.getElementById('mto_subtotal');
+
+        /*let nuevaCadena = elemento.replace(".", "");*/
+        /*let monto_sin_puntos = elemento.replace(".", "");*/
+
+        let monto_sin_puntos = document.getElementById('mto_subtotal').value.replace(".", "");
+        //monto_sin_puntos = document.getElementById('monto_sin_puntos').value.replace(".", ",");
+
+		document.getElementById('mto_subtotal').value=monto_sin_puntos.replace(".", ",");
+
+		/*alert("monto sin puntos");
+		alert(monto_sin_puntos);*/
+		if (monto_sin_puntos !== null) { 
 			mto_subtotal=document.getElementById('mto_subtotal');
 		}		
+		if (document.getElementById('mto_subtotal').value > 0 ){
+			/*montoCredito = round(document.getElementById('mto_subtotal').value/tasa,2);*/
+			montoCredito = round(monto_sin_puntos/tasa,2);
+		}
+
+
 		if (document.getElementById('mto_subtotal').value > 0 )
 			montoCredito = round(document.getElementById('mto_subtotal').value/tasa,2);
+
 
 		document.getElementById('mto_credito').value=montoCredito;
 		document.getElementById('mto_flete').value=calculaMontoFlete();
 		document.getElementById('mto_contado').value=calculaMontoContado();
+		/*alert(saliendo de montoCredito);*/
 		return	montoCredito;
 	}	
 /*	function calculaMontoCredito(){
@@ -271,7 +291,7 @@ $fecha_hoy = date('d-m-Y');
 	function habilitarFlete(){
 		let f_destino   = document.getElementById('destino').value;
 		
-		if (f_destino == 1 || f_destino == 2 || f_destino == 3 ){
+		if (f_destino == 1 || f_destino == 3 ){
 				alert("Debe asignar un monto en FLETE.");
 				//document.getElementById('mto_flete').focus();
 				
@@ -372,7 +392,7 @@ $fecha_hoy = date('d-m-Y');
 				var f_porc        = document.getElementById('porc').value;
 				var f_tipo        = document.getElementById('tipo').value;
 				var f_clien_ide   = document.getElementById('clien_ide').value;
-				var f_prov_ide        = document.getElementById('prov_ide').value;
+				var f_prov        = document.getElementById('prov_ide').value;
 				var f_destino     = document.getElementById('destino').value;
 				var f_mto_flete   = document.getElementById('mto_flete').value;
 				var f_orden_ide   = $("#orden_ide").val();
@@ -424,7 +444,7 @@ $fecha_hoy = date('d-m-Y');
 					alert('Orden en cero...');
 
 				}*/
-				if (f_prov_ide.trim().length==0){
+				if (f_prov.trim().length==0){
 					alert('Debe seleccionar un Proveedor');
 					$flag=false;
 				}
@@ -442,7 +462,6 @@ $fecha_hoy = date('d-m-Y');
 									document.getElementById('tipo').value="";
 									document.getElementById('porc').value=f_porc;
 									document.getElementById('clien_ide').value=f_clien_ide;
-									document.getElementById('prov_ide').value=f_prov_ide;
 
 								} else {
 									cerrarmodal();

@@ -5,7 +5,7 @@
 <form action="" class="op1-clien">
 	<div class="msj-clien" id="errores"></div>
 	<!-- Datos del cliente ############### -->
-	<fieldset><legend>[insert.php] - 16/09/24</legend>	
+	<fieldset><legend>[insert.php] - 18/12/24</legend>	
 		<div class="form-group col-sm-4">
 			<label for="" class="label control-label col-sm-12 bolder">Código:</label>
 			<div class="col-sm-12">
@@ -195,10 +195,16 @@
 				},
 				ced: {
 					required: true,
-				},
+				},				
 				nom1: {
 					required: true,
 				},
+				vende: {
+					required: true,
+				},	
+				zona: {
+					required: true,
+				},								
 				dir: {
 					required: true,
 				}
@@ -214,6 +220,12 @@
 				nom1: {
 					required: 'Obligatorio',
 				},
+				vende: {
+					required: 'Obligatorio',
+				},				
+				zona: {
+					required: 'Obligatorio',
+				},				
 				dir: {
 					required: 'Obligatorio',
 				}

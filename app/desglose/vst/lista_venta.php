@@ -14,7 +14,7 @@ $mensaje_condicion="";
 $acum_total_venta=0.0; 
 $habilitar_venta=false;
 if(count($row)>0): ?>
-	<div class="alert alert-info"><i class="material-icons"></i>[lista_venta.php] 11/09/2024 LISTADO VENTAS PARA ESTE DESGLOSE.... </div>
+	<div class="alert alert-info"><i class="material-icons"></i>[lista_venta.php] 08/01/2025 LISTADO VENTAS PARA ESTE DESGLOSE.... </div>
 	<div class="table-responsive">
 		<table class="table_desglose_venta table-hover table-bordered">
 			<thead>
