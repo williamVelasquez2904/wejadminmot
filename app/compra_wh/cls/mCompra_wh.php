@@ -134,12 +134,9 @@
 	}
 
 	public function update_matriz() {
-		$sql = "SELECT sf_compra_wh_matriz(?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
+		$sql = "SELECT sf_compra_wh_matriz(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
 		extract($_POST); 
-/*		var_dump("<pre>");
-		var_dump($prov_ide);
-		var_dump("</pre>");
-*/		$datos = array($ide,$prov_ide,$fec,$nro,$mto_contado,$mto_credito,$mto_dev,$estatus,$fec_envio,$fec_recep,$nota_sustituida,$destino,2,$_SESSION['s_usua_ide']);			
+		$datos = array($ide,$prov_ide,$fec,$nro,$mto_contado,$mto_credito,$mto_dev,$estatus,$fec_envio,$fec_recep,$nota_sustituida,$destino,$tipo,2,$_SESSION['s_usua_ide']);
 		return Enlace::sql($sql,$datos,4,'res');
 	}
  

@@ -120,7 +120,19 @@
 				</div>
 			</div>
 
-
+			<div class="form-group">
+				<label for="" class="control-label col-sm-4 col-xs-12 bolder">Tipo de factura</label>
+				<div class="col-sm-8 col-xs-12">
+					<select class="form-control chosen" name="tipo" id="tipo">
+						<option value="" selected=""></option>
+						<?php foreach($mtipmerc->lista() as $p): ?>
+							<option value="<?php echo $p->tipvta_ide ?>" <?php echo $fn->select($p->tipvta_ide,$r->compra_tipo) ?>>
+							<?php echo $p->tipvta_descrip ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+			</div>		
 		</div>
 		<?php echo $fn->modalFooter(1) ?>
 		<input type="hidden" class="form-control" name="ide" value="<?php echo $r->compra_ide ?>">
