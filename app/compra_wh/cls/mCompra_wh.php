@@ -134,10 +134,13 @@
 	}
 
 	public function update_matriz() {
-		$sql = "SELECT sf_compra_wh_matriz(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
+		$sql = "SELECT sf_compra_wh_matriz(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
 		extract($_POST); 
-		$datos = array($ide,$prov_ide,$fec,$nro,$mto_contado,$mto_credito,$mto_dev,$estatus,$fec_envio,$fec_recep,$nota_sustituida,$destino,$tipo,2,$_SESSION['s_usua_ide']);
+		/*$datos = array($ide,$prov_ide,$fec,$nro,$mto_contado,$mto_credito,$cond,$mto_dev,$estatus,$fec_recep,$nota_sustituida,$destino,$tipo,2,$_SESSION['s_usua_ide']);*/
+
+		$datos = array($ide,$prov_ide,$clien_ide,$nro,$fec,$fec_recep,$tasa,$porc,$mto_contado,$mto_credito,$cond,$mto_dev,$nota_sustituida,$destino,$tipo,2,$_SESSION['s_usua_ide']);
 		return Enlace::sql($sql,$datos,4,'res');
+
 	}
  
 	public function delete() {

@@ -120,22 +120,22 @@ $row = $mcompra_wh->lista(); ?>
 	  				case 0:
 	  					//$color_letra = ""; 
 	  					$texto_destino= " Directo";
-	  					$texto_destino_corto= " Directo ";
+	  					$texto_destino_corto= "0-Directo ";
 	    				break;
 	  				case 1:
 	  					//$color_letra = "#FF0000"; 
 	  					$texto_destino= "  SAN CRISTÓBAL";
-	  					$texto_destino_corto= " SC ";
+	  					$texto_destino_corto= "1-SC ";
 	  					break;
 	  				case 2:
 	  					//$color_letra = "#ff00ff"; 
 	  					$texto_destino= "  SC- AL CLIENTE";
-	  					$texto_destino_corto= " SC / DIRECTO AL CLIENTE ";	  				
+	  					$texto_destino_corto= "2- SC / DIRECTO AL CLIENTE ";	  				
 	  					$texto_destino= "";
 	    				break;
 	  				case 3:
 	  					$texto_destino= " Taller";
-	  					$texto_destino_corto= " Ingreso a Taller ";	  					
+	  					$texto_destino_corto= "3-Ingreso a Taller ";	  					
 	    				break;	    				
 	  				default:						    
 	  					 //$color_letra="Error.Admin.".$r->compra_destino;

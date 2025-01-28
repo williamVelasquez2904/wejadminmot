@@ -105,7 +105,7 @@ $fecha_hoy = date('d-m-Y');
 			<div class="col-sm-12 col-xs-12">
 				<input type="number" name="mto_credito" id="mto_credito" class="form-control" value="0.00" min="0.01" onchange="calculaMontoCredito();" onclick="calculaMontoCredito();">
 			</div>
-		</div>
+		</div> 
 		
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto contado ($)</label>
