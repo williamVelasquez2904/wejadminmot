@@ -99,18 +99,8 @@
     }
 
 	public function insert() { 
-		/*
 		extract($_POST);
-		/*$_SESSION['s_usua_tienda']
-		var_dump("<pre>");
-		var_dump($_POST);
-		var_dump("</pre>");
-		
-		exit;
-		*/ 
-		//$sql = "SELECT sf_compra(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
-		extract($_POST);
-		$sql = "SELECT sf_compra_wh(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
+		$sql = "SELECT sf_compra_wh(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
 		$datos = array(
 			0, // Identificador
 			$prov_ide,
@@ -124,6 +114,7 @@
 			$mto_flete,
 			$cond,
 			$destino,
+			$op_venta,	/* Asociamos origen con_op venta para darle el mismo valor 1, osea en este caso pasamos el valor 1 a origen cuando la venta sea directa */
 			$tipo,
 			1,	//tienda		
 			1, 	 //  operación

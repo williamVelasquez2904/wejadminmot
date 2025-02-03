@@ -10,10 +10,8 @@ $suma_detalle=0;
 ?>
 <?php if(count($row)>0): 
 	echo $fn->modalWidth('70%');
-	/*echo $fn->modalHeader('16-12-24. Detalle del cruce. Nota: $ide '.$ide);*/
 	echo $fn->modalHeader('16-12-24. Detalle del cruce. Nota: '. $ide );
 	?>
-
 	<div class="table-responsive">
 		<table class="table2 table-hover table-bordered " width="100%" align="center">
 			<thead>

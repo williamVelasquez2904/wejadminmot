@@ -14,7 +14,7 @@ $fecha_hoy = date('d-m-Y');
 	<div class="datosnota" id="myDIV">
 	<div class="msj"></div>
 
-	<fieldset><legend>[admin.php] (24-01-2025). Datos de la Compra</legend>
+	<fieldset><legend>[admin.php] (03-02-2025). Datos de la Compra</legend>
 
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Proveedor</label>
@@ -147,9 +147,24 @@ $fecha_hoy = date('d-m-Y');
 					<option value=1>Oficina - (S/C) - SI tiene flete (Desglose)</option><!-- Calcular Flete directo  -->
 					<option value=2>Oficina - (S/C) - Directo al cliente</option>       <!-- Si tiene carrito -->
 					<option value=3>Ingreso a Taller</option>					
+					<option value=4>Por definir</option>					
+
 				</select>
 			</div>
 		</div>		
+
+		<div class="form-group col-sm-1 col-xs-12">
+			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Registrar Venta</label>
+			<div class="col-sm-12 col-xs-12">
+				<select class="form-control chosen" name="op_venta" id="op_venta">
+					 <!-- Asociamos origen con_op venta para darle el mismo valor 1, osea en este caso pasamos el valor 1 a origen cuando la venta sea directa -->
+					<option value=1>Si</option>
+					<option value=2>No</option>
+				</select>
+			</div>
+		</div>		
+
+
 
 		<div class="clearfix"></div>
 

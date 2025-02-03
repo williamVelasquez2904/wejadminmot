@@ -132,7 +132,8 @@
 			<div class="form-group col-sm-3 col-xs-12">
 				<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Destino</label>
 				<div class="col-sm-12 col-xs-12">
-					<select class="form-control chosen" name="destino" id="destino" >
+
+					<select class="form-control chosen" name="destino" id="destino" onchange="habilitarFlete();" onclick="habilitarFlete();">
 						<option value=0 <?php echo $fn->select(0,$r->compra_destino) ?>>0-Directo - (Dirección de la NOTA)- No flete</option>
 						<option value=1 <?php echo $fn->select(1,$r->compra_destino) ?>>1-Oficina - (S/C) - SI tiene flete</option>
 						<option value=2 <?php echo $fn->select(2,$r->compra_destino) ?>>2-Oficina - (S/C) - Directo al cliente</option>
@@ -144,7 +145,7 @@
 			<div  class="form-group col-sm-2 col-xs-12">
 				<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto flete</label>
 					<div class="col-sm-12 col-xs-12">
-					<input type="text" class="form-control" name="mto_flete" id="mto_flete" onchange="validaFlete();" autocomplete="off" disabled>
+					<input type="text" class="form-control" name="mto_flete" id="mto_flete" onchange="validaFlete();" autocomplete="off">
 				</div>
 			</div>				
 
@@ -190,6 +191,29 @@
 		$('.fecha').datepicker({format:'yyyy-mm-dd',endDate:'-0d'});
 	})
 </script>
+
+<script>
+	function habilitarFlete(){
+		let f_destino   = document.getElementById('destino').value;
+		
+		if (f_destino == 1 || f_destino == 2 || f_destino == 3 ){
+				alert("Debe asignar un monto en FLETE.");
+				document.getElementById('mto_flete').disabled=false;
+				document.getElementById('mto_flete').focus=true;
+				
+				porc_flete.disabled = false;
+				mto_flete.disabled = false;
+				
+		}
+		if (f_destino == 0 ){
+				document.getElementById('mto_flete').value=0;
+				document.getElementById('mto_flete').disabled=true;
+				mto_flete.disabled = true;
+				porc_flete.disabled = true;
+		}
+	}
+</script>	
+
 <!-- <script>
 	function round(value, decimals) {
   		return Number(Math.round(value+'e'+decimals)+'e-'+decimals);

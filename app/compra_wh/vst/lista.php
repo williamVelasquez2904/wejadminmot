@@ -2,7 +2,14 @@
 $monto=0;  // monto contado
 $monto_credito=0;
 extract($_POST);
-$origen_ide=1;
+
+/* Origen Venta
+1	Directa
+2	Por desglose
+3	Taller
+*/
+$origen_ide=1;  
+
 $row = $mcompra_wh->lista(); ?> 
 
 <?php if(count($row)>0):?>

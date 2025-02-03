@@ -93,19 +93,11 @@
 
 		
 	}
-  
+   
 	public function insert_venta_2() { 
-		extract($_POST);
-		
-/*
-		var_dump("<pre>");
-		var_dump($tipoventa);
-		var_dump("</pre>");
-
-*/		$sql = "SELECT sf_venta_wh(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res"; 
-
-		/*$sql = "SELECT sf_venta_wh(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res"; */
-		$datos = array($ide,$origen,$compra_ide,funciones::may($nota),"$fec_venta",$porc_asig,$porc_desc,$monto_credito,$monto_contado,$wventa_flete,$cond_venta,$clien_venta_ide,$vende_ide,$tipoventa,0,$_SESSION['s_usua_tienda'] ,1,$_SESSION['s_usua_ide']);
+	extract($_POST);
+	$sql = "SELECT sf_venta_wh(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res"; 
+	$datos = array($ide,$origen,$compra_ide,funciones::may($nota),"$fec_venta",$porc_asig,$porc_desc,$monto_credito,$monto_contado,$wventa_flete,$cond_venta,$clien_venta_ide,$vende_ide,$tipoventa,0,$_SESSION['s_usua_tienda'] ,1,$_SESSION['s_usua_ide']);
 		return Enlace::sql($sql,$datos,4,'res');
 	} 
 	
