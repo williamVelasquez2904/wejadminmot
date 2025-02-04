@@ -1,4 +1,4 @@
-<?php require '../../../cfg/base.php';
+<?php require '../../../cfg/base.php'; 
 /*agrega encabezado del cruce*/
 ?>
 <form action="" class="op1">
@@ -8,7 +8,7 @@
 ?>
 	<div class="modal-body">
 		<div class="msj"></div>
-		<fieldset><legend>[insert.php] 26-11-2024  - Agregar Cruce</legend>
+		<fieldset><legend>[insert.php] 04-02-2025  - Agregar Cruce</legend>
 
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 bolder">Tipo</label>
@@ -44,14 +44,12 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Hora</label>
 				<div class="col-sm-12 col-xs-12">
 					<input type="text" class="form-control" name="hora" id="hora" value="16:00" >
 				</div>
 		</div>	
-
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto</label>
 				<div class="col-sm-12 col-xs-12">
@@ -68,6 +66,13 @@
 	</div>
 	<?php echo $fn->modalFooter(1) ?>
 </form>
+<script>
+	$(function(){
+		$('.chosen').chosen();
+		$('.fecha').datepicker({format:'dd-mm-yyyy',endDate:'-1d'}); // formato dia mes año 
+	})
+</script>
+
 <script> 
 	$(function(){
 		var formulario = '.op1';
@@ -80,13 +85,11 @@
 					required: true,
 				}
 			},
-
 			messages: {
 				fec: {
 					required: 'Obligatorio',
 				}
 			},
-
 			invalidHandler: function (event, validator) { //display error alert on form submit   
 				$('.alert-danger', $(formulario)).show();
 			},

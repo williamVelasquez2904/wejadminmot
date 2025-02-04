@@ -3,14 +3,17 @@
 <?php 
 extract($_POST);
 var_dump($ide);
-/*$row = $mcruce->lista_detalle($ide) ;*/
+$row = $mcruce->lista_detalle($ide) ;
 /*$ide es ide de la nota*/
-$row = $mcruce->detalle_por_nota_ide($ide) ;  // busco en cruce todas las notas por el ide la nota
+
+// busco en cruce todas las notas por el ide la nota
+/*$row = $mcruce->detalle_por_nota_ide($ide) ;  */
+
 $suma_detalle=0;
 ?>
 <?php if(count($row)>0): 
 	echo $fn->modalWidth('70%');
-	echo $fn->modalHeader('16-12-24. Detalle del cruce. Nota: '. $ide );
+	echo $fn->modalHeader('04-02-25. Detalle del cruce. Nota: '. $ide );
 	?>
 	<div class="table-responsive">
 		<table class="table2 table-hover table-bordered " width="100%" align="center">
@@ -66,7 +69,7 @@ $suma_detalle=0;
 	<?php echo $fn->modalFooter(1) ?>
 	<div class="alert alert-info"><?php echo "Total : ".number_format($suma_detalle,2,",","."); ?></div>	
 <?php else: ?>
-	<div class="alert alert-info">No hay registros para mostrar.</div>
+	<div class="alert alert-info">No hay registros para mostrar....[lista detalle.php]</div>
 <?php endif; ?>	
 
 <!-- <script> 
