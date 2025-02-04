@@ -71,10 +71,13 @@
 			 	        $descrip_estatus="0-En proceso"; //Pago Registrado exitosamente
 			        	break;
 			    	case 1:
-			        	$descrip_estatus="1-Cruzado M"; //Cruzado en Matriz
+			        	$descrip_estatus="1-Cruzado"; //Cruzado en Matriz
 			        	break;
 			    	case 2:
-			        	$descrip_estatus="2-Cruzado M-C"; //Cruzado en Matriz y en Cobranza
+			        	$descrip_estatus="2-Cruzado-Saldo a favor de cliente"; //Cruzado con saldo a favor del cliente
+			        	break;
+			    	case 4:
+			        	$descrip_estatus="4-Cruzado M-C"; //Cruzado en Matriz y en Cobranza
 			        	break;
 					}
 					break;

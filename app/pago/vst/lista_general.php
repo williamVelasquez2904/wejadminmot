@@ -1,5 +1,5 @@
 <?php 
-require '../../../cfg/base.php'; ?>
+//require '../../../cfg/base.php'; ?>
 <?php $row = $mpago->lista() ?>
 <?php if(count($row)>0): ?>
 	<div class="table-responsive">

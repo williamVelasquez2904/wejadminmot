@@ -7,6 +7,14 @@
 		$sql = "SELECT * FROM vw_pago WHERE pago_borrado=0 ORDER BY pago_ide ASC";
 		return Enlace::sql($sql,'',3,'');
 	}
+
+	public function listaXstatus($status) {
+		$datos = array($status);
+		$sql = "SELECT * FROM vw_pago WHERE pago_borrado=0 AND pago_status=? 
+		ORDER BY pago_ide ASC";
+		return Enlace::sql($sql,$datos,3,'');
+	}
+
 	public function formapago_lista() {
 		$sql = "SELECT * FROM tbl_forpago WHERE forpago_borrado=0 ORDER BY forpago_ide ASC";
 		return Enlace::sql($sql,'',3,'');

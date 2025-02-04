@@ -24,7 +24,7 @@
 			<label for="" class="label control-label col-sm-12 bolder">Seleccione Pago</label>
 			<div class="col-sm-12 col-xs-12">
 				<select class="form-control chosen" name="pago" id="pago">
-					<?php foreach($mpago->lista() as $p): ?>
+					<?php foreach($mpago->listaXstatus(0)  as $p): ?>
 						<option value="<?php echo $p->pago_ide ?>">
 						<?php echo "$".$p->pago_monto." | Fecha: ".$p->pago_fecha." |  Ref -  ".$p->pago_ref." |   ".$p->pago_titular ?></option>
 					<?php endforeach; ?>
