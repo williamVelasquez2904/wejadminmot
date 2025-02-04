@@ -3,7 +3,9 @@
 	function __construct() {}
 
 	public function lista_encab() {
-		$sql = "SELECT * FROM vw_cruce_encab WHERE cruce_encab_borrado=0 ORDER BY cruce_encab_ide ASC";
+		$sql = "SELECT * FROM vw_cruce_encab WHERE cruce_encab_borrado=0 
+		AND cruce_encab_fec >= '2025-01-01'
+		ORDER BY cruce_encab_ide ASC";
 		return Enlace::sql($sql,'',3,'');
 	}
 

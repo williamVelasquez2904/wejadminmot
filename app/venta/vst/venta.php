@@ -2,7 +2,7 @@
 <form action="" class="op1">
 	
 <?php 
-$titulo="[venta.php] (24-01-2025) PROCESAR VENTA. $ide --- ORIGEN: $origen_ide ";
+$titulo="[venta.php] (31-01-2025) PROCESAR VENTA. $ide --- ORIGEN: $origen_ide ";
 echo $fn->modalWidth('80%');
 echo $fn->modalHeader($titulo);
 
