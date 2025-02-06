@@ -7,7 +7,7 @@ $row = $mcruce->lista_encab() ;
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>Id-13Dic2024 </th>
+					<th>Id- 04Feb2025 </th>
 					<th>Monto</th>
 					<th>Fecha</th>
 					<th>Tipo</th>

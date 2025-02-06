@@ -4,7 +4,7 @@
 echo $fn->modalWidth('80%');
 $r = $mcruce->lista_detalle($ide)  //	ide de encabezado    ?> 
 	<!-- <?php //echo $fn->modalHeader("[insert_detalle.php]. 13-Nov-24 -  Detalles del cruce : ".$r[0]->cruce_encab_ide." - ".$r[0]->pago_titular) ?>   -->
-	<?php echo $fn->modalHeader("[insert_detalle.php]. 04-Feb-25 -  Detalles del cruce : ") ?>  
+	<?php echo $fn->modalHeader("[insert_detalle.php]. 06-Feb-25 -  Detalles del cruce : ") ?>  
 	<div class="modal-body">
 
 		<div class="msj"></div>
@@ -18,15 +18,15 @@ $r = $mcruce->lista_detalle($ide)  //	ide de encabezado    ?>
 					<i class="fa fa-edit"></i>
 					</button>
 				</div>
-				<div class="form-group col-sm-4 col-xs-12">
+				<div class="form-group col-sm-6 col-xs-12">
 					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Seleccione la Nota</label>
 					<div class="col-sm-12 col-xs-12">
 							<select class="form-control chosen" title="nota" name="nota_ide" id="nota_ide">
 							<option value="">Seleccione</option>
-							<?php foreach($mcompra_wh->lista_matriz() as $c): ?>
+							<?php foreach($mcompra_wh->lista_matriz_con_deuda() as $c): ?>
 								<option value="<?php echo $c->compra_ide ?>">
 									<?php 
-									echo $c->compra_num.' - Monto contado: '. $c->compra_monto; 
+									echo $c->compra_num.' - Monto contado: '. $c->compra_monto.' - Deuda: '. $c->deuda ; 
 									?>
 								</option>
 							<?php endforeach; ?>

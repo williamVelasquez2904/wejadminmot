@@ -1,4 +1,4 @@
-<thead>
+<thead> 
 	<tr>
 		<?php $ancho="6%" ?>
 		<th width="2%">Id</th>
@@ -14,7 +14,7 @@
 		<th width="<?php echo $ancho; ?>">Comisión AutoAsia</th>
 		<th width="<?php echo $ancho; ?>">Abono </th>
 		<th width="<?php echo $ancho; ?>">Saldo </th>
-<!-- 		<th width="<?php //echo $ancho; ?>">Estatus</th>	 -->
+<!-- 		<th width="<?php //echo $ancho; ?>">Estatus</th>-->
 		<th width="3%">Opciones</th>				
 	</tr>
 </thead>

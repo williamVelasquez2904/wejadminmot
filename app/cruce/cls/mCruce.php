@@ -9,6 +9,13 @@
 		return Enlace::sql($sql,'',3,'');
 	}
 
+	public function lista_encab_pornota($nota_ide) {
+		extract($_POST);
+		$datos = array($nota_ide); // ide del encabezado
+		$sql = "SELECT * FROM vw_cruce_detalle WHERE crudeta_nota_ide=? ";
+		return Enlace::sql($sql,$datos,3,'');
+	}
+
 	public function lista_detalle($ide) {
 		extract($_POST);
 		$datos = array($ide); // ide del encabezado

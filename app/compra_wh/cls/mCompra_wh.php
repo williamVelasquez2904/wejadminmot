@@ -37,6 +37,18 @@
 		return Enlace::sql($sql,'',3,'');
 	}
 
+	public function lista_matriz_con_deuda() { 
+		$sql ="	SELECT * FROM vw_wh_tbl_compra 	WHERE 
+			compra_prov_ide != 1 AND  /*1 = Taller */
+			compra_tienda= ".$_SESSION['s_usua_tienda']." 
+			AND compra_borrado=0 
+			AND compra_fecha >= '2025-01-01'
+			AND deuda > 0
+			ORDER BY compra_ide ";
+		return Enlace::sql($sql,'',3,'');
+	}
+
+
 	public function lista_matriz_confiltro($prov_ide, $clien_ide, $f_ini,$f_fin) { 
 
 		//$datos = array($f_ini,$f_fin);
