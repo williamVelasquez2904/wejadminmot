@@ -21,8 +21,19 @@
 	}
 
 	public function insert() {
+
+		
+
 		$sql = "SELECT sf_pago(?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
 		extract($_POST);
+		/*$target_dir = "img/pagos/";*/
+		$target_dir = "img/pagos/prueba.png";
+		/*$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);*/
+		$target_file = $target_dir; 
+		$target_file = "img/pagos/01ZELLE362.png";
+		$fileToUpload="C:/xampp/htdocs/wejadminmot2/img/pagos/2025/ENERO/01ZELLE362.png";
+		move_uploaded_file($_FILES[$fileToUpload]["tmp_name"], $target_file);
+
  		//$forpago=1;
 		//$ref="prueba ref 1.";
 		$banco_origen=1;

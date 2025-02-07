@@ -4,15 +4,15 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require '../../../cfg/base.php'; 
 ?>
-<form action="" class="op1">
+<form action="" class="op1" enctype="multipart/form-data">
 <?php
 	$fecha_actual=date("d-m-Y");
-	echo $fn->modalWidth('60%');
+	echo $fn->modalWidth('80%');
 	echo $fn->modalHeader('Agregar Pago') ?>
 	<div class="modal-body">
 		<div class="msj"></div>
 
-		<fieldset><legend>[insert.php 30-01-2025]  - INSERT PAGO</legend>
+		<fieldset><legend>[insert 07-02-2025]  - INSERT PAGO </legend>
 		<div class="clearfix"></div>
 
 		<div class="form-group col-sm-2">
@@ -27,6 +27,8 @@ require '../../../cfg/base.php';
 			</div>
 		</div>			
 
+		<input type="text" name="target_file" id="target_file" value="">	
+
 				<div class="form-group col-sm-2 col-xs-12">
 					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Hora</label>
 					<div class="col-sm-12 col-xs-12">
@@ -34,22 +36,28 @@ require '../../../cfg/base.php';
 					</div>
 				</div>		
 
-		<div class="form-group col-sm-4">
+		<div class="form-group col-sm-3">
 			<label for="" class="label control-label col-sm-12 bolder">Titular</label>
 			<div class="col-sm-12">
-				<input type="text" name="titular" class="form-control" value="Prueba 1">
+				<input type="text" name="titular" id="titular" class="form-control" value="" onchange="generarNombreArchivo();" onclick="generarNombreArchivo();">
 			</div>
 		</div>
 
-		<div class="form-group col-sm-4">
+		<div class="form-group col-sm-2">
 			<label for="" class="label control-label col-sm-12 bolder">Referencia</label>
 			<div class="col-sm-12">
-				<input type="text" name="ref" class="form-control" value="Prueba 1">
+				<input type="text" name="ref" class="form-control" value="">
+			</div>
+		</div>
+		<div class="form-group col-sm-3">
+			<label for="" class="label control-label col-sm-12 bolder">Corresponde al Cliente</label>
+			<div class="col-sm-12">
+				<input type="text" name="cte" class="form-control" value="">
 			</div>
 		</div>
 
 		<div class="clearfix"></div>		
-		<div class="form-group col-sm-3 col-xs-12">
+		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 bolder">Forma de Pago</label>
 			<div class="col-sm-12 col-xs-12">
 				<select class="form-control chosen" name="forpago" id="forpago">
@@ -80,10 +88,19 @@ require '../../../cfg/base.php';
 
 
 		<div class="clearfix"></div>
+
 		<div class="form-group col-sm-4">
 			<label for="" class="label control-label col-sm-12 bolder">Archivo img </label>
 			<div class="col-sm-12">
-				<input type="text" name="arch_img" id="arch_img" class="form-control" value="">
+				
+				<input type="text" name="arch_img" id="arch_img" class="form-control">
+			</div>
+		</div>
+
+		<div class="form-group col-sm-4">
+			<label for="" class="label control-label col-sm-12 bolder">Archivo a subir </label>
+			<div class="col-sm-12">
+				<input type="file" name="fileToUpload" id="fileToUpload" accept=".png">
 			</div>
 		</div>
 
@@ -100,6 +117,7 @@ require '../../../cfg/base.php';
 	</div>
 	<?php echo $fn->modalFooter(1) ?>
 </form>
+<p>Nombre de archivo generado: <span id="nombreArchivo"></span></p>
 <script>
 	$(function(){
 		$('.chosen').chosen();
@@ -107,6 +125,25 @@ require '../../../cfg/base.php';
 	})
 </script>
 <script>
+
+	function nombre_archivo(){
+		let nombre=document.getElementById('titular');
+		document.getElementById('arch_img').value=nombre;
+		return nombre;
+
+	}
+
+	function generarNombreArchivo() {
+            var texto1 = document.getElementById("titular").value;
+            var texto2 = document.getElementById("titular").value;
+            var texto3 = document.getElementById("titular").value;
+
+            var nombreArchivo = texto1 + "_" + texto2 + "_" + texto3 + ".txt";
+            document.getElementById("arch_img").innerText = nombreArchivo;
+            document.getElementById("nombreArchivo").innerText = nombreArchivo;
+
+        }
+
 	function calculaMontoenDolares(){	
 		tasa=0;
 		factor= 0;
