@@ -1,47 +1,19 @@
 <?php
 
-/*
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-*/
 require '../../../cfg/base.php'; 
 ?>
+<form action="" class="op1" enctype="multipart/form-data">
 <?php
 	$fecha_actual=date("d-m-Y");
 	echo $fn->modalWidth('80%');
-	echo $fn->modalHeader('Agregar Pago.... prueba 2....') 
-?>
-
-				<div class="widget-body"><div class="widget-body-inner" style="display: block;">
-					<div class="widget-main">						
-						<section style="background:#EAFBFF">
-							<br>
-							<form action="cargarimag.php" class="op_img form-horizontal" method="post" enctype="multipart/form-data">
-								<div class="form-group">
-									<label class="control-label col-sm-2 bolder">Cambiar Imagen del Pago :</label>
-									<div class="col-sm-4">
-										<input type="file" class="form-control" name="file1">
-										<button class="btn btn-primary btn-sm pull-right"><span class="i fa fa-check"></span> Subir Imagen </button>
-									</div>
-									<label class="control-label col-sm-2 bolder">Logo:</label>
-									<div class="col-sm-4">
-										<img src="img/logo.png" align="" class="pull-left" height="125 px">
-									</div>
-								</div>
-								<input type="hidden" class="form-control" name="nomarc" value="logo_cliente">
-							</form>
-							<br>
-						</section>
-					</div>
-				</div></div>
-
-<form action="" class="op1" enctype="multipart/form-data">
-
+	echo $fn->modalHeader('Agregar Pago') ?>
 	<div class="modal-body">
 		<div class="msj"></div>
 
-		<fieldset><legend>[insert 10-02-2025]  - INSERT PAGO </legend>
+		<fieldset><legend>[insert 07-02-2025]  - INSERT PAGO </legend>
 		<div class="clearfix"></div>
 
 		<div class="form-group col-sm-2">
@@ -214,7 +186,7 @@ require '../../../cfg/base.php';
 
 <script>
 	$(function(){
-		var formulario = '.op_img';
+		var formulario = '.op1';
 		$(formulario).validate({
 			errorElement: 'div',
 			errorClass: 'help-block',
@@ -251,42 +223,38 @@ require '../../../cfg/base.php';
 				$(e).remove();
 			},
 
+			submitHandler: function (form) {
+				var $flag        =true;				
+				var f_forpago    = document.getElementById('forpago').value;
+				var f_arch_img    = document.getElementById('arch_img').value;
+				
+
+				if (f_forpago.trim().length==0){ 
+					alert('Debe Seleccionar una  forma de pago. ');
+					$flag=false;
+				}
+
+				if (f_arch_img.trim().length==0){ 
+					alert('Escriba un nombre para la imagen del pago. ');
+					$flag=false;
+				}
+				if ($flag){
+					$.post('prc-mpago-insert',$(formulario).serialize(),function(data){
+						if(!isNaN(data)) {
+							load('vst-pago-lista','','.lista');
+							if(confirm('Registro agregado correctamente.\n¿Desea agregar otro registro?')==true) {
+								$(formulario).each(function(){ this.reset() })
+							} else {
+								cerrarmodal();
+							}
+						} else {
+							alerta('.msj','danger',data)
+						}
+					})
+				}
+			},
 			invalidHandler: function (form) {
 			}
 		});
 	})
-
-	$(function(){
-		var formulario2 = '.op1';
-		$(formulario2).validate({
-			errorElement: 'div',
-			errorClass: 'help-block',
-			focusInvalid: true,
-			rules: {
-				file1: {
-					required: true,
-				}
-			},
-			messages: {
-				file1: {
-					required: 'Obligatorio',
-				}
-			},
-			invalidHandler: function (event, validator) { //display error alert on form submit   
-				$('.alert-danger', $(formulario2)).show();
-			},
-			highlight: function (e) {
-				$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
-			},
-			success: function (e) {
-				$(e).closest('.form-group').removeClass('has-error').addClass('has-info');
-				$(e).remove();
-			},
-			
-			invalidHandler: function (form) {
-			}
-		});
-	})
-
 </script>
-
