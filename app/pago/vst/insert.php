@@ -1,23 +1,18 @@
 <?php
-
-/*
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-*/
 require '../../../cfg/base.php'; 
 ?>
 <?php
 	$fecha_actual=date("d-m-Y");
 	echo $fn->modalWidth('80%');
-	echo $fn->modalHeader('Agregar Pago.... prueba 2....') 
+	echo $fn->modalHeader('Agregar Pago.... prueba 3....') 
 ?>
 
 				<div class="widget-body"><div class="widget-body-inner" style="display: block;">
 					<div class="widget-main">						
 						<section style="background:#EAFBFF">
 							<br>
-							<form action="cargarimag.php" class="op_img form-horizontal" method="post" enctype="multipart/form-data">
+							<form action="cargarimag.php"  method="post" enctype="multipart/form-data">
+
 								<div class="form-group">
 									<label class="control-label col-sm-2 bolder">Cambiar Imagen del Pago :</label>
 									<div class="col-sm-4">
@@ -29,6 +24,7 @@ require '../../../cfg/base.php';
 										<img src="img/logo.png" align="" class="pull-left" height="125 px">
 									</div>
 								</div>
+								<input type="submit" value="Subir Archivo" name="submit">
 								<input type="hidden" class="form-control" name="nomarc" value="logo_cliente">
 							</form>
 							<br>
@@ -36,116 +32,6 @@ require '../../../cfg/base.php';
 					</div>
 				</div></div>
 
-<form action="" class="op1" enctype="multipart/form-data">
-
-	<div class="modal-body">
-		<div class="msj"></div>
-
-		<fieldset><legend>[insert 10-02-2025]  - INSERT PAGO </legend>
-		<div class="clearfix"></div>
-
-		<div class="form-group col-sm-2">
-			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Fecha</label>
-			<div class="col-sm-12 ">
-				<div class="input-group">
-					<input type="text" name="fec" id="fec" class="form-control fecha" value="<?php echo $fecha_actual; ?>">
-					<span class="input-group-addon">
-						<i class="icon-calendar bigger-110"></i>
-					</span>
-				</div>
-			</div>
-		</div>			
-
-		<input type="text" name="target_file" id="target_file" value="">	
-
-				<div class="form-group col-sm-2 col-xs-12">
-					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Hora</label>
-					<div class="col-sm-12 col-xs-12">
-						<input type="text" class="form-control" name="hora" id="hora" value="16:00" >
-					</div>
-				</div>		
-
-		<div class="form-group col-sm-3">
-			<label for="" class="label control-label col-sm-12 bolder">Titular</label>
-			<div class="col-sm-12">
-				<input type="text" name="titular" id="titular" class="form-control" value="" onchange="generarNombreArchivo();" onclick="generarNombreArchivo();">
-			</div>
-		</div>
-
-		<div class="form-group col-sm-2">
-			<label for="" class="label control-label col-sm-12 bolder">Referencia</label>
-			<div class="col-sm-12">
-				<input type="text" name="ref" class="form-control" value="">
-			</div>
-		</div>
-		<div class="form-group col-sm-3">
-			<label for="" class="label control-label col-sm-12 bolder">Corresponde al Cliente</label>
-			<div class="col-sm-12">
-				<input type="text" name="cte" class="form-control" value="">
-			</div>
-		</div>
-
-		<div class="clearfix"></div>		
-		<div class="form-group col-sm-2 col-xs-12">
-			<label for="" class="label control-label col-sm-12 bolder">Forma de Pago</label>
-			<div class="col-sm-12 col-xs-12">
-				<select class="form-control chosen" name="forpago" id="forpago">
-					<option value="" selected=""></option>
-					<?php foreach($mforpago->lista() as $f): ?>
-						<option value="<?php echo $f->forpago_ide ?>">
-						<?php echo $f->forpago_descrip ?></option>
-					<?php endforeach; ?>
-				</select>
-			</div>
-		</div>	
-
-				<div class="form-group col-sm-2 col-xs-12">
-					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto en Bs</label>
-					<div class="col-sm-12 col-xs-12">
-						<input type="text" class="form-control" name="mto_bs" id="mto_bs" value="" onchange="calculaMontoenDolares();" onclick="calculaMontoenDolares();" >
-					</div>
-				</div>
-
-
-		<div class="form-group col-sm-2 col-xs-12">
-			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Factor de cambio</label>
-			<div class="col-sm-12 col-xs-12">
-				<input type="number" name="tasa" id="tasa" class="form-control" value="0.00" min="0.01" onchange="calculaMontoenDolares();" onclick="calculaMontoenDolares();">
-			</div>
-		</div>	
-
-
-
-		<div class="clearfix"></div>
-
-		<div class="form-group col-sm-4">
-			<label for="" class="label control-label col-sm-12 bolder">Archivo img </label>
-			<div class="col-sm-12">
-				
-				<input type="text" name="arch_img" id="arch_img" class="form-control">
-			</div>
-		</div>
-
-		<div class="form-group col-sm-4">
-			<label for="" class="label control-label col-sm-12 bolder">Archivo a subir </label>
-			<div class="col-sm-12">
-				<input type="file" name="fileToUpload" id="fileToUpload" accept=".png">
-			</div>
-		</div>
-
-		<div class="clearfix"></div>
-				<div class="form-group col-sm-2 col-xs-12">
-					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto en Dólares</label>
-					<div class="col-sm-12 col-xs-12">
-						<input type="text" class="form-control" name="mto" id="mto" value="100" >
-					</div>
-				</div>
-
-		<div class="clearfix"></div>
-
-	</div>
-	<?php echo $fn->modalFooter(1) ?>
-</form>
 <p>Nombre de archivo generado: <span id="nombreArchivo"></span></p>
 <script>
 	$(function(){
@@ -251,38 +137,6 @@ require '../../../cfg/base.php';
 				$(e).remove();
 			},
 
-			invalidHandler: function (form) {
-			}
-		});
-	})
-
-	$(function(){
-		var formulario2 = '.op1';
-		$(formulario2).validate({
-			errorElement: 'div',
-			errorClass: 'help-block',
-			focusInvalid: true,
-			rules: {
-				file1: {
-					required: true,
-				}
-			},
-			messages: {
-				file1: {
-					required: 'Obligatorio',
-				}
-			},
-			invalidHandler: function (event, validator) { //display error alert on form submit   
-				$('.alert-danger', $(formulario2)).show();
-			},
-			highlight: function (e) {
-				$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
-			},
-			success: function (e) {
-				$(e).closest('.form-group').removeClass('has-error').addClass('has-info');
-				$(e).remove();
-			},
-			
 			invalidHandler: function (form) {
 			}
 		});
