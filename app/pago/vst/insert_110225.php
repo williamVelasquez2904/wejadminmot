@@ -13,9 +13,44 @@ require '../../../cfg/base.php';
 	<div class="modal-body">
 		<div class="msj"></div>
 
-		<fieldset><legend>[insert 07-02-2025]  - INSERT PAGO </legend>
-		<div class="clearfix"></div>
+		<fieldset><legend>[insert 11-02-2025]  - INSERT PAGO </legend>
 
+
+		<!-- hasta aqui captura de imagen del pago-->
+		<div class="clearfix"></div>
+		<!-- <div class="col-xs-12 col-sm-12 widget-container-span ui-sortable">
+			<div class="widget-box collapsed"> -->
+				<div class="widget-body">
+					<div class="widget-body-inner" style="display: block;">
+						<div class="widget-main">						
+							<section style="background:#EAFBFF">
+								<br>
+								<form action="cargarimg" class="op2 form-horizontal" method="post" enctype="multipart/form-data">
+									<div class="form-group">
+										<label class="control-label col-sm-2 bolder"> Imagen del pago:</label>
+										<div class="col-sm-4">
+											<input type="file" class="form-control" name="file1">
+											<button class="btn btn-primary btn-sm pull-right"><span class="i fa fa-check"></span> Subir Imagen</button>
+										</div>
+										<label class="control-label col-sm-2 bolder">Logo:</label>
+										<div class="col-sm-4">
+											<img src="img/logo.png" align="" class="pull-left" height="125 px">
+										</div>
+									</div>
+									<input type="hidden" class="form-control" name="nomarc" value="logo_cliente">
+								</form>
+								<br>
+							</section>
+						</div>
+					</div>
+				</div>
+<!-- 				
+			</div>
+		</div>
+ -->		<!-- hasta aqui captura de imagen del pago -->
+
+
+		<div class="clearfix"></div>
 		<div class="form-group col-sm-2">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Fecha</label>
 			<div class="col-sm-12 ">
@@ -33,7 +68,7 @@ require '../../../cfg/base.php';
 				<div class="form-group col-sm-2 col-xs-12">
 					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Hora</label>
 					<div class="col-sm-12 col-xs-12">
-						<input type="text" class="form-control" name="hora" id="hora" value="16:00" >
+						<input type="text" class="form-control" name="hora" id="hora" value="" >
 					</div>
 				</div>		
 
@@ -82,7 +117,7 @@ require '../../../cfg/base.php';
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Factor de cambio</label>
 			<div class="col-sm-12 col-xs-12">
-				<input type="number" name="tasa" id="tasa" class="form-control" value="0.00" min="0.01" onchange="calculaMontoenDolares();" onclick="calculaMontoenDolares();">
+				<input type="number" name="tasa" id="tasa" class="form-control" value="0.00"  onchange="calculaMontoenDolares();" onclick="calculaMontoenDolares();">
 			</div>
 		</div>	
 

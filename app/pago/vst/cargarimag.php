@@ -1,6 +1,4 @@
-
 <?php require '../../../cfg/base.php'; ?>
-
 <?php //  $cusuarios->redirectLogin(); ?>
 <?php // $rowt=$mtienda->poride($_SESSION['s_usua_tienda']); ?>
 <?php
@@ -9,7 +7,7 @@
 	$row = sqlsrv_query($con,$sql);
 	$r = sqlsrv_fetch_array( $row, SQLSRV_FETCH_ASSOC);
 	*/
-?>
+?> 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -37,7 +35,7 @@
 				<div class="space-4"></div>
 				<img src="img/logo.png" align="" class="pull-left" height="125 px">	
 				<h1 class="pull-left" style="padding-left:30px">
-					<span class="blue"><?php echo "SIMPLEXUTIL" ?></span>
+					<span class="blue"><?php echo "WEJADMINMOT" ?></span>
 					<span class="blue"><?php echo "MODULO UTILITARIO" ?></span>
 					<div class="space-12"></div>
 					<span class="white"><?php echo $r["Nbcia"] ?></span>
@@ -61,8 +59,13 @@
 			if( $tamano1 < $tamaño_max){ // Comprobamos el tamaño  
 				$sep1=explode('image/',$_FILES["file1"]["type"]); // Separamos image/ 
 				$tipo1=$sep1[1]; // Optenemos el tipo de imagen que es 
-				if($tipo1 == "jpg" || $tipo1 == "jpeg"){ // Si el tipo de imagen a subir es el mismo de los permitidos, seguimos. Puedes agregar mas tipos de imagen 
-					move_uploaded_file ( $_FILES [ 'file1' ][ 'tmp_name' ], $destino . '/'.$namefile1.'.jpg');  // Subimos el archivo 
+				if($tipo1 == "jpg" || $tipo1 == "jpeg" || $tipo1 == "png"){ 
+
+					//move_uploaded_file ( $_FILES [ 'file1' ][ 'tmp_name' ], $destino . '/'.$namefile1.'.jpg');
+
+					//move_uploaded_file ( $_FILES [ 'file1' ][ 'tmp_name' ], $destino . '/'.$namefile1.'.'.$tipo1);
+					move_uploaded_file ( $_FILES [ 'file1' ][ 'tmp_name' ], $destino . '/'.$namefile1);
+
 					$res=1; 
 					echo '<font color="#006400">La imagen '.$archi.' fue cargada con éxito.</font>';
 				} 
@@ -76,7 +79,8 @@
 			}
 
 ?>
-		</h2></div>
+		</h2>
+	</div>
 	<?php if ($res==1) { ?>
 			<a href="inicio">
 				<div class="form-actions clearfix">

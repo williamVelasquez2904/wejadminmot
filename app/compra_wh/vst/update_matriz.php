@@ -252,6 +252,7 @@
 				$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
 			},
 
+			
 			success: function (e) {
 				$(e).closest('.form-group').removeClass('has-error').addClass('has-info');
 				$(e).remove();
