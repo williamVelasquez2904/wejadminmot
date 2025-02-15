@@ -355,4 +355,17 @@
 			return $estilo;
 
 	} 
+
+	static function convertir_a_formato_con($numero) {  // agrega la palabra *con*
+    // Convertir el número a string
+    $numero_str = strval($numero);
+
+    // Reemplazar la coma por "con"
+    $numero_str = str_replace(",", "con", $numero_str);
+
+    // Reemplazar el punto por "con"
+    $numero_str = str_replace(".", "con", $numero_str);
+
+    return $numero_str;
+}
 } ?>

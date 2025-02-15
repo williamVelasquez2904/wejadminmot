@@ -12,7 +12,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>SimplexUtil</title>
+		<title>WejAdminMot</title>
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<?php require '../../../css/ace.php'; ?>
@@ -20,7 +20,8 @@
 	</head>
 
 	<body>
-		<div class="bootbox modal fade in" role="dialog" id="modal"  tabindex="-1" aria-hidden="false">
+
+<!-- 		<div class="bootbox modal fade in" role="dialog" id="modal"  tabindex="-1" aria-hidden="false">
 			<div class="modal-dialog">
 				<div class="modal-content"></div>
 			</div>
@@ -34,11 +35,11 @@
 				<div class="clearfix"></div>
 				<div class="space-4"></div>
 				<img src="img/logo.png" align="" class="pull-left" height="125 px">	
-				<h1 class="pull-left" style="padding-left:30px">
-					<span class="blue"><?php echo "WEJADMINMOT" ?></span>
-					<span class="blue"><?php echo "MODULO UTILITARIO" ?></span>
+				<h1 class="pull-left" style="padding-left:12px">
+					<span class="blue"><?php //echo "WEJADMINMOT" ?></span>
+					<span class="blue"><?php //echo "MODULO UTILITARIO" ?></span>
 					<div class="space-12"></div>
-					<span class="white"><?php echo $r["Nbcia"] ?></span>
+					<span class="white"><?php //echo $r["Nbcia"] ?></span>
 					<span class="white"></span>
 				</h1>
 				<img src="img/logo_cliente.jpg" align="" class="pull-right" height="125 px">	
@@ -46,10 +47,12 @@
 				<div class="space-4"></div>
 			</div>
 		</div>
+ -->
 		<div class="" align="center"><br><br><br><h2>
 
-<?php 
+<?php
 			$namefile1 = $_POST["nomarc"]; 
+			var_dump($_POST["nomarc"]);
 			if ($namefile1=="logo_cliente") { $archi="LOGO"; }
 			elseif ($namefile1=="logo_cliente_para_pdf") { $archi="LOGO para Libro de Compras"; }
 			elseif ($namefile1=="firma_sello_para_pdf") { $archi="Firma y Sello para Comprobante de Retención"; }
@@ -67,14 +70,21 @@
 					move_uploaded_file ( $_FILES [ 'file1' ][ 'tmp_name' ], $destino . '/'.$namefile1);
 
 					$res=1; 
-					echo '<font color="#006400">La imagen '.$archi.' fue cargada con éxito.</font>';
+					echo '<font color="#006400">La imagen fue cargada con éxito.</font>';
+
+					$mpago->insert();
+/*
+					$sql = "INSERT INTO SELECT * FROM vwCompania WHERE  CoCia=1";
+					$row = sqlsrv_query($con,$sql);
+					$r = sqlsrv_fetch_array( $row, SQLSRV_FETCH_ASSOC);*/
+
 				} 
 				else {
-					echo '<font color="#DF0101">No se pudo cargar '.$archi.' porque NO esta en formato JPG.</font>'; 
+					echo '<font color="#DF0101">No se pudo cargar porque NO esta en formato correcto.</font>'; 
 					$res=2;// Si no es el tipo permitido lo decimos 
 				}
 			} else {
-				echo '<font color="#DF0101">'.$archi.' supera el peso permitido.</font>'; 
+				echo '<font color="#DF0101">supera el peso permitido.</font>'; 
 				$res=3;// Si supera el tamaño de permitido lo decimos 
 			}
 

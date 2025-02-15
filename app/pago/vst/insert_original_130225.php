@@ -9,7 +9,7 @@ require '../../../cfg/base.php';
 
 <div class="modal-body">				
 	<div class="msj"></div>
-	<fieldset><legend>[insert.php] 14-02-2025 - Por favor ingrese los datos del Pago </legend>
+	<fieldset><legend>[insert.php] 12-02-2025 - Por favor ingrese los datos del Pago </legend>
 	<div class="clearfix"></div>	
 	<form action="cargarimg"  method="post" enctype="multipart/form-data">
 
@@ -102,7 +102,7 @@ require '../../../cfg/base.php';
 		<div class="clearfix"></div>
 
 		<div class="form-group col-sm-7">
-			<label for="" class="label control-label col-sm-12 bolder">Nombre de archivo generado</label>
+			<label for="" class="label control-label col-sm-12 bolder">Nombre de archivo generado </label>
 			<div class="col-sm-12">
 				<input type="text" class="form-control" name="nomarc" id="nomarc" >
 				<!-- <strong><b><span style="font-size:16px;color: darkred;" id="nombreArchivo"></span></b></strong> -->

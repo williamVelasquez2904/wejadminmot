@@ -21,29 +21,18 @@
 	}
 
 	public function insert() {
-
-		
+		extract($_POST);
 
 		$sql = "SELECT sf_pago(?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
-		extract($_POST);
-		/*$target_dir = "img/pagos/";*/
-		$target_dir = "img/pagos/prueba.png";
-		/*$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);*/
-		$target_file = $target_dir; 
-		$target_file = "img/pagos/01ZELLE362.png";
-		$fileToUpload="C:/xampp/htdocs/wejadminmot2/img/pagos/2025/ENERO/01ZELLE362.png";
-		move_uploaded_file($_FILES[$fileToUpload]["tmp_name"], $target_file);
-
- 		//$forpago=1;
-		//$ref="prueba ref 1.";
+		
 		$banco_origen=1;
 		$banco_destino=1;
-		//$envia = "prueba envia 1";
+
 		$mto_bs= 0;
-		//$mto= 200;
+
 		$tasa=46.5;
 	
-		 $datos = array(0,date('Y-m-d',strtotime($fec)),$hora,$forpago,Funciones::may($ref),$banco_origen,$banco_destino, Funciones::may($titular),$mto_bs,$mto,$tasa,$arch_img,1,$_SESSION['s_usua_ide']);
+		 $datos = array(0,date('Y-m-d',strtotime($fec)),$hora,$forpago,Funciones::may($ref),$banco_origen,$banco_destino, Funciones::may($titular),$mto_bs,$mto,$tasa,$nomarc,1,$_SESSION['s_usua_ide']);
 
 /*		 $datos = array(0,"2024-01-01",1,"prueba ref 22222",1,2,"prueba envia",0,100,0,1,1);*/
 		return Enlace::sql($sql,$datos,4,'res');

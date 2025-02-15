@@ -1,15 +1,56 @@
+
+
 <?php
 require '../../../cfg/base.php'; 
 ?>
 <?php
 	$fecha_actual=date("d-m-Y");
-	echo $fn->modalWidth('80%');
+	echo $fn->modalWidth('90%');
 	echo $fn->modalHeader('REPORTAR PAGO') 
 ?>
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            height: 100vh; /* Altura completa de la ventana */
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #imagePreviewContainer {
+            display: none;
+            text-align: center;
+            overflow: auto; /* Añadir desplazamiento */
+            position: relative;
+            max-width: 50%; /* Limitar el ancho a la mitad derecha */
+            height: 80vh; /* Altura fija para el contenedor */
+            border: 1px solid #ccc; /* Borde opcional para visualización */
+        }
+        #imagePreview {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.25s ease; /* Añadir una transición suave */
+        }
+        .zoomed {
+            transform: scale(2); /* Ajusta el factor de zoom según sea necesario */
+        }
+        #controls {
+            max-width: 45%; /* Limitar el ancho a la mitad izquierda */
+        }
+    </style>
+</head>
+<body>
+
 <div class="modal-body">				
 	<div class="msj"></div>
-	<fieldset><legend>[insert.php] 14-02-2025 - Por favor ingrese los datos del Pago </legend>
+	<fieldset><legend>[insert.php] 12-02-2025 - Por favor ingrese los datos del Pago </legend>
 	<div class="clearfix"></div>	
 	<form action="cargarimg"  method="post" enctype="multipart/form-data">
 
@@ -46,12 +87,15 @@ require '../../../cfg/base.php';
 		</div>
 		<input type="hidden" class="form-control" name="forpago_desc" value="<?php echo $f->forpago_descrip ?>">
 
+		<div class="clearfix"></div>
 		<div class="form-group col-sm-2">
 			<label for="" class="label control-label col-sm-12 bolder">Titular</label>
 			<div class="col-sm-12">
 				<input type="text" name="titular" id="titular" class="form-control" value="" onchange="generarNombreArchivo();" onclick="generarNombreArchivo();">
 			</div>
 		</div>
+
+		
 
 		<div class="form-group col-sm-2">
 			<label for="" class="label control-label col-sm-12 bolder">Referencia</label>
@@ -93,16 +137,18 @@ require '../../../cfg/base.php';
 
 		<div class="clearfix"></div>
 
-		<div class="form-group col-sm-7">
+		<div class="form-group col-sm-6" id="controls">
 			<label for="" class="label control-label col-sm-12 bolder">Imagen del Pago </label>
 			<div class="col-sm-12">
-				<input type="file" class="form-control" name="file1">
+				<input type="file" class="form-control" name="file1" id="imageInput">
 			</div>	
 		</div>
+
+
 		<div class="clearfix"></div>
 
-		<div class="form-group col-sm-7">
-			<label for="" class="label control-label col-sm-12 bolder">Nombre de archivo generado</label>
+		<div class="form-group col-sm-6">
+			<label for="" class="label control-label col-sm-12 bolder">Nombre de archivo generado </label>
 			<div class="col-sm-12">
 				<input type="text" class="form-control" name="nomarc" id="nomarc" >
 				<!-- <strong><b><span style="font-size:16px;color: darkred;" id="nombreArchivo"></span></b></strong> -->
@@ -110,14 +156,18 @@ require '../../../cfg/base.php';
 		</div>								
 		<div class="clearfix"></div>
 
-		<div class="form-group col-sm-7">			
+		<div class="form-group col-sm-6">			
 			<div class="col-sm-12">
 				<button class="btn btn-primary btn-sm pull-right"><span class="i fa fa-check"></span> Subir Imagen </button>
 			</div>	
 		</div>
 		<div class="clearfix"></div>
-
 	</form>
+	<div id="imagePreviewContainer">
+    	<img id="imagePreview" src="#" alt="Previsualización de Imagen">
+    </div>
+    <button id="zoomButton" style="display: none;">Zoom</button>
+    <button id="resetButton" style="display: none;">Restablecer</button>
 </div>
 
 <!-- <p>Nombre de archivo generado:</p><br>
@@ -288,3 +338,71 @@ require '../../../cfg/base.php';
 	})
 
 </script>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const imagePreview = document.getElementById('imagePreview');
+        const zoomButton = document.getElementById('zoomButton');
+        const resetButton = document.getElementById('resetButton');
+        const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+        let zoomed = false;
+
+        imageInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreviewContainer.style.display = 'block';
+                    zoomButton.style.display = 'inline';
+                    resetButton.style.display = 'inline';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imagePreviewContainer.style.display = 'none';
+                imagePreview.src = '#';
+                zoomButton.style.display = 'none';
+                resetButton.style.display = 'none';
+            }
+        });
+
+        zoomButton.addEventListener('click', function() {
+            zoomed = !zoomed;
+            if (zoomed) {
+                imagePreview.classList.add('zoomed');
+                zoomButton.textContent = 'Alejar';
+            } else {
+                imagePreview.classList.remove('zoomed');
+                zoomButton.textContent = 'Zoom';
+            }
+        });
+
+        resetButton.addEventListener('click', function() {
+            imagePreview.classList.remove('zoomed');
+            zoomButton.textContent = 'Zoom';
+            zoomed = false;
+        });
+    </script>
+</body>
+<style>
+    #imagePreviewContainer {
+        display: none;
+        text-align: center;
+        overflow: auto;
+        position: relative;
+        width: 50%; /* Ancho de la mitad derecha */
+        height: 80vh; /* Altura fija para el contenedor */
+        border: 1px solid #ccc; /* Borde opcional para visualización */
+    }
+    #imagePreview {
+        max-width: 100%;
+        height: auto;
+        transition: transform 0.25s ease; /* Añadir una transición suave */
+    }
+    .zoomed {
+        transform: scale(2); /* Ajusta el factor de zoom según sea necesario */
+    }
+    #controls {
+        width: 45%; /* Ancho de la mitad izquierda */
+    }
+</style>
