@@ -9,7 +9,7 @@ require '../../../cfg/base.php';
 
 <div class="modal-body">				
 	<div class="msj"></div>
-	<fieldset><legend>[insert.php] 14-02-2025 - Por favor ingrese los datos del Pago </legend>
+	<fieldset><legend>[insert.php] 18-02-2025 - Por favor ingrese los datos del Pago </legend>
 	<div class="clearfix"></div>	
 	<form action="cargarimg"  method="post" enctype="multipart/form-data">
 
@@ -87,16 +87,16 @@ require '../../../cfg/base.php';
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto en Dólares</label>
 			<div class="col-sm-12 col-xs-12">
-				<input type="text" class="form-control" name="mto" id="mto" value="" >
+				<input type="text" class="form-control" name="mto" id="mto" value=""  onchange="generarNombreArchivo();" onclick="generarNombreArchivo();">
 			</div>
 		</div>
 
 		<div class="clearfix"></div>
 
 		<div class="form-group col-sm-7">
-			<label for="" class="label control-label col-sm-12 bolder">Imagen del Pago </label>
+			<label for="" class="label control-label col-sm-12 bolder">Imágen del Pago </label>
 			<div class="col-sm-12">
-				<input type="file" class="form-control" name="file1">
+				<input type="file" class="form-control" name="file1" id="file1">
 			</div>	
 		</div>
 		<div class="clearfix"></div>
@@ -186,12 +186,12 @@ require '../../../cfg/base.php';
             }
 
             nombreArchivo = forma_pago +  "_" + 
+            txt_mto     + "_" +            
             txt_titular + "_" + 
-            txt_ref   + "_" + 
-            txt_fec   + "_" + 
-            txt_hora  + "_" + 
-            txt_mto   + "_" +             
-            txt_aplica+
+            txt_ref     + "_" + 
+            txt_fec     + "_" + 
+            txt_hora    + "_" + 
+            txt_aplica  +
             ".png";
             document.getElementById("nomarc").value = nombreArchivo;
             //document.getElementById("nombreArchivo").innerText = nombreArchivo;
@@ -248,12 +248,21 @@ require '../../../cfg/base.php';
 				fec: {
 					required: true,
 				},
+				mto: {
+					required: true,
+				},
 				forpago: {
 					required: true,
 				},
 				titular: {
 					required: true,
-				},		
+				},	
+				nomarc: {
+					required: true,
+				},					
+				file1: {
+					required: true,
+				},	
 				ref: {
 					required: true,
 				}
@@ -261,9 +270,18 @@ require '../../../cfg/base.php';
 
 
 			messages: {
-				des: {
+				fec: {
 					required: 'Obligatorio',
 				},
+				mto: {
+					required: 'Obligatorio',
+				},	
+				nomarc: {
+					required: 'Obligatorio',
+				},								
+				file1: {
+					required: 'Obligatorio',
+				},								
 				forpago: {
 					required: 'Obligatorio',
 				}

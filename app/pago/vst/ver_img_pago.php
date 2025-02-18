@@ -6,12 +6,12 @@ foreach($row as $r):
 endforeach; 
 ?>	
 <?php 
-echo $fn->modalWidth("60%");
-echo $fn->modalHeader('Ver pago: '.$r->pago_img) ?>
+echo $fn->modalWidth("70%");
+echo $fn->modalHeader('[ver_img.php] 18-02-25. Ver pago: '.$r->pago_img) ?>
 <div class="modal-body">
 	<div class="msj"></div>
 	<div class="form-group">
-		<label for="" class="control-label col-sm-3 bolder"><?php echo $r->pago_img; ?></label>
+		<label for="" class="control-label col-sm-3 bolder"><?php echo $r->pago_titular; ?></label>
 		<div class="col-sm-9">
 			<img src="<?php echo $ruta_img; ?>">
 		</div>

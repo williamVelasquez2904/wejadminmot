@@ -2,17 +2,13 @@
 <?php //  $cusuarios->redirectLogin(); ?>
 <?php // $rowt=$mtienda->poride($_SESSION['s_usua_tienda']); ?>
 <?php
-/*
-	$sql = "SELECT * FROM vwCompania WHERE  CoCia=1";
-	$row = sqlsrv_query($con,$sql);
-	$r = sqlsrv_fetch_array( $row, SQLSRV_FETCH_ASSOC);
-	*/
+	$res=0;
 ?> 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>WejAdminMot</title>
+		<title>Cargar Imágen </title>
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<?php require '../../../css/ace.php'; ?>
@@ -51,6 +47,13 @@
 		<div class="" align="center"><br><br><br><h2>
 
 <?php
+
+			$cant = strlen($_POST["nomarc"]);
+			echo "<br> Tamaño: ".$cant;
+
+			if (strlen($_POST["nomarc"])==0)
+				echo "<br> Nombre de archivo vacio <br>";
+
 			$namefile1 = $_POST["nomarc"]; 
 			var_dump($_POST["nomarc"]);
 			if ($namefile1=="logo_cliente") { $archi="LOGO"; }
@@ -58,35 +61,35 @@
 			elseif ($namefile1=="firma_sello_para_pdf") { $archi="Firma y Sello para Comprobante de Retención"; }
 			$tamaño_max="1024000"; // Tamaño maximo permitido en este caso 1 mega
 			$tamano1 = $_FILES['file1']['size']; // Leemos el tamaño del fichero 
+			echo "<br> Tamaño del archivo: <br>";
+			echo $tamano1;
+			echo "<br> <br>";
 			$destino = '../../../img/pagos' ; // Carpeta donde se guardara
-			if( $tamano1 < $tamaño_max){ // Comprobamos el tamaño  
-				$sep1=explode('image/',$_FILES["file1"]["type"]); // Separamos image/ 
-				$tipo1=$sep1[1]; // Optenemos el tipo de imagen que es 
-				if($tipo1 == "jpg" || $tipo1 == "jpeg" || $tipo1 == "png"){ 
+			if( $tamano1>0){
 
-					//move_uploaded_file ( $_FILES [ 'file1' ][ 'tmp_name' ], $destino . '/'.$namefile1.'.jpg');
+				if( $tamano1 < $tamaño_max){ // Comprobamos el tamaño  
+					$sep1=explode('image/',$_FILES["file1"]["type"]); // Separamos image/ 
+					$tipo1=$sep1[1]; // Obtenemos el tipo de imagen que es 
+					if($tipo1 == "jpg" || $tipo1 == "jpeg" || $tipo1 == "png"){ 
 
-					//move_uploaded_file ( $_FILES [ 'file1' ][ 'tmp_name' ], $destino . '/'.$namefile1.'.'.$tipo1);
-					move_uploaded_file ( $_FILES [ 'file1' ][ 'tmp_name' ], $destino . '/'.$namefile1);
+						//move_uploaded_file ( $_FILES [ 'file1' ][ 'tmp_name' ], $destino . '/'.$namefile1.'.jpg');
 
-					$res=1; 
-					echo '<font color="#006400">La imagen fue cargada con éxito.</font>';
+						//move_uploaded_file ( $_FILES [ 'file1' ][ 'tmp_name' ], $destino . '/'.$namefile1.'.'.$tipo1);
+						move_uploaded_file ( $_FILES [ 'file1' ][ 'tmp_name' ], $destino . '/'.$namefile1);
 
-					$mpago->insert();
-/*
-					$sql = "INSERT INTO SELECT * FROM vwCompania WHERE  CoCia=1";
-					$row = sqlsrv_query($con,$sql);
-					$r = sqlsrv_fetch_array( $row, SQLSRV_FETCH_ASSOC);*/
-
-				} 
-				else {
-					echo '<font color="#DF0101">No se pudo cargar porque NO esta en formato correcto.</font>'; 
-					$res=2;// Si no es el tipo permitido lo decimos 
+						$res=1; 
+						echo '<br><font color="#006400">[cargarimag.php]. 17-02-2025. La imágen fue cargada con éxito.</font><br>';
+						$mpago->insert();
+					} 
+					else {
+						echo '<font color="#DF0101">No se pudo cargar porque NO esta en formato correcto.</font>'; 
+						$res=2;// Si no es el tipo permitido lo decimos 
+					}
+				} else {
+					echo '<font color="#DF0101">supera el peso permitido.</font>'; 
+					$res=3;// Si supera el tamaño de permitido lo decimos 
 				}
-			} else {
-				echo '<font color="#DF0101">supera el peso permitido.</font>'; 
-				$res=3;// Si supera el tamaño de permitido lo decimos 
-			}
+			} // fin de si tamaño es mayo a cero	
 
 ?>
 		</h2>
