@@ -13,7 +13,6 @@ $fecha_hoy = date('d-m-Y');
 <form action="" class="op1">
 	<div class="datosnota" id="myDIV">
 	<div class="msj"></div>
-
 	<fieldset><legend>[admin.php] (03-02-2025). Datos de la Compra</legend>
 
 		<div class="form-group col-sm-2 col-xs-12">

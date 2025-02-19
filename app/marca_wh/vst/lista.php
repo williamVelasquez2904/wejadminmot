@@ -5,7 +5,7 @@
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>Id</th>
+					<th>Id 19-02-2025</th>
 					<th>Marca</th>
 					<th>Opciones</th>
 				</tr>

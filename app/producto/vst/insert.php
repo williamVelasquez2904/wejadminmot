@@ -5,7 +5,7 @@
 <form action="" class="op1-produc">
 	<div class="msj-produc" id="errores"></div>
 	<!-- Datos del producto ############### -->
-	<fieldset><legend>Datos de Producto o Servicio</legend>	
+	<fieldset><legend>[insert.php] 19-02*-2025. Datos de Producto o Servicio</legend>	
 		<div class="form-group col-sm-3">
 			<label for="" class="label control-label col-sm-12 bolder">Código:</label>
 			<div class="col-sm-12">
@@ -41,7 +41,7 @@
 			<div class="col-sm-10" id="marca">
 				<select class="form-control chosen" name="mar" id="mar">
 					<option value=""></option>
-					<?php foreach($mmarca->lista() as $p): ?>
+					<?php foreach($mmarca_wh->lista() as $p): ?>
 						<option value="<?php echo $p->marca_ide ?>"><?php echo $p->marca_descrip ?></option>
 					<?php endforeach; ?>
 				</select>

@@ -17,6 +17,15 @@
 		return Enlace::sql($sql,'',3,'');
 	}
 
+	public function lista_all() { 
+		$sql ="	SELECT * FROM vw_wh_tbl_compra WHERE compra_tienda= ".$_SESSION['s_usua_tienda']." 
+		AND vw_wh_tbl_compra.compra_ide not in (select venta_compra_ide from  wh_tbl_venta )
+		AND vw_wh_tbl_compra.compra_ide not in (select desgnota_nota_ide from vw_desglose_nota  where desgnota_status=1)
+		AND compra_borrado=0 
+		ORDER BY compra_ide ";
+		return Enlace::sql($sql,'',3,'');
+	}	
+
 	public function lista_matriz() { 
 
 /*		$sql ="	SELECT * FROM vw_wh_tbl_compra 

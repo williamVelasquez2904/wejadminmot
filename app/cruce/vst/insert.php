@@ -8,7 +8,7 @@
 ?>
 	<div class="modal-body">
 		<div class="msj"></div>
-		<fieldset><legend>[insert.php] 04-02-2025  - Agregar Cruce</legend>
+		<fieldset><legend>[insert.php] 19-02-2025  - Agregar Cruce</legend>
 
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 bolder">Tipo</label>
