@@ -9,7 +9,7 @@ require '../../../cfg/base.php';
 
 <div class="modal-body">				
 	<div class="msj"></div>
-	<fieldset><legend>[insert.php] 18-02-2025 - Por favor ingrese los datos del Pago </legend>
+	<fieldset><legend>[insert.php] 24-marzo-2025 - Por favor ingrese los datos del Pago </legend>
 	<div class="clearfix"></div>	
 	<form action="cargarimg"  method="post" enctype="multipart/form-data">
 
@@ -78,7 +78,7 @@ require '../../../cfg/base.php';
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Factor de cambio</label>
 			<div class="col-sm-12 col-xs-12">
-				<input type="number" name="tasa" id="tasa" class="form-control" value="0.00"  onchange="calculaMontoenDolares();" onclick="calculaMontoenDolares();">
+				<input type="number" name="tasa"  step="any" id="tasa" class="form-control" value="0.00"  onchange="calculaMontoenDolares();" onclick="calculaMontoenDolares();">
 			</div>
 		</div>	
 
@@ -96,7 +96,7 @@ require '../../../cfg/base.php';
 		<div class="form-group col-sm-7">
 			<label for="" class="label control-label col-sm-12 bolder">Imágen del Pago </label>
 			<div class="col-sm-12">
-				<input type="file" class="form-control" name="file1" id="file1">
+				<input type="file" class="form-control" name="file1" id="file1" onclick="validateFile()" onchange="validateFile()">
 			</div>	
 		</div>
 		<div class="clearfix"></div>
@@ -131,6 +131,16 @@ require '../../../cfg/base.php';
 	})
 </script>
 <script>
+
+
+  	function validateFile() {
+    	const fileInput = document.getElementById('file1');
+    	if (!fileInput.files || fileInput.files.length === 0) {
+      	alert('Por favor, selecciona un archivo antes de enviar.');
+    	} else {
+      		alert('Archivo válido. ¡Puedes proceder!');
+        }
+  	}
 
 	function convertirAFormato(numero) {
     	// Convertir el número a string
