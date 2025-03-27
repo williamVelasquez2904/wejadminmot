@@ -1,13 +1,15 @@
 <?php 
-require '../../../cfg/base.php'; ?>
-<?php $row = $mpago->lista() ?>
+//require '../../../cfg/base.php'; ?>
+<?php $row = $mpago->lista();
+$texto_tasa=""; 
+?>
 <?php if(count($row)>0): ?>
 	<div class="table-responsive">
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>Id</th>
-					<th>Forma de Pago</th>
+					<th>Id 2703</th>
+					<th>Forma de Pago..</th>
 					<th>Titular</th>
 					<th>Monto</th>
 					<th>Fecha</th>
@@ -20,14 +22,24 @@ require '../../../cfg/base.php'; ?>
 			</thead>
 			<tbody>
 				<?php foreach($row as $r): ?>
+					<?php 
+						$texto_tasa="";
+						//var_dump($r->pago_tasa);
+						if ($r->pago_tasa>0)
+						{	
+						//	echo "<br>paso<br>";
+							$texto_tasa=" - Tasa: ".$r->pago_tasa;
+						}  
+					?>
 					<tr>
+
 						<td align="center"><?php echo $r->pago_ide ?></td>
 						<td><?php echo $r->forpago_descrip ?></td>
 						<td><?php echo $r->pago_titular ?></td>
 						<td><?php echo $r->pago_monto ?></td>
 						<td><?php echo implode('-', array_reverse(explode('-', $r->pago_fecha))); ?></td>
 						<td><?php echo $r->pago_hora ?></td>
-						<td><?php echo $r->pago_ref ?></td>
+						<td><?php echo $r->pago_ref.$texto_tasa ?></td>
 						<td><?php echo $r->pago_img ?>
 							<div class="btn-group">
 								<button class="btn btn-success btn-xs" title="Ver pago" onclick="modal('vst-pago-ver_img_pago',
