@@ -11,7 +11,8 @@
 		$host      = 'localhost';
 		/*$basedatos = 'wejadminmot_calidad';*/
 		/*$basedatos = 'wejadminmot2';*/ 
-		$basedatos = 'wejadminmot_prod';
+		/*$basedatos = 'wejadminmot_prod';*/
+		$basedatos = 'wejadminmot_test';
 		$usuario   = 'root';
 		$clave     = '';
 		try {

@@ -20,7 +20,7 @@
 		$sql = "SELECT * FROM vw_vendedor WHERE vende_ide=?";
 		$datos = array($ide);
 		return Enlace::sql($sql,$datos,3,'');
-	}
+	} 
 
 	public function insert() {
 		extract($_POST);

@@ -1,4 +1,4 @@
-<?php require '../../../cfg/base.php'; 
+<?php require '../../../cfg/base.php';
 $row = $mcliente->poride($clien_ide);
 $rowv = $mvendedor->poride($row[0]->clien_vendedor);
 $rowz = $mzona->poride($row[0]->clien_zona);
