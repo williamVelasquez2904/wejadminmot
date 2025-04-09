@@ -11,6 +11,7 @@
 					<th>Nombre</th>
 					<th>Alias</th>
 					<th>Telefono</th>
+					<th>Origen</th>
 					<th>Zona</th>
 					<th>Vendedor</th>
 				</tr>
@@ -24,6 +25,7 @@
 						<td><?php echo $r->clien_nombre1 ?></td>
 						<td><?php echo $r->clien_nombre2 ?></td>
 						<td><?php echo $r->clien_telmovi ?></td>
+						<td><?php echo $r->clien_origen == 1 ? 'Normal' : ($r->clien_origen == 2 ? 'Redes' : 'Desconocido'); ?></td>
 						<td><?php echo $r->zona_descrip ?></td>
 						<td><?php echo $r->vende_razonsocial ?></td>
 					</tr>
