@@ -5,7 +5,7 @@
 <form action="" class="op1-clien">
 	<div class="msj-clien" id="errores"></div>
 	<!-- Datos del cliente ############### -->
-	<fieldset><legend>[insert.php] - 18/12/24</legend>	
+	<fieldset><legend>[insert.php] - 09/04/25</legend>	
 		<div class="form-group col-sm-4">
 			<label for="" class="label control-label col-sm-12 bolder">Código:</label>
 			<div class="col-sm-12">
@@ -35,7 +35,7 @@
 		<div class="form-group col-sm-4">
 			<label for="" class="label control-label col-sm-12 bolder">Nombre o Razón Social:</label>
 			<div class="col-sm-12">
-				<input type="text" name="nom1" class="form-control">
+				<input type="text" name="nom1" id="nom1" class="form-control">
 			</div>
 		</div>
 		<div class="form-group col-sm-4">
@@ -245,33 +245,40 @@
 			},
 
 			submitHandler: function (form) {
-				$.post('prc-mcliente-insert',$(formulario).serialize(),function(data){
-					if(!isNaN(data)) {
-						load('vst-cliente-datos.personales','clien_ide='+data.trim(),'.perfil');
-					} else {
-						var data1=data.split(' - ');
-						if (data1[0]=='Cliente se encuentra Inactivo') {
-							
-							
+				var $flag   = true;
+				var f_nom1  = document.getElementById('nom1').value;
 
-							if(confirm('Cliente se encuentra Inactivo, ¿Desea Reactivarlo?')==true) {
-								$.post('prc-mcliente-reactivarlo','ide='+data1[1],function(data2){
-									if(!isNaN(data2)) {
-										alert('El cliente fue Reactivado satisfactoriamente')
-										load('vst-cliente-datos.personales','clien_ide='+data1[1],'.perfil');
-									} else {
-										alerta('.msj-clien','danger',data2);
-									}
-								})
-							}
+				if (validarEntrada(f_nom1)) {
+					$flag = true;
+				} else {
+					alerta('.msj-clien','danger',"Carácter incorrecto en nombre del cliente: "+f_nom1);
+					$flag = false;
+				}
 
-
+				if ($flag){
+					$.post('prc-mcliente-insert',$(formulario).serialize(),function(data){
+						if(!isNaN(data)) {
+							load('vst-cliente-datos.personales','clien_ide='+data.trim(),'.perfil');
 						} else {
-							alerta('.msj-clien','danger',data1[0]);
+							var data1=data.split(' - ');
+							if (data1[0]=='Cliente se encuentra Inactivo') {
+								if(confirm('Cliente se encuentra Inactivo, ¿Desea Reactivarlo?')==true) {
+									$.post('prc-mcliente-reactivarlo','ide='+data1[1],function(data2){
+										if(!isNaN(data2)) {
+											alert('El cliente fue Reactivado satisfactoriamente')
+											load('vst-cliente-datos.personales','clien_ide='+data1[1],'.perfil');
+										} else {
+											alerta('.msj-clien','danger',data2);
+										}
+									})
+								}
+							} else {
+								alerta('.msj-clien','danger',data1[0]);
+							}
+							location.href="#errores"
 						}
-						location.href="#errores"
-					}
-				})
+					})
+				}	
 			},
 			invalidHandler: function (form) {
 			}
@@ -296,4 +303,11 @@
 			//$('#form-field-tags').autosize({append: "\n"});
 		}
 	});
+</script>
+<script>
+	function validarEntrada(input) {
+    	// Expresión regular para detectar comillas simples (') o dobles (")
+    	const regex = /['"]/;
+    	return !regex.test(input);
+	}
 </script>

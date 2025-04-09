@@ -1,7 +1,7 @@
 <?php $row = $mcliente->lista(); ?>
 <form action="" class="op0">
 	<div class="form-group">
-		<label for="" class="label control-label col-sm-12 bolder">[admin.php] - (26-09-2024 Buscar Cliente:</label>
+		<label for="" class="label control-label col-sm-12 bolder">[admin.php]. 09-abril-2025  Buscar Cliente:</label>
 		<div class="col-sm-9">
 			<input type="text" class="form-control" id="buscarcliente" name="clien">
 		</div>

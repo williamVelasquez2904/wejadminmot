@@ -207,6 +207,7 @@ $fecha_hoy = date('d-m-Y');
 
 
 
+
 /*	$(function(){
 		$('.chosen').chosen();
 		$('.fecha').datepicker({format:'yyyy-mm-dd',endDate:'-0d'});
@@ -216,6 +217,16 @@ $fecha_hoy = date('d-m-Y');
 	load('vst-compra_wh-lista','','.lista');
 </script>
 <script>
+
+	function validarEntrada($input) {
+	    // Expresión regular para evitar comillas simples y dobles
+	    if (preg_match("/['\"]/", $input)) {
+	        return false; // Entrada no válida
+	    }
+	    return true; // Entrada válida
+	}
+
+
 	function recalcular(){ 
 		document.getElementById('mto_credito').value=calculaMontoCredito();
 		document.getElementById('mto_contado').value=calculaMontoContado();
@@ -398,7 +409,7 @@ $fecha_hoy = date('d-m-Y');
 				if (f_destino.trim() == 0 ){
 					if f_mto_flete
 
-				}*/
+				}*/ 
 
 /*
 
