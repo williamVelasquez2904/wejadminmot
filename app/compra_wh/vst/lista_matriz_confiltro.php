@@ -206,7 +206,7 @@ $suma_comision=0.0;
 				<td><?php echo "Total Comisión: ".number_format($suma_comision,2,",","."); ?></td>
 			</tr>			
 			<tr>
-				<td><?php echo "Total Notas: ".number_format($acum_monto,2,",","."); ?></td>
+				<td><?php echo "Total Notas 05-05-2025: ".number_format($acum_monto,2,",","."); ?></td>
 			</tr>			
 		</table>
 	</div>	
@@ -215,7 +215,6 @@ $suma_comision=0.0;
 	<i class="fa fa-file-excel-o"> Generar Excel</i>
 	</button>
 <?php else: ?>
-
 	<div class="alert alert-info">No hay registros para mostrar.</div>
 <?php endif; ?>	
 <script>

@@ -67,13 +67,20 @@
 		$sql_prov  =" ";
 
 		$final =" AND  compra_borrado=0 ORDER BY compra_ide   ";
-
+/*
 		$sql ="	SELECT * FROM vw_wh_tbl_compra 
 			WHERE 
-			compra_prov_ide != 1 AND  /*1 = Taller */
+			compra_prov_ide != 1 AND  
 			compra_tienda= ".$_SESSION['s_usua_tienda']." 
 			And vw_wh_tbl_compra.compra_fecha between '".$f_ini."' and '".$f_fin."'"  ;
-			// AND  compra_borrado=0 ORDER BY compra_ide ";
+*/
+
+		// 05-05-2025	
+		$sql ="	SELECT * FROM vw_wh_tbl_compra 
+			WHERE 
+			compra_tienda= ".$_SESSION['s_usua_tienda']." 
+			And vw_wh_tbl_compra.compra_fecha between '".$f_ini."' and '".$f_fin."'"  ;
+
 
 
 		if ($clien_ide!= "0" ) $sql_clien =" AND compra_clien_ide = '".$clien_ide."'";
@@ -200,5 +207,4 @@
 		return Enlace::sql($sql,$datos,3,'');	
 
 	}
-
 } ?>
