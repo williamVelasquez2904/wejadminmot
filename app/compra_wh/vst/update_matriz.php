@@ -3,7 +3,7 @@
 ?>
 <?php foreach($mcompra_wh->poride($ide) as $r):?>
 	<form action="" class="op2">
-		<?php echo $fn->modalHeader("[update_matriz.php] 28-01-2025 | Actualizar  Nota : $ide") ?>
+		<?php echo $fn->modalHeader("[update_matriz.php] 08-05-2025 | Actualizar  Nota : $ide") ?>
 		<div class="modal-body">
 			<div class="msj_upd"></div>
 
@@ -284,5 +284,5 @@
 			invalidHandler: function (form) {
 			}
 		});
-	})
+	}) 
 </script>

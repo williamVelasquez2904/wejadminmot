@@ -81,8 +81,6 @@
 			compra_tienda= ".$_SESSION['s_usua_tienda']." 
 			And vw_wh_tbl_compra.compra_fecha between '".$f_ini."' and '".$f_fin."'"  ;
 
-
-
 		if ($clien_ide!= "0" ) $sql_clien =" AND compra_clien_ide = '".$clien_ide."'";
 		if ($prov_ide != "0" ) $sql_prov  =" AND compra_prov_ide  = '".$prov_ide."'";
 

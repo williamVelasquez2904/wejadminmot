@@ -12,12 +12,6 @@ $suma_comision=0;
 			<?php 
 				include 'plantilla_matriz_encab.php';
 			?>
-			<thead>
-				<tr>
-					<!-- ...existing headers... -->
-					<th>Actualizar Imagen</th> <!-- Nueva columna -->
-				</tr>
-			</thead>
 			<tbody>
 				<?php foreach($row as $r): 
 					$_SESSION['color_tipo']="";
@@ -160,7 +154,7 @@ $suma_comision=0;
 					<tr  style="<?php echo $estilo; ?>">
 						<?php
 							  include 'plantilla_matriz_detalle.php'; 
-						 ?>
+						?>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>
