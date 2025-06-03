@@ -3,7 +3,14 @@
 <td align="center"><?php echo implode('-', array_reverse(explode('-', $fecha_factura)));?></td>
 <td align="center"><?php echo implode('-', array_reverse(explode('-', $r->compra_fecha_recep)));?></td>						
 <td align="left"><?php echo $r->nombre1.'<b>'.$texto_destino.'</b> -  ' .'<b>'.$r->compra_sustitucion.'</b>' ?> <font color="<?php echo $color_tipo; ?>"><b><?php echo $tipo_text; ?></b></font> </td>
-<td align="center"><?php echo $r->compra_num ?></td>
+<td align="center"><?php echo $r->compra_num ?>
+        <div class="btn-group">
+            <button class="btn btn-success btn-xs" title="Ver pago" onclick="modal('vst-compra_wh-ver_img_nota','ide=<?php echo $r->compra_ide ?> ?>')">
+            <i class="fa fa-image"></i>
+            </button>
+        </div>
+
+</td>
 <td align="center"><?php echo $r->compra_porc_desc ?></td>
 <td align="right"><?php echo number_format($monto,2,",",".") ?></td>
 <td align="right"><?php echo number_format($r->compra_devol,2,",",".") ?></td>

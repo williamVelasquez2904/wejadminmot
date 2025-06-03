@@ -9,7 +9,7 @@
 	static function conectar() {
 		$driver    = 'mysql';
 		$host      = 'localhost';
-		$basedatos = 'wejadminmot_prod';
+		$basedatos = 'wejadminmot_prod'; 
 		/*$basedatos = 'wejadminmot_test';*/
 		$usuario   = 'root';
 		$clave     = '';

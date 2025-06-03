@@ -35,7 +35,6 @@ $suma_comision=0;
 					$comision_ex=0;
 					$saldo =0;
 
-
 					$monto=round($r->compra_monto,2);
 					$saldo = $r->abono - $monto; 
 

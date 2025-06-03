@@ -1,5 +1,5 @@
-<?php
-require '../../../cfg/base.php'; 
+<?php 
+require '../../../cfg/base.php';
 ?>
 <?php
 	$fecha_actual=date("d-m-Y");

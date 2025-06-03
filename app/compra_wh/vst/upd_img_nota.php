@@ -2,34 +2,55 @@
 	echo $fn->modalWidth('80%');
 ?>
 <?php foreach($mcompra_wh->poride($ide) as $r):?>
-	<form action="" class="op2">
-		<?php echo $fn->modalHeader("[upd_img_nota.php] 09-05-2025 | Subir Imagen de la Nota : $ide") ?>
+	<form action="cargarimg_nota"  method="post" enctype="multipart/form-data" class="op2">
+	<!-- <form action="" class="op2"> -->
+		<?php echo $fn->modalHeader("[upd_img_nota.php] 12-05-2025 | Subir Imagen de la Nota : $ide") ?>
 		<div class="modal-body">
 			<div class="msj_upd"></div>
 
-			<div class="form-group col-sm-6 col-xs-12">
+<!-- 			<div class="form-group col-sm-7 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Nota</label>
 			<div class="col-sm-12 col-xs-12">
 				<select class="form-control chosen" title="nota" name="compra_ide" id="compra_ide"  onclick="getTotalVenta();">
 						<option value=""></option>
-						<?php foreach($mcompra_wh->pordesglose($desglose_ide,$porcentaje) as $c): ?>
-							<option value="<?php echo $c->compra_ide ?>" >
+						<?php //foreach($mcompra_wh->lista_all() as $c): ?>
+							<option value="<?php //echo $c->compra_ide ?>" >
 								<?php 
-								echo $c->compra_num.' - '. $c->compra_porc_desc.'% - MONTO CREDITO '. $c->compra_monto_credito;
+								//echo $c->compra_num.' - '.$c->nombre1.' - '. $c->compra_monto;
 								?>
 							</option>
-						<?php endforeach; ?>
+						<?php //endforeach; ?>
 				</select>
 			</div>
+			</div> 
+-->
+
+			<div class="form-group col-sm-7">
+				<label for="" class="label control-label col-sm-12 bolder">Imágen de la nota </label>
+				<div class="col-sm-12">
+					<input type="file" class="form-control" name="file1" id="file1" onclick="validateFile()" onchange="validateFile()">
+				</div>	
 			</div>
-		
+
+			<div class="form-group col-sm-7">
+				<label for="" class="label control-label col-sm-12 bolder">Nombre de archivo generado</label>
+				<div class="col-sm-12">
+					<input type="text" class="form-control" name="nomarc" id="nomarc" >
+					<!-- <strong><b><span style="font-size:16px;color: darkred;" id="nombreArchivo"></span></b></strong> -->
+				</div>	
+			</div>								
 			<div class="clearfix"></div>
 
-
-
+			<div class="clearfix"></div>
+			<div class="form-group col-sm-7">			
+				<div class="col-sm-12">
+					<button class="btn btn-primary btn-sm pull-right"><span class="i fa fa-check"></span> Subir Imagen </button>
+				</div>	
+			</div>
+			<div class="clearfix"></div>
 		</div>
-		<?php echo $fn->modalFooter(1) ?>
-		<input type="hidden" class="form-control" name="ide" value="<?php echo $r->compra_ide ?>">
+		<!-- <?php //echo $fn->modalFooter(1) ?> -->
+		<input type="hidden" class="form-control" name="ide" value="<?php echo $ide ?>">
 	</form>
 <?php endforeach; ?>
 
@@ -81,12 +102,18 @@
 			errorClass: 'help-block',
 			focusInvalid: true,
 			rules: {
+				nomarc: {
+					required: true,
+				},					
 				mto_contado: {
 					required: true,
 				}
 			},
 
 			messages: {
+				nomarc: {
+					required: 'Obligatorio',
+				},				
 				mto_contado: {
 					required: 'Obligatorio',
 				}

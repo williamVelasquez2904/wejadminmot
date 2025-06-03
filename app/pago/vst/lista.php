@@ -32,7 +32,6 @@ $texto_tasa="";
 						}  
 					?>
 					<tr>
-
 						<td align="center"><?php echo $r->pago_ide ?></td>
 						<td><?php echo $r->forpago_descrip ?></td>
 						<td><?php echo $r->pago_titular ?></td>

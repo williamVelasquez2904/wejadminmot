@@ -1,4 +1,4 @@
-<?php require '../../../cfg/base.php';
+<?php require '../../../cfg/base.php'; 
 	echo $fn->modalWidth('80%');
 ?>
 <?php foreach($mcompra_wh->poride($ide) as $r):?>

@@ -160,6 +160,40 @@
 
 	}
  
+	public function update_img() {
+		$sql = "SELECT sf_compra_wh_matriz(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
+		$nota_sustituida="";
+		extract($_POST); 
+		// Inicializar todas las variables a una cadena vacía
+		//$ide 
+		$prov_ide = $clien_ide = $nro = $fec = $fec_recep = $tasa = $porc = "";
+		$mto_contado = $mto_credito = $cond = $mto_dev =  $destino = $tipo = "";
+		// Se usa $nota_sustituida para el nombre del archivo
+		
+		$nota_sustituida=$nomarc;
+		//$nota_sustituida="prueba 15may2025";
+		$datos = array(
+			$ide,
+			$prov_ide,
+			$clien_ide,
+			$nro,
+			$fec,
+			$fec_recep,
+			$tasa,
+			$porc,
+			$mto_contado,
+			$mto_credito,
+			$cond,
+			$mto_dev,
+			$nota_sustituida,
+			$destino,
+			$tipo,
+			5,
+			$_SESSION['s_usua_ide']
+		);
+		return Enlace::sql($sql, $datos, 4, 'res');
+	}
+
 	public function delete() {
 		extract($_POST);
 		$sql = "SELECT sf_compra_wh(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
