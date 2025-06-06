@@ -11,7 +11,7 @@
 		$host      = 'localhost';
 		$basedatos = 'wejadminmot_prod'; 
 		/*$basedatos = 'wejadminmot_test';*/
-		/*prueba*/
+		/*prueba         06-06-2025*/
 		$usuario   = 'root';
 		$clave     = '';
 		try {
