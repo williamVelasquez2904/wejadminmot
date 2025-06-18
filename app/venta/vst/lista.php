@@ -25,7 +25,7 @@ $cantidad_ventas = 0;
 						 $ancho_vendedor="8%";
 
 					?>
-					<th width="3%">Id [16-01-2025]</th>
+					<th width="3%">Id [18-06-2025]</th>
 					<th width="<?php echo $ancho; ?>">Num</th>
 					<th width="<?php echo $ancho; ?>">Fec. Proc.</th>
 					<th width="<?php echo $ancho; ?>">Fec. Venc.</th>
@@ -122,7 +122,7 @@ $cantidad_ventas = 0;
 								<button class="btn btn-success btn-xs" title="Actualizar" onclick="modal('vst-venta-update','ide=<?php echo $r->venta_ide ?>')">
 									<i class="fa fa-edit"></i>
 								</button>
-								<button class="btn btn-danger btn-xs" title="Borrar" onclick="modal('vst-orden-delete','ide=<?php echo $r->orden_ide ?>')">
+								<button class="btn btn-danger btn-xs" title="Borrar" onclick="modal('vst-venta-delete','ide=<?php echo $r->venta_ide ?>')">
 									<i class="fa fa-trash"></i>
 								</button>
 <!-- 
