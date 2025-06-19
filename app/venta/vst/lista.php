@@ -25,7 +25,7 @@ $cantidad_ventas = 0;
 						 $ancho_vendedor="8%";
 
 					?>
-					<th width="3%">Id [18-06-2025]</th>
+					<th width="3%">Id [19-06-2025]</th>
 					<th width="<?php echo $ancho; ?>">Num</th>
 					<th width="<?php echo $ancho; ?>">Fec. Proc.</th>
 					<th width="<?php echo $ancho; ?>">Fec. Venc.</th>

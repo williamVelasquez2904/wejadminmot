@@ -3,7 +3,7 @@
     <span style="font-size:18px; vertical-align:middle; margin-left:12px; color: #ff6600;">Registrar nota</span>
 </a>
 <br>
-<a href="app/compra_wh/vst/admin.php" title="Reporte de Matriz por Proveedor" style="display:inline-block; margin-left: 40px; margin-top: 30px;" target="main-container-inner">
+<a href="#" title="Reporte de Matriz por Proveedor" style="display:inline-block; margin-left: 40px; margin-top: 30px;" onclick="modal('vst-pago-insert','')">
     <img src="img/reporte1.png" alt="Reporte de Matriz por Proveedor" width="52" height="52" style="vertical-align:middle;" />
     <span style="font-size:18px; vertical-align:middle; margin-left:12px; color: #ff6600;">Reporte Matriz</span>
 </a>
