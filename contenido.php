@@ -34,3 +34,6 @@ endif;
 <div class="row">
 	<div class="col-sm-12"><?php require $pag; ?></div>
 </div>
+<div id="miDiv">
+  <!-- Aquí se cargará el contenido  Prueba 19-06-2025-->
+</div>

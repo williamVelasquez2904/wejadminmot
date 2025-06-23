@@ -94,8 +94,10 @@
 	}
 
 	public function delete() {
-		$sql = "SELECT sf_venta_wh(?,?,?,?) AS res";
+		$sql = "SELECT sf_venta_dos(?,?,?,?) AS res";
 		extract($_POST); $datos = array($ide,0,3,$_SESSION['s_usua_ide']);
 		return Enlace::sql($sql,$datos,1,'res');
 	}
+
+
 } ?>
