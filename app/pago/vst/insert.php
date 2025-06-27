@@ -13,6 +13,19 @@ require '../../../cfg/base.php';
 	<div class="clearfix"></div>	
 	<form action="cargarimg"  method="post" enctype="multipart/form-data">
 
+		<div class="form-group col-sm-2 col-xs-12">
+			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Proveedor</label>
+			<div class="col-sm-12 col-xs-12">
+				<select class="form-control chosen" title="Proveedor" name="prov_ide" id="prov_ide" >
+					<option value=""></option>
+					<?php foreach($mproveedor->lista() as $p): ?>
+						<option value="<?php echo $p->prove_ide ?>" <?php if ($p->prove_ide==2) { echo "selected"; } ?>> 
+						<?php echo  $p->prove_razonsocial ?>
+						</option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		</div>	
 		<div class="form-group col-sm-2">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Fecha</label>
 			<div class="col-sm-12 ">
@@ -32,7 +45,7 @@ require '../../../cfg/base.php';
 			</div>
 		</div>	
 					
-		<div class="form-group col-sm-2 col-xs-12">
+		<div class="form-group col-sm-3 col-xs-12">
 			<label for="" class="label control-label col-sm-12 bolder">Forma de Pago</label>
 			<div class="col-sm-12 col-xs-12">
 				<select class="form-control chosen" name="forpago" id="forpago" onchange="generarNombreArchivo();" onclick="generarNombreArchivo();">
@@ -46,13 +59,13 @@ require '../../../cfg/base.php';
 		</div>
 		<input type="hidden" class="form-control" name="forpago_desc" value="<?php echo $f->forpago_descrip ?>">
 
-		<div class="form-group col-sm-2">
+		<div class="form-group col-sm-3">
 			<label for="" class="label control-label col-sm-12 bolder">Titular</label>
 			<div class="col-sm-12">
 				<input type="text" name="titular" id="titular" class="form-control" value="" onchange="generarNombreArchivo();" onclick="generarNombreArchivo();">
 			</div>
 		</div>
-
+		<div class="clear-fix"></div>
 		<div class="form-group col-sm-2">
 			<label for="" class="label control-label col-sm-12 bolder">Referencia</label>
 			<div class="col-sm-12">
