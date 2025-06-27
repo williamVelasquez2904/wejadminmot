@@ -13,7 +13,7 @@ $fecha_hoy = date('d-m-Y');
 <form action="" class="op1">
 	<div class="datosnota" id="myDIV">
 	<div class="msj"></div>
-	<fieldset><legend>[admin.php] (03-02-2025). Datos de la Compra</legend>
+	<fieldset><legend>[admin.php] (26-06-2025). Datos de la Compra</legend>
 
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Proveedor</label>
@@ -86,7 +86,7 @@ $fecha_hoy = date('d-m-Y');
 				<input type="number" name="tasa" id="tasa" class="form-control" value="0.00" min="0.01" onchange="calculaMontoCredito();" onclick="calculaMontoCredito();">
 			</div>
 		</div>		
-		<div class="form-group col-sm-1 col-xs-12">
+		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">% Desc.</label>
 			<div class="col-sm-12 col-xs-12">
 				<select class="form-control chosen" title="Porcentaje de Descuento" name="porc" id="porc"  onchange="calculaMontoContado();" onclick="calculaMontoContado();">

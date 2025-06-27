@@ -17,11 +17,11 @@ $row = $mcompra_wh->lista(); ?>
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
-					<th width="3%">Id </th>
+					<th width="3%">Id</th>
 					<th width="7%">Prov</th>
 					<th width="5%">Fecha Fac.</th>
 					<th width="5%">Fecha Recep.</th>
-					<th width="18%">Cliente [15-01-25] lista.php</th>
+					<th width="18%">Cliente [26-06-25] lista.php</th>
 					<th width="6%">Num Fac.</th>
 					<th width="3%">% Desc.</th>
 					<th width="5%">Monto Contado </th>
