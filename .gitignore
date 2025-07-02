@@ -12,3 +12,4 @@ error_log
 cfg/base.php
 *.borrar.php
 *.bak.php
+cfg/conexion.php
