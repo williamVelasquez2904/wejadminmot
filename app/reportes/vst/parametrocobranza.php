@@ -1,8 +1,18 @@
 <?php 
-require '../../../cfg/base.php'; 
+/*extract($_POST);
+if(!isset($origen_opcion)){
+	$origen_opcion=0;
+}	
+if(isset($origen_opcion)){
+	if ($origen_opcion==1) require '../../../cfg/base.php'; 
+	}
+?>
+<?php 
+//require '../../../cfg/base.php'; 
 $fecha_hoy = date('Y-m-d');
-var_dump($_POST);
-
+var_dump($_POST);echo "Origen opcion: ".$origen_opcion;
+*/
+require '../../../cfg/base.php'
 ?>
 <div class="alert alert-info">
 	<i class="fa fa-exclamation-triangle fa-2x pull-left red"></i> COBRANZA  

@@ -1,5 +1,10 @@
 <?php require '../../../cfg/base.php'; ?>
 <?php
+/*
+llamado por Matriz por proveedor 
+Cambio aplicado el 04/07/2025
+*/
+
 $monto=0;  // monto contado
 $monto_credito=0;
 extract($_POST);

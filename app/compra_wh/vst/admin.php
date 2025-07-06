@@ -1,4 +1,13 @@
 <?php 
+extract($_POST);
+if(!isset($origen_opcion)){
+	$origen_opcion=0;
+}	
+if(isset($origen_opcion)){
+	if ($origen_opcion==1) require '../../../cfg/base.php'; 
+	}
+?>
+<?php 
 date_default_timezone_set('America/El_Salvador');
 $fecha_hoy = date('d-m-Y');
 ?>
@@ -9,7 +18,6 @@ $fecha_hoy = date('d-m-Y');
 	<i class="fa fa-search"></i>
 	Ocultar 
 </button> 
-
 <form action="" class="op1">
 	<div class="datosnota" id="myDIV">
 	<div class="msj"></div>
