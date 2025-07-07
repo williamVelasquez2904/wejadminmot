@@ -23,6 +23,7 @@
 "
    onclick="document.getElementById('default-content').style.display='none'; document.getElementById('icono-cobranza').style.display='none'; load('vst-reportes-admin_cobranza','origen_opcion='+1,'.cobranza'); return false;">
     <img src="img/icono-cobranza.png" alt="Cobranza" width="60" height="60" style="vertical-align:middle;" />
+    <span style="font-size:18px; vertical-align:middle; margin-left:12px; color: #ff6600;">Reporte cobranza</span>
 </a>
 
 <script>
