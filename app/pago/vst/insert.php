@@ -9,7 +9,7 @@ require '../../../cfg/base.php';
 
 <div class="modal-body">				
 	<div class="msj"></div>
-	<fieldset><legend>[insert.php] 03-jul-2025 - Por favor ingrese los datos del Pago </legend>
+	<fieldset><legend>[insert.php] 10-jul-2025 - Por favor ingrese los datos del Pago </legend>
 	<div class="clearfix"></div>	
 	<form action="cargarimg"  method="post" enctype="multipart/form-data">
 
