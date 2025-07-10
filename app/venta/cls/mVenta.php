@@ -13,14 +13,11 @@
 	}
  
 	public function lista_sinabono() { 
-		$sql = "SELECT * FROM vw_venta2 WHERE venta_tienda= ".$_SESSION['s_usua_tienda']." AND venta_borrado=0 
-		AND venta_fecha_registro >='2025-01-01'
-		
-		ORDER BY  venta_ide DESC";
+		$sql = "SELECT * FROM vw_venta2 WHERE venta_tienda= ".$_SESSION['s_usua_tienda']." AND venta_borrado=0 AND venta_fecha_registro >='2025-01-01' 	ORDER BY  venta_ide DESC";
 
-/*		$sql = "SELECT * FROM vw_venta2 WHERE venta_tienda= ".$_SESSION['s_usua_tienda']." AND venta_borrado=0 
-		ORDER BY  venta_ide DESC";
-*/		
+		// Sin distinguir año 10-07-2025
+		$sql = "SELECT * FROM vw_venta2 WHERE venta_tienda= ".$_SESSION['s_usua_tienda']." AND venta_borrado=0 	ORDER BY  venta_ide DESC";		
+	
 		return Enlace::sql($sql,'',3,'');
 	}	
 

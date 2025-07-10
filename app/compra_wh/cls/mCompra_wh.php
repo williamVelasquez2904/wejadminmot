@@ -146,7 +146,11 @@
 			1, 	 //  operación
 			$_SESSION['s_usua_ide'] #Usuario que realiza operación
 		);
-		/* */
+	
+/*		var_dump("<pre>");
+   		var_dump($datos);
+   		var_dump("</pre>");
+*/
 		return Enlace::sql($sql,$datos,4,'res');
 	}
 
