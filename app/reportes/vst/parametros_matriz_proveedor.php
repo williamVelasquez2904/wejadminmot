@@ -4,7 +4,7 @@ $fecha_hoy = date('Y-m-d');
 
 ?>
 <div class="alert alert-info">
-	<i class="fa fa-exclamation-triangle fa-2x pull-left red"></i> Matriz por Proveedor
+	<i class="fa fa-exclamation-triangle fa-2x pull-left red"></i>11JUL25 Matriz por Proveedor
 </div>
 <form action="" class="opventa">
 	<div class="msj"></div>
@@ -116,14 +116,10 @@ $fecha_hoy = date('Y-m-d');
 										;
 */
 
-							var datos = 'prov_ide='+f_prov_ide+
-										'&clien_ide='+f_clien_ide+
-										'&f_ini='+f_inip+
-										'&f_fin='+f_finp
-										;
+							var datos = 'prov_ide='+f_prov_ide;
 
 
-							load('vst-compra_wh-lista_matriz_confiltro',datos,'.lista_matriz_confiltro');
+							load('vst-compra_wh-lista_matriz',datos,'.lista_matriz_confiltro');
 						}else{
 							alerta('.msj','danger',"La fecha de Fin no puede ser menor a la de Inicio");
 						}
