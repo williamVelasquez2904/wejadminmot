@@ -8,7 +8,7 @@
     </a>
     <a href="#" title="Reporte de Matriz por Proveedor"
        style="display:inline-block; margin-left: 60px; text-decoration: none;"
-       onclick="document.getElementById('default-content').style.display='none'; load('vst-reportes-admin_matriz_prov','','.lista_matriz'); return false;">
+       onclick="document.getElementById('default-content').style.display='none'; load('vst-reportes-admin_matriz_prov','','.param_matriz_prov'); return false;">
         <img src="img/reporte1.png" alt="Matriz por Proveedor" width="52" height="52" style="vertical-align:middle;" />
         <span style="font-size:18px; vertical-align:middle; margin-left:12px; color: #ff6600;">Matriz por Proveedor</span>
     </a>

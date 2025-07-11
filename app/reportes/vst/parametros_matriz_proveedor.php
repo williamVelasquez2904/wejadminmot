@@ -32,7 +32,7 @@ $fecha_hoy = date('Y-m-d');
 	
 </form>
 
-<!-- <div class="lista_cobranza"></div> -->
+<!-- <div class="lista_matriz"></div> -->
 
 <script>
 	/*load('vst-reportes-listacobranza','','.lista_cobranza');*/
@@ -99,7 +99,7 @@ $fecha_hoy = date('Y-m-d');
 				var dealer=1;
 
 					if (dealer!=0){
-						if(f_inip<=f_finp){
+						if(f_prov_ide!=0){
 							/*var datos = 'f_ini='+f_inip+
 										'&f_fin='+f_finp+
 										'&clien_ide='+f_clien_ide+
@@ -117,11 +117,9 @@ $fecha_hoy = date('Y-m-d');
 */
 
 							var datos = 'prov_ide='+f_prov_ide;
-
-
-							load('vst-compra_wh-lista_matriz',datos,'.lista_matriz_confiltro');
+							load('vst-compra_wh-lista_matriz',datos,'.lista_matriz');
 						}else{
-							alerta('.msj','danger',"La fecha de Fin no puede ser menor a la de Inicio");
+							alerta('.msj','danger',"Debe seleccionar un proveedor");
 						}
 					}else{
 						alerta('.msj','danger','Debe Seleccionar un dealer');

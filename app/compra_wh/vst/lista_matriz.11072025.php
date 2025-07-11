@@ -14,14 +14,12 @@ $row_proveedor=$mproveedor->poride($prov_ide);
 foreach($row_proveedor as $rp): 
 	$nombre_proveedor=$rp->prove_razonsocial;
 endforeach;	
-//echo "Proveedor: ". $nombre_proveedor;
+echo "Proveedor: ". $nombre_proveedor;
 $row = $mcompra_wh->lista_matriz(); 
 $suma_comision=0;
 ?> 
 <?php if(count($row)>0):?>
-    <h5 style="margin-top:20px; color:#333; text-align:center;">
-        <strong><?php echo "PROVEEDOR: " . $nombre_proveedor; ?></strong>
-    </h5>
+    <h3 style="margin-top:20px; color:#333;"><?php echo "Proveedor: " . $nombre_proveedor; ?></h3>
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
             <?php 

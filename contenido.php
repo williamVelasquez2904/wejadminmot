@@ -34,7 +34,7 @@ endif;
 <div class="row" id="default">
 	<div class="col-sm-12"><?php require $pag; ?></div>
 </div>
-<div class="lista_matriz">
+<div class="param_matriz_prov">
 <div class="registrar_compra">
 <div class="cobranza">	
 <div id="miDiv">
