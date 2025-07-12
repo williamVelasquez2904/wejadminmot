@@ -57,14 +57,23 @@
 		return Enlace::sql($sql,'',3,'');
 	}
 
+	public function lista_matriz_porprov($prov_ide, $f_ini,$f_fin){
+		$datos = array($prov_ide,$f_ini,$f_fin);
+		$sql   = " SELECT * FROM vw_wh_tbl_compra WHERE compra_tienda= ".$_SESSION['s_usua_tienda']."  AND vw_wh_tbl_compra.compra_fecha between '".$f_ini."' and '".$f_fin."'" . "  "; 
+		
+		$sql_prov  =" AND compra_prov_ide  = '".$prov_ide."'";
+		$sql_final =" AND  compra_borrado=0 ORDER BY compra_ide   ";
+		$sql = $sql . $sql_prov.$sql_final;	
+		var_dump($sql);
+		return Enlace::sql($sql,'',3,'');
+	}
 
 	public function lista_matriz_confiltro($prov_ide, $clien_ide, $f_ini,$f_fin) { 
-
-		//$datos = array($f_ini,$f_fin);
 		$datos = array($prov_ide, $clien_ide, $f_ini,$f_fin);
 
 		$sql_clien =" ";
 		$sql_prov  =" ";
+
 
 		$final =" AND  compra_borrado=0 ORDER BY compra_ide   ";
 /*

@@ -15,7 +15,9 @@ foreach($row_proveedor as $rp):
 	$nombre_proveedor=$rp->prove_razonsocial;
 endforeach;	
 //echo "Proveedor: ". $nombre_proveedor;
-$row = $mcompra_wh->lista_matriz(); 
+//$row = $mcompra_wh->lista_matriz(); 
+
+$row = $mcompra_wh->lista_matriz_porprov($prov_ide,"2025-01-01","2025-12-31"); 
 $suma_comision=0;
 ?> 
 <?php if(count($row)>0):?>
