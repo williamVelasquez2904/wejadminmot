@@ -4,11 +4,11 @@ $monto=0;  // monto contado
 $monto_credito=0;
 //var_dump("entro");
 extract($_POST);
-if (isset($prov_ide)) echo var_dump($prov_ide);
+//if (isset($prov_ide)) echo var_dump($prov_ide);
 
-$row = $mcompra_wh->lista_matriz_confiltro($prov_ide,$clien_ide,$f_ini,$f_fin);
-$acum_monto   =0.0;
-$suma_comision=0.0;
+$row =      $mcompra_wh->lista_matriz_confiltro($prov_ide,$clien_ide,$f_ini,$f_fin);
+include 'inicializar.php';
+
 ?> 
 <?php if(count($row)>0):?>
 	<div class="table-responsive">
@@ -110,30 +110,27 @@ $suma_comision=0.0;
 	  					$texto_sustitucion="ERROR EN VALOR";
 	    				break;
 					}
-
-					$monto=round($r->compra_monto,2);
-					$acum_monto=$acum_monto+$monto;
-					$monto_credito=round($r->compra_monto_credito,2);
+					include 'calcular_totales_matriz.php';
+/*
+					$monto        =round($r->compra_monto,2); // MONTO CONTADO
+					$monto_credito=round($r->compra_monto_credito,2); // MONTO CREDITO
 					$tasa_comision=0;
-					/*$tasa_comision=funciones::getComision("compra",$r->compra_tipo);*/
 					$tasa_comision=$r->tipvta_com_compra;
 					$comision=0;
-					//0 Contado, 1 Credito
+					$comision_ex=0;
+					if (isset($r->compra_comision_ex))  $comision_ex=round($r->compra_comision_ex,2);
 
-					if ($r->compra_condicion ==0 ){
+					if ($r->compra_condicion ==0 ){ // Contado
 						$comision= round(($monto*$tasa_comision)/100,3);
-						//$comision=($monto*$tasa_comision)/100;
-						//$comision=round($comision,2);
+						$acum_monto_contado=$acum_monto_contado+$monto;
 					} 
 					if ($r->compra_condicion ==1 ){
-						//$comision=($monto*$tasa_comision)/100;   // validar luego con walter 
-						$comision= round(($monto*$tasa_comision)/100,3);
-						//$comision=round($comision,2);
+						$comision= round(($monto_credito*$tasa_comision)/100,3);
+						$acum_monto_credito=$acum_monto_credito+$monto_credito;
 					} 
 					$suma_comision=$suma_comision+$comision;
-					//$texto_comparacion="Comision diferente";
+					$suma_comision_ex=$suma_comision_ex+$comision_ex;
 					$texto_comparacion="";
-
 					if (isset($r->compra_comision_ex)) {
 						
 						if  ( ($r->compra_comision_ex == $comision) ){   
@@ -145,14 +142,7 @@ $suma_comision=0.0;
 							if ($diferecia > 0.05)
 								$texto_comparacion = "Diferente";
 						} 
-						//var_dump($r->compra_comision_ex);
-					}	
-					/*
-					if ( ! $r->compra_comision_ex  is_null) {
-						if  ( ($r->compra_comision_ex == $comision) ){   
-							$texto_comparacion="Comision Igual";
-						} 
-					}					*/
+					}	*/
 					?>
 
 					<tr  style="<?php echo $estilo; ?>">
@@ -200,16 +190,18 @@ $suma_comision=0.0;
 			</tbody>
 		</table>
 	</div>
+	<?php include 'totales_lista_matriz.php' ?>
+<!-- 
 	<div class="alert alert-info">
 		<table>
 			<tr>
-				<td><?php echo "Total Comisión: ".number_format($suma_comision,2,",","."); ?></td>
+				<td><?php //echo "Total Comisión: ".number_format($suma_comision,2,",","."); ?></td>
 			</tr>			
 			<tr>
-				<td><?php echo "Total Notas 05-05-2025: ".number_format($acum_monto,2,",","."); ?></td>
+				<td><?php //echo "Total Notas 05-05-2025: ".number_format($acum_monto,2,",","."); ?></td>
 			</tr>			
 		</table>
-	</div>	
+	</div>	 -->
 	<button class="btn btn-success btn-xs" 
 	onclick="window.open('app/reportes/vst/lista_matriz_confiltro_excel.php?fini=<?php echo $fini ?>&ffin=<?php echo $ffin ?>')">
 	<i class="fa fa-file-excel-o"> Generar Excel</i>

@@ -1,24 +1,25 @@
 <?php require '../../../cfg/base.php'; ?>
 <?php
-/*
-llamado por Matriz por proveedor 
-Cambio aplicado el 04/07/2025
-
-*/
 $monto=0;  // monto contado
 $monto_credito=0;
 extract($_POST);
 $nombre_proveedor="";
-
 $row_proveedor=$mproveedor->poride($prov_ide);
 foreach($row_proveedor as $rp): 
 	$nombre_proveedor=$rp->prove_razonsocial;
 endforeach;	
-//echo "Proveedor: ". $nombre_proveedor;
-//$row = $mcompra_wh->lista_matriz(); 
 
-$row = $mcompra_wh->lista_matriz_porprov($prov_ide,"2025-01-01","2025-12-31"); 
-$suma_comision=0;
+include 'inicializar.php';
+//$row = $mcompra_wh->lista_matriz_porprov($prov_ide,"2025-06-01","2025-06-30"); 
+$row = $mcompra_wh->lista_matriz_porprov($prov_ide,$f_ini,$f_fin);
+//$row_cant = $mcompra_wh->cantidad_cred_cont($prov_ide, $f_ini, $f_fin);
+
+/*$acum_monto_contado   =0.0;
+$acum_monto_credito   =0.0;
+$suma_comision=0.0;
+$suma_comision_ex=0.0;
+*/
+
 ?> 
 <?php if(count($row)>0):?>
     <h5 style="margin-top:20px; color:#333; text-align:center;">
@@ -29,12 +30,6 @@ $suma_comision=0;
             <?php 
                 include 'plantilla_matriz_encab.php';
             ?>
-<!--             <thead>
-                <tr>
-
-                    <th>Actualizar Imagen</th> 
-                </tr>
-            </thead> -->
             <tbody>
                 <?php foreach($row as $r): 
                     $_SESSION['color_tipo']="";
@@ -50,8 +45,12 @@ $suma_comision=0;
                     $tipo_text ="";
                     $deuda     =0;
                     $comision_ex=0;
-                    $saldo =0;
+                    $comision_ex=round($r->compra_comision_ex,2);
 
+   					//$suma_comision=$suma_comision+$comision;
+					$suma_comision_ex=$suma_comision_ex+$comision_ex;
+
+                    $saldo =0;
                     $monto=round($r->compra_monto,2);
                     $saldo = $r->abono - $monto; 
 
@@ -143,7 +142,8 @@ $suma_comision=0;
 	    				break;
 					}
 
-
+					$monto_dev=0;
+					$monto_para_comision=0;
 					$monto_dev=round($r->compra_devol,2);
 
 					$monto_credito=round($r->compra_monto_credito,2);
@@ -151,28 +151,29 @@ $suma_comision=0;
 					$tasa_comision=$r->tipvta_com_compra;
 					/*$tasa_comision=funciones::getComision("compra",$r->compra_tipo);*/
 					$comision=0;
-					//0 Contado, 1 Credito
 
-
+					if ($r->compra_condicion >1) 
+						$monto_para_comision = 0;
+					else	
+						$monto_para_comision = (($r->compra_condicion == 0) ? $r->compra_monto : $r->compra_monto_credito)-$monto_dev;
+					
 					if ($r->compra_condicion ==0 ){  //  0 Contado, 1 Credito
-
-
-
 						/*$comision= round(($monto*$tasa_comision)/100,3);*/
-
-
-						$comision= round((($monto-$monto_dev)*$tasa_comision)/100,3);
+						//$comision= round((($monto-$monto_dev)*$tasa_comision)/100,3);
+						$acum_monto_contado=$acum_monto_contado+$monto;
 						$deuda   = $r->compra_monto-$r->abono;
 					} 
 					if ($r->compra_condicion ==1 ){
-
-						$comision= round(($monto*$tasa_comision)/100,3);
-						//$comision=($monto*$tasa_comision)/100;   // validar luego con walter 
+						$acum_monto_credito=$acum_monto_credito+$monto_credito;
 						$deuda   = $r->compra_monto_credito-$r->abono;
 					} 
-					
+					$comision=($monto_para_comision*$tasa_comision)/100;  
 					$suma_comision=$suma_comision+$comision;
 					$texto_alternativo_cliente="";
+					$estilo_com_autoasia = '';
+					if (isset($comision_ex) && round($comision, 2) != round($comision_ex, 2)) {
+						    $estilo_com_autoasia = 'background-color: #fff9c4;'; // amarillo claro
+						}
 					?>
 					<tr  style="<?php echo $estilo; ?>">
 						<?php
@@ -206,7 +207,8 @@ $suma_comision=0;
 		endforeach;	
 	?> 
 	</div>
-<div class="alert alert-info"><?php echo "Total Comisión: ".number_format($suma_comision,2,",","."); ?></div>	
+	<?php include 'totales_lista_matriz.php' ?>
+<!-- <div class="alert alert-info"><?php //echo "Total Comisión: ".number_format($suma_comision,2,",","."); ?></div>	 -->
 <?php else: ?>
 
 	<div class="alert alert-info">No hay registros para mostrar.</div>

@@ -164,11 +164,13 @@
 	}
 
 	public function update_matriz() {
-		$sql = "SELECT sf_compra_wh_matriz(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
+		$sql = "SELECT sf_compra_wh_matriz(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
 		extract($_POST); 
 		/*$datos = array($ide,$prov_ide,$fec,$nro,$mto_contado,$mto_credito,$cond,$mto_dev,$estatus,$fec_recep,$nota_sustituida,$destino,$tipo,2,$_SESSION['s_usua_ide']);*/
 
-		$datos = array($ide,$prov_ide,$clien_ide,$nro,$fec,$fec_recep,$tasa,$porc,$mto_contado,$mto_credito,$cond,$mto_dev,$nota_sustituida,$destino,$tipo,2,$_SESSION['s_usua_ide']);
+		$datos = array($ide,$prov_ide,$clien_ide,$nro,$fec,$fec_recep,$tasa,$porc,$mto_contado,$mto_credito
+			,$com_ex,
+			$cond,$mto_dev,$nota_sustituida,$destino,$tipo,2,$_SESSION['s_usua_ide']);
 		return Enlace::sql($sql,$datos,4,'res');
 
 	}
@@ -234,14 +236,25 @@
 		return Enlace::sql($sql,$datos,1,'res');
 	}
 
+    public  function cantidad_cred_cont($prov,$f_ini,$f_fin)
+    //retorna la cantidad de notas a credito y a contado
+    {
+    	$datos = array($prov,$f_ini,$f_fin);
+    	$sql = "SELECT	
+  				COUNT(CASE WHEN compra_condicion = 0 THEN 1 END) AS contado,
+  				COUNT(CASE WHEN compra_condicion = 1 THEN 1 END) AS credito
+				FROM wh_tbl_compra
+				WHERE 
+				compra_prov_ide = ? and compra_fecha BETWEEN ? and ? AND compra_borrado=0 ORDER BY compra_ide";
+		return Enlace::sql($sql,$datos,3,'');					
+    }
 
 	public function subtotal_por_prov_cond($prov,$cond,$f_ini,$f_fin){ // devuelve en total la sumatoria de monto , segun proveedor y condicion
 		
 		$datos = array($prov,$cond,$f_ini,$f_fin);
 		$sql = "SELECT  round(sum(compra_monto),2) as total FROM vw_wh_tbl_compra WHERE compra_prov_ide= ? AND compra_condicion = ? And compra_fecha between ? and ?   AND compra_borrado=0 ORDER BY compra_ide";
 		//var_dump($sql);
-		return Enlace::sql($sql,$datos,3,'');	
-
+		return Enlace::sql($sql,$datos,3,'');
 	}
 
 	public function subtotal_por_prov($prov,$f_ini,$f_fin){ // devuelve en total la sumatoria de monto , segun proveedor 

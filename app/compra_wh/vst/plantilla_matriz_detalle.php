@@ -5,7 +5,11 @@
 <td align="center"><?php echo implode('-', array_reverse(explode('-', $fecha_factura)));?></td>
 <td align="center"><?php echo implode('-', array_reverse(explode('-', $r->compra_fecha_recep)));?></td>						
 <td align="left" title="<?php echo htmlspecialchars($texto_alternativo_cliente); ?>">
-    <?php echo $r->nombre1.'<b>'.$texto_destino.'</b> -  ' .'<b>'.$r->compra_sustitucion.'</b>' ?> 
+    <?php 
+        // Elimina caracteres extraños y muestra el nombre limpio
+        $nombre_limpio = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $r->nombre1);
+        echo $nombre_limpio . '<b>' . $texto_destino . '</b> -  <b>' . $r->compra_sustitucion . '</b>'; 
+    ?> 
     <font color="<?php echo $color_tipo; ?>"><b><?php echo $tipo_text; ?></b></font>
 </td>
 <td align="right"><?php echo $r->compra_num ?>
@@ -21,7 +25,9 @@
 <td align="right"><?php echo number_format($r->compra_devol,2,",",".") ?></td>
 
 <td align="right"><?php echo number_format($comision,2,",",".") ?></td>
-<td align="right"><?php echo number_format($comision_ex,2,",",".") ?></td> <!-- OJO aqui va comision excel -->
+<td align="right" style="<?php echo $estilo_com_autoasia; ?>">
+    <?php echo number_format($r->compra_comision_ex,2,",",".") ?>
+</td> <!-- OJO aqui va comision excel -->
 <td align="right"><?php echo number_format($r->abono,2,",",".") ?>							
     <div class="btn-group">
         <button class="btn btn-success btn-xs" title="Ver en cruce" onclick="modal('vst-cruce-lista_pornota',

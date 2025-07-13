@@ -1,9 +1,9 @@
 <?php require '../../../cfg/base.php'; 
-	echo $fn->modalWidth('80%');
+	echo $fn->modalWidth('95%');
 ?>
 <?php foreach($mcompra_wh->poride($ide) as $r):?>
 	<form action="" class="op2">
-		<?php echo $fn->modalHeader("[update_matriz.php] 08-05-2025 | Actualizar  Nota : $ide") ?>
+		<?php echo $fn->modalHeader("[update_matriz.php] 13-07-2025 | Actualizar  Nota : $ide") ?>
 		<div class="modal-body">
 			<div class="msj_upd"></div>
 
@@ -57,7 +57,6 @@
 			</div>
 		</div>
 
-
 			<div class="form-group col-sm-2 col-xs-12">
 				<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Fecha Recepción</label>
 				<div class="col-sm-12 col-xs-12">
@@ -76,7 +75,7 @@
 			</div>
 		</div>	
 
-		<div class="form-group col-sm-1 col-xs-12">
+		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">% Desc.</label>
 			<div class="col-sm-12 col-xs-12">
 				<select class="form-control chosen" title="Porcentaje de Descuento" name="porc" id="porc"  >
@@ -88,7 +87,6 @@
 				</select>
 			</div>
 		</div>	
-		<div class="clearfix"></div>
 
 		<div class="form-group  col-xs-2">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto contado ($)</label>
@@ -103,8 +101,7 @@
 				<input type="number" name="mto_credito" id="mto_credito" class="form-control" value="<?php echo $r->compra_monto_credito ?>"  min="0.01" >
 			</div>
 		</div>	
-		<div class="clearfix"></div>
-
+		<div class="clearfix"></div>		
 
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 bolder">Condición</label>
@@ -141,21 +138,20 @@
 					</select>
 				</div>
 			</div>
-			<div class="clearfix"></div>
+
 			<div  class="form-group col-sm-2 col-xs-12">
 				<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto flete</label>
 					<div class="col-sm-12 col-xs-12">
 					<input type="text" class="form-control" name="mto_flete" id="mto_flete" onchange="validaFlete();" autocomplete="off">
-				</div>
+					</div>
 			</div>				
 
-			<div class="form-group col-sm-2 col-xs-2">
-			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Devolución</label>
+			<div class="form-group col-sm-2 col-xs-12">
+				<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Devolución</label>
 				<div class="col-sm-12 col-xs-12">
-					<div class="input-group">
-						<input type="text" name="mto_dev" id="mto_dev"  value="<?php echo $r->compra_devol ?>">
-					</div>
+					<input type="text" class="form-control" name="mto_dev" id="mto_dev" value="<?php echo $r->compra_devol ?>">
 				</div>
+
 			</div>
 			<div class="clearfix"></div>
 
@@ -170,16 +166,26 @@
 				</div>
 			</div>
  -->
-			<div class="form-group col-sm-2 col-xs-2">
+
+
+		<div class="form-group  col-xs-2">
+			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Comisión Autoasia</label>
+			<div class="col-sm-12 col-xs-12">
+				<input type="number" name="com_ex" id="com_ex" class="form-control" min="0.01" value="<?php echo $r->compra_comision_ex ?>">
+			</div>
+		</div>	
+
+		<div class="form-group col-sm-2 col-xs-2">
 				<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Nota Sustituida</label>
 				<div class="col-sm-12 col-xs-12">
 					<div class="input-group">
-						<input type="text" name="nota_sustituida" id="nota_sustituida"  value="<?php echo $r->compra_sustitucion ?>">
+						<input class="form-control" type="text" name="nota_sustituida" id="nota_sustituida"  value="<?php echo $r->compra_sustitucion ?>">
 					</div>
 				</div>
 			</div>
 
 		</div>
+		<div class="clearfix"></div>
 		<?php echo $fn->modalFooter(1) ?>
 		<input type="hidden" class="form-control" name="ide" value="<?php echo $r->compra_ide ?>">
 	</form>
