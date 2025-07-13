@@ -1,9 +1,14 @@
-<td align="center"><?php echo $r->compra_ide;?></td> 
-<td align="center"><?php echo $r->compra_prov_ide;?></td>
+<!-- <td align="center"><?php //echo $r->compra_ide;?></td> 
+<td align="center"><?php //echo $r->compra_prov_ide;?></td>
+ -->
+ <?php $texto_alternativo_cliente=$r->nombre1.' '.$texto_destino.' '.$r->compra_sustitucion.$tipo_text; ?>
 <td align="center"><?php echo implode('-', array_reverse(explode('-', $fecha_factura)));?></td>
 <td align="center"><?php echo implode('-', array_reverse(explode('-', $r->compra_fecha_recep)));?></td>						
-<td align="left"><?php echo $r->nombre1.'<b>'.$texto_destino.'</b> -  ' .'<b>'.$r->compra_sustitucion.'</b>' ?> <font color="<?php echo $color_tipo; ?>"><b><?php echo $tipo_text; ?></b></font> </td>
-<td align="center"><?php echo $r->compra_num ?>
+<td align="left" title="<?php echo htmlspecialchars($texto_alternativo_cliente); ?>">
+    <?php echo $r->nombre1.'<b>'.$texto_destino.'</b> -  ' .'<b>'.$r->compra_sustitucion.'</b>' ?> 
+    <font color="<?php echo $color_tipo; ?>"><b><?php echo $tipo_text; ?></b></font>
+</td>
+<td align="right"><?php echo $r->compra_num ?>
         <div class="btn-group">
             <button class="btn btn-success btn-xs" title="Ver pago" onclick="modal('vst-compra_wh-ver_img_nota','ide=<?php echo $r->compra_ide ?> ?>')">
             <i class="fa fa-image"></i>

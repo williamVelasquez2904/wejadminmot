@@ -64,7 +64,7 @@
 		$sql_prov  =" AND compra_prov_ide  = '".$prov_ide."'";
 		$sql_final =" AND  compra_borrado=0 ORDER BY compra_ide   ";
 		$sql = $sql . $sql_prov.$sql_final;	
-		var_dump($sql);
+		//var_dump($sql);
 		return Enlace::sql($sql,'',3,'');
 	}
 

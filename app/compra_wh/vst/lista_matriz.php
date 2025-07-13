@@ -29,12 +29,12 @@ $suma_comision=0;
             <?php 
                 include 'plantilla_matriz_encab.php';
             ?>
-            <thead>
+<!--             <thead>
                 <tr>
-                    <!-- ...existing headers... -->
-                    <th>Actualizar Imagen</th> <!-- Nueva columna -->
+
+                    <th>Actualizar Imagen</th> 
                 </tr>
-            </thead>
+            </thead> -->
             <tbody>
                 <?php foreach($row as $r): 
                     $_SESSION['color_tipo']="";
@@ -172,6 +172,7 @@ $suma_comision=0;
 					} 
 					
 					$suma_comision=$suma_comision+$comision;
+					$texto_alternativo_cliente="";
 					?>
 					<tr  style="<?php echo $estilo; ?>">
 						<?php
@@ -210,6 +211,13 @@ $suma_comision=0;
 
 	<div class="alert alert-info">No hay registros para mostrar.</div>
 <?php endif; ?>	
+<!-- Aplica estilo de letra pequeña a todo el datatable -->
+<style>
+    .table.table-hover.table-bordered td,
+    .table.table-hover.table-bordered th {
+        font-size: 11px;
+    }
+</style>
 <script>
 	$(function(){
 		$('.table').dataTable();
