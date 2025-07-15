@@ -94,7 +94,7 @@
 		if ($prov_ide != "0" ) $sql_prov  =" AND compra_prov_ide  = '".$prov_ide."'";
 
 		$sql = $sql . $sql_prov.$sql_clien. $final;	
-		var_dump($sql)	;
+		//var_dump($sql)	;
 		return Enlace::sql($sql,'',3,'');
 	}	
 

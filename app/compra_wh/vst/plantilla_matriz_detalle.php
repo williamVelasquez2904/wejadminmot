@@ -1,13 +1,15 @@
-<!-- <td align="center"><?php //echo $r->compra_ide;?></td> 
-<td align="center"><?php //echo $r->compra_prov_ide;?></td>
- -->
- <?php $texto_alternativo_cliente=$r->nombre1.' '.$texto_destino.' '.$r->compra_sustitucion.$tipo_text; ?>
-<td align="center"><?php echo implode('-', array_reverse(explode('-', $fecha_factura)));?></td>
+<?php 
+    $nombre="";
+    $nombre = funciones::convertirUTF8($r->nombre1);
+    $nombre_limpio = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $nombre);
+
+    $texto_alternativo_cliente=$r->nombre1.' '.$texto_destino.' '.$r->compra_sustitucion.$tipo_text; 
+?>
+<td align="center"><?php echo implode('-', array_reverse(explode('-', $r->compra_fecha)));?></td>
 <td align="center"><?php echo implode('-', array_reverse(explode('-', $r->compra_fecha_recep)));?></td>						
 <td align="left" title="<?php echo htmlspecialchars($texto_alternativo_cliente); ?>">
     <?php 
-        // Elimina caracteres extraños y muestra el nombre limpio
-        $nombre_limpio = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $r->nombre1);
+
         echo $nombre_limpio . '<b>' . $texto_destino . '</b> -  <b>' . $r->compra_sustitucion . '</b>'; 
     ?> 
     <font color="<?php echo $color_tipo; ?>"><b><?php echo $tipo_text; ?></b></font>

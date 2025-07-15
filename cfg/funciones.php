@@ -357,15 +357,24 @@
 	} 
 
 	static function convertir_a_formato_con($numero) {  // agrega la palabra *con*
-    // Convertir el número a string
-    $numero_str = strval($numero);
+	    // Convertir el número a string
+	    $numero_str = strval($numero);
+	    // Reemplazar la coma por "con"
+	    $numero_str = str_replace(",", "con", $numero_str);
+	    // Reemplazar el punto por "con"
+	    $numero_str = str_replace(".", "con", $numero_str);
+	    return $numero_str;
+	}
 
-    // Reemplazar la coma por "con"
-    $numero_str = str_replace(",", "con", $numero_str);
-
-    // Reemplazar el punto por "con"
-    $numero_str = str_replace(".", "con", $numero_str);
-
-    return $numero_str;
-}
+	static function convertirUTF8($texto) {
+		$convertido = iconv("ISO-8859-1", "UTF-8//IGNORE", $texto);
+		return $convertido ;
+		/*
+		$codificacion = mb_detect_encoding($texto, mb_detect_order(), true);
+	    if ($codificacion !== 'UTF-8') {
+	        $texto = mb_convert_encoding($texto, 'UTF-8', $codificacion);
+	    }
+	    return iconv($codificacion, "UTF-8//IGNORE", $texto);
+	    */
+	} 
 } ?>

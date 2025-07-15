@@ -9,7 +9,7 @@
 		<th width="<?php //echo $ancho; ?>">Prov</th>
 		 -->
 		<th width="<?php echo $ancho; ?>">Fecha Factura</th>
-		<th width="<?php echo $ancho; ?>">Fecha Recep.</th>
+		<th width="<?php echo $ancho; ?>">Fecha Recep</th>
 		<th width="20%">Cliente </th>
 		<th width="<?php echo $ancho; ?>">Num Factura</th>
 		<th width="<?php echo $ancho_num; ?>">% Desc.</th>

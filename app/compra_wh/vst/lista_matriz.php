@@ -19,7 +19,7 @@ $acum_monto_credito   =0.0;
 $suma_comision=0.0;
 $suma_comision_ex=0.0;
 */
-
+ 
 ?> 
 <?php if(count($row)>0):?>
     <h5 style="margin-top:20px; color:#333; text-align:center;">
