@@ -9,7 +9,7 @@ require '../../../cfg/base.php';
 
 <div class="modal-body">				
 	<div class="msj"></div>
-	<fieldset><legend>[insert.php] 10-jul-2025 - Por favor ingrese los datos del Pago </legend>
+	<fieldset><legend>[insert.php] 23-jul-2025 - Por favor ingrese los datos del Pago </legend>
 	<div class="clearfix"></div>	
 	<form action="cargarimg"  method="post" enctype="multipart/form-data">
 
@@ -114,7 +114,7 @@ require '../../../cfg/base.php';
 		</div>
 		<div class="clearfix"></div>
 
-		<div class="form-group col-sm-7">
+		<div class="form-group col-sm-12">
 			<label for="" class="label control-label col-sm-12 bolder">Nombre de archivo generado</label>
 			<div class="col-sm-12">
 				<input type="text" class="form-control" name="nomarc" id="nomarc" >
@@ -176,6 +176,17 @@ require '../../../cfg/base.php';
 
 	}
 
+	function convertirHoraPersonalizada(hora) {
+	  const [h, m, s] = hora.split(":");
+
+	  // Asegura que cada parte tenga dos dígitos
+	  const hh = h.padStart(2, "0");
+	  const mm = m.padStart(2, "0");
+	  const ss = s.padStart(2, "0");
+
+	  return `${hh}Y${mm}con${ss}`;
+	}
+
 	function generarNombreArchivo() {
 
 			var nombreArchivo = "";
@@ -183,7 +194,8 @@ require '../../../cfg/base.php';
             var txt_titular   = document.getElementById("titular").value;
             var txt_ref       = document.getElementById("ref").value;
             var txt_fec       = document.getElementById("fec").value;
-            var txt_hora       = document.getElementById("hora").value;
+            //var txt_hora       = document.getElementById("hora").value;
+            var txt_hora       = convertirHoraPersonalizada(document.getElementById("hora").value);
 
             let campoMonto = document.getElementById("mto").value;
             var txt_mto       =convertirAFormato(campoMonto);

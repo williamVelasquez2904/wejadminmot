@@ -1,7 +1,7 @@
 <?php require '../../../cfg/base.php'; ?>
 <form action="" class="op1">
 	<?php 
-	echo $fn->modalHeader('[insert.php] 26-02-2025. Agregar Devolución');
+	echo $fn->modalHeader('[insert.php] 23-07-2025. Agregar Devolución');
 	echo $fn->modalWidth('90%');
 	?>
 	<div class="modal-body">
@@ -32,7 +32,7 @@
 		</div>
 		<div class="clearfix"></div>
 		<div class="form-group col-sm-9 col-xs-12">
-			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Nota</label>
+			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Nota para procesar Devolución</label>
 			<select class="form-control chosen" title="nota" name="compra_ide" id="compra_ide"  onclick="getTotalVenta();">
 					<option value=""></option>
 					<?php foreach($mcompra_wh->lista_all() as $c): ?>
@@ -51,6 +51,14 @@
 			</div>
 		</div>
 		<div class="clearfix"></div>
+		<div class="form-group col-sm-2 col-xs-12">
+			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto a Devolver</label>
+			<div class="col-sm-12 col-xs-12">
+				<input type="numeric" name="mto_dev" id="mto_dev" class="form-control" value="" autocomplete="off">
+			</div>
+		</div>
+		<div class="clearfix"></div>
+
 	</div>
 	<?php echo $fn->modalFooter(1) ?>
 </form>
