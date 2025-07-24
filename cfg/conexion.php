@@ -12,7 +12,7 @@
 		/*$basedatos = 'wejadminmot_prod';*/
 		$basedatos = 'wejadminmot_dev';
 		/*$basedatos = 'wejadminmot_test';*/
-		/*$basedatos = 'wejadminmot_prueba';*/
+		/*$basedatos = 'wejadminmot_prueba';*/  // Prueba en Oficina JUL 2025 
 		/*prueba         27-06-2025*/
 		$usuario   = 'root';
 		$clave     = '';
