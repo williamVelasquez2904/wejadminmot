@@ -46,7 +46,7 @@ $row = $mcruce->lista_encab() ;
 								<button class="btn btn-success btn-xs" title="Actualizar" onclick="modal('vst-pago-update','ide=<?php echo $r->banco_ide ?>')">
 									<i class="fa fa-edit"></i>
 								</button>
-								<button class="btn btn-success btn-xs" title="18-11 Detalle cruce" onclick="modal('vst-cruce-insert_detalle','ide=<?php echo $r->cruce_encab_ide ?>')">
+								<button class="btn btn-success btn-xs" title="Detalle del cruce" onclick="modal('vst-cruce-insert_detalle','ide=<?php echo $r->cruce_encab_ide ?>')">
 									<i class="fa fa-edit"></i>
 								</button>								
 								<button class="btn btn-danger btn-xs" title="Borrar" onclick="modal('vst-pago-delete','ide=<?php echo $r->banco_ide ?>')">

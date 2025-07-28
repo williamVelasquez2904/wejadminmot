@@ -4,11 +4,11 @@
 <form action="" class="op1">
 <?php 
 	echo $fn->modalHeader('Agregar Cruce');
-	echo $fn->modalWidth('70%');
+	echo $fn->modalWidth('90%');
 ?>
 	<div class="modal-body">
 		<div class="msj"></div>
-		<fieldset><legend>[insert.php] 19-02-2025  - Agregar Cruce</legend>
+		<fieldset><legend>[insert.php] 26-07-2025  - Agregar Cruce</legend>
 
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 bolder">Tipo</label>
@@ -21,7 +21,7 @@
 		</div>		
 
 		<div class="form-group col-sm-10 col-xs-12">
-			<label for="" class="label control-label col-sm-12 bolder">Seleccione Pago</label>
+			<label for="" class="label control-label col-sm-12 bolder">Seleccione Pago </label>
 			<div class="col-sm-12 col-xs-12">
 				<select class="form-control chosen" name="pago" id="pago">
 					<?php foreach($mpago->listaXstatus(0)  as $p): ?>

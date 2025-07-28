@@ -4,7 +4,7 @@
 $row = $mcruce->lista_encab_pornota($compra_ide) ;
 /*$titulo_modal='Ceuce:'.$contrato_ide."   - Modalidad: ".'<b>'.$modalidad_text.'</b>';*/
 
-$titulo_modal="18-02-2025. Cruce";
+$titulo_modal="27jul2025. lista_pornota.php - LISTADO DE CRUCES";
 
 echo $fn->modalWidth('90%');
 echo $fn->modalHeader($titulo_modal);
