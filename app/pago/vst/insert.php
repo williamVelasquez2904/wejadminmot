@@ -187,21 +187,39 @@ require '../../../cfg/base.php';
 	  return `${hh}Y${mm}con${ss}`;
 	}
 
-	function generarNombreArchivo() {
 
-			var nombreArchivo = "";
+	function generarNombreArchivo_dos() {
+	  // Obtener los valores de los campos del formulario
+	  const campo1 = document.getElementById('campo1').value.trim();
+	  const campo2 = document.getElementById('campo2').value.trim();
+	  const campo3 = document.getElementById('campo3').value.trim();
+
+	  // Generar el nombre del archivo (puedes personalizar el formato)
+	  const nombreArchivo = `${campo1}_${campo2}_${campo3}.pdf`;
+
+	  // Asignar el nombre generado al campo 'nombre'
+	  document.getElementById('nombre').value = nombreArchivo;
+	}
+	function generarNombreArchivo() {
+			//alert("entro");
+
+			//var nombreArchivo = "";
 			var forma_pago = "";
-            var txt_titular   = document.getElementById("titular").value;
-            var txt_ref       = document.getElementById("ref").value;
-            var txt_fec       = document.getElementById("fec").value;
-            //var txt_hora       = document.getElementById("hora").value;
-            var txt_hora       = convertirHoraPersonalizada(document.getElementById("hora").value);
+
+            const  txt_titular   = document.getElementById("titular").value.trim();
+            
+            const  txt_ref       = document.getElementById("ref").value.trim();
+
+            const  txt_fec       = document.getElementById("fec").value;
+
+            
+            //var txt_hora       = convertirHoraPersonalizada(document.getElementById("hora").value);
 
             let campoMonto = document.getElementById("mto").value;
-            var txt_mto       =convertirAFormato(campoMonto);
+            const txt_mto       =convertirAFormato(campoMonto);
 
-            var fp        = document.getElementById("forpago").value;
-            var txt_aplica    = document.getElementById("aplica").value;
+            const  fp        = document.getElementById("forpago").value;
+            const txt_aplica    = document.getElementById("aplica").value;
 
 
             if (fp == 1 ){
@@ -220,6 +238,8 @@ require '../../../cfg/base.php';
             	forma_pago="ZELLE";
             }
 
+           const nombreArchivo = `${forma_pago}_${txt_mto}_${txt_titular}_${txt_ref}_${txt_fec}_${txt_aplica}.png`;
+/*
             nombreArchivo = forma_pago +  "_" + 
             txt_mto     + "_" +            
             txt_titular + "_" + 
@@ -228,6 +248,7 @@ require '../../../cfg/base.php';
             txt_hora    + "_" + 
             txt_aplica  +
             ".png";
+            */
             document.getElementById("nomarc").value = nombreArchivo;
             //document.getElementById("nombreArchivo").innerText = nombreArchivo;
             return nombreArchivo;
