@@ -1,4 +1,4 @@
-<?php 
+<?php
 extract($_POST);
 if(!isset($origen_opcion)){
 	$origen_opcion=0;

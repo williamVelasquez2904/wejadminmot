@@ -377,4 +377,22 @@
 	    return iconv($codificacion, "UTF-8//IGNORE", $texto);
 	    */
 	} 
+
+	static function cadena_limpia($cadena) {
+	    // Elimina etiquetas HTML y PHP
+	    $cadena = strip_tags($cadena);
+
+	    // Convierte caracteres especiales a entidades HTML
+	    $cadena = htmlspecialchars($cadena, ENT_QUOTES, 'UTF-8');
+
+	    // Elimina caracteres no alfanuméricos excepto espacios y puntuación básica
+	    $cadena = preg_replace('/[^a-zA-Z0-9\s\.,;:\-_¡!¿?\(\)\[\]]/', '', $cadena);
+
+	    // Opcional: reemplaza múltiples espacios por uno solo
+	    $cadena = preg_replace('/\s+/', ' ', $cadena);
+
+	    // Elimina espacios al inicio y al final
+	    return trim($cadena);
+	}	
+
 } ?>
