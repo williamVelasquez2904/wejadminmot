@@ -2,7 +2,7 @@
 
 <?php 
 extract($_POST);
-var_dump($ide);
+//var_dump($ide);
 $row = $mcruce->lista_detalle($ide) ;
 /*$ide es ide de la nota*/
 
@@ -12,8 +12,8 @@ $row = $mcruce->lista_detalle($ide) ;
 $suma_detalle=0;
 ?>
 <?php if(count($row)>0): 
-	echo $fn->modalWidth('70%');
-	echo $fn->modalHeader('04-02-25. Detalle del cruce. Nota: '. $ide );
+	//echo $fn->modalWidth('70%');
+	//echo $fn->modalHeader('04-02-25. Detalle del cruce. Nota: '. $ide );
 	?>
 	<div class="table-responsive">
 		<table class="table2 table-hover table-bordered " width="100%" align="center">

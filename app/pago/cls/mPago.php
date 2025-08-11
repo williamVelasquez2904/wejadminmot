@@ -8,10 +8,17 @@
 		return Enlace::sql($sql,'',3,'');
 	}
 
-	public function listaXstatus($status) {
+	public function listaXstatus($status) {		
 		$datos = array($status);
-		$sql = "SELECT * FROM vw_pago WHERE pago_borrado=0 AND pago_status=? 
-		ORDER BY pago_ide ASC";
+		$sql = "SELECT * FROM vw_pago WHERE pago_borrado=0 AND pago_status=? ORDER BY pago_ide ASC";
+		return Enlace::sql($sql,$datos,3,'');
+	}
+
+	public function listaXstatusProv($status,$prov_ide) {		
+		$datos = array($status,$prov_ide);
+		$sql = "SELECT * FROM vw_pago WHERE pago_borrado=0 AND pago_status=? and pago_prov_ide=? ORDER BY pago_ide ASC";
+		var_dump($sql);
+		//echo $sql;
 		return Enlace::sql($sql,$datos,3,'');
 	}
 
@@ -44,4 +51,4 @@
 	}
 
 
-} ?> 
+} ?>

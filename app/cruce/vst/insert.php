@@ -8,24 +8,25 @@
 ?>
 	<div class="modal-body">
 		<div class="msj"></div>
-		<fieldset><legend>[insert.php] 26-07-2025  - Agregar Cruce</legend>
+		<fieldset><legend>[insert.php] 11-08-2025  - Agregar Cruce. Proveedor <?php echo $prov_ide ?></legend>
 
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 bolder">Tipo</label>
 			<div class="col-sm-12 col-xs-12">
 				<select class="form-control chosen" name="tipo" id="tipo">
 					<option value=0>Cruce</option>
-					<option value=1>Devolución</option>
+					<!-- <option value=1>Devolución</option> -->
 				</select>
 			</div>
 		</div>		
-
+		
 		<div class="form-group col-sm-10 col-xs-12">
 			<label for="" class="label control-label col-sm-12 bolder">Seleccione Pago </label>
 			<div class="col-sm-12 col-xs-12">
 				<select class="form-control chosen" name="pago" id="pago">
-					<?php foreach($mpago->listaXstatus(0)  as $p): ?>
-						<option value="<?php echo $p->pago_ide ?>">
+					<!-- <?php //foreach($mpago->listaXstatus(0)  as $p): ?> -->
+					<?php foreach($mpago->listaXstatusProv(0,$prov_ide)  as $p): ?>	
+						<option value="<?php echo $p->pago_ide ?>" data-monto="<?php echo $p->pago_monto ?>">
 						<?php echo "$".$p->pago_monto." | Fecha: ".$p->pago_fecha." |  Ref -  ".$p->pago_ref." |   ".$p->pago_titular ?></option>
 					<?php endforeach; ?>
 				</select>
@@ -57,11 +58,12 @@
 				</div>
 		</div>
 		<div class="form-group col-sm-6">
-			<label for="" class="label control-label col-sm-12 bolder">Archivo img </label>
+			<!-- <label for="" class="label control-label col-sm-12 bolder">Archivo img </label> -->
 			<div class="col-sm-12">
-				<input type="text" name="arch_img" id="arch_img" class="form-control" value="">
+				<input type="hidden" name="arch_img" id="arch_img" class="form-control" value="">
 			</div>
 		</div>		
+
 		<div class="clearfix"></div>
 	</div>
 	<?php echo $fn->modalFooter(1) ?>
@@ -121,4 +123,12 @@
 			}
 		});
 	})
+</script>
+<script>
+$(function(){
+    $('#pago').on('change', function() {
+        var monto = $(this).find('option:selected').data('monto');
+        $('#mto').val(monto);
+    });
+});
 </script>
