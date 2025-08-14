@@ -1,13 +1,21 @@
 <?php require '../../../cfg/base.php'; 
-
-//var_dump($ide);
-//echo $fn->modalWidth('90%');
 echo $fn->modalWidth('80%');
+$datos_cruce= $mcruce->poride($ide); // De aqui se obtiene los datos del pago
 
-$r = $mcruce->lista_detalle($ide)  //	ide de encabezado    ?> 
+$notas      = $mcruce->lista_detalle($ide);  //  ide de encabezado   ?>
+<script>
+    // Pasa los datos PHP a JavaScript como un array de objetos
+    var notas = <?php echo json_encode($notas, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>;
+    var datos_cruce = <?php echo json_encode($datos_cruce, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>;
+    // Si datos_cruce es array, toma el primer elemento
+    if(Array.isArray(datos_cruce)) datos_cruce = datos_cruce[0] || {}; 
+    //if(Array.isArray(notas))  notas = notas[0] || {};
+    console.log("notas:", notas);
+    console.log("datos_cruce:", datos_cruce);
+</script>
 	<!-- <?php //echo $fn->modalHeader("[insert_detalle.php]. 13-Nov-24 -  Detalles del cruce : ".$r[0]->cruce_encab_ide." - ".$r[0]->pago_titular) ?>   -->
 	<!-- <?php //echo $fn->modalHeader("[insert_detalle.php]. 01-085 -  Detalles del cruce : ") ?> -->  
-	<?php echo $fn->modalHeader("Detalles del cruce : ") ?>
+	<?php echo $fn->modalHeader("Detalles del cruce : ".$ide) ?>
 	<div class="modal-body">
 
 		<div class="msj"></div>
@@ -57,6 +65,20 @@ $r = $mcruce->lista_detalle($ide)  //	ide de encabezado    ?>
 					<span class="i fa fa-plus fa-2x"></span> 
 					<font size="4"> Insertar</font>
 				</button>
+
+				<button class="btn btn-primary btn-sm pull-left col-sm-2 col-xs-12" id="btnExcel" style="margin-bottom:10px;">
+					<span class="fa fa-file-excel-o"></span>
+					<font size="4"> Generar Excel</font>
+				</button>
+				<!-- Agrega el botón PDF junto al de Excel -->
+				<button class="btn btn-primary btn-sm pull-left col-sm-2 col-xs-12" id="btnPDF" style="margin-bottom:10px; margin-left:10px;">
+    <span class="fa fa-file-pdf-o"></span>
+    <font size="4"> Generar PDF</font>
+</button>
+<button class="btn btn-info btn-sm pull-left col-sm-2 col-xs-12" id="btnPreviewPDF" style="margin-bottom:10px; margin-left:10px;">
+    <span class="fa fa-eye"></span>
+    <font size="4"> Preview PDF</font>
+</button>
 			</fieldset>
 		</form>
 		<div class="lista_detalle"></div>		
@@ -126,4 +148,232 @@ $r = $mcruce->lista_detalle($ide)  //	ide de encabezado    ?>
 			}
 		});
 	})
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+document.getElementById('btnExcel').onclick = function() {
+    var forma_pago    = datos_cruce.forpago_descrip || '';
+    var monto_pago    = datos_cruce.pago_monto     || '';
+    var fecha_pago    = datos_cruce.pago_fecha     || '';
+    var titular_pago  = datos_cruce.pago_titular   || '';
+    var referencia_pago = datos_cruce.pago_ref     || '';
+    var titulo = forma_pago + " " + monto_pago + " " + fecha_pago + " " + titular_pago + " " + referencia_pago;
+
+    var encabezados = [
+        "Nombre del Cliente",
+        "Factura",
+        "Monto Factura",
+        "Abono a la Nota",
+        "Monto Pendiente",
+        "Estado de la Nota"
+    ];
+
+    var ws_data = [
+        ["DATOS DEL PAGO"],
+        [titulo],
+        [],
+        encabezados
+    ];
+
+    notas.forEach(function(nota) {
+        var nombreCliente = String(nota.clien_tipcli) + "-" + String(nota.clien_numiden) + " | " + String(nota.clien_nombre1).substring(0, 30);
+        var factura = String(nota.compra_num);
+        var montoFactura = (nota.compra_condicion == 0) ? nota.compra_monto : nota.compra_monto_credito;
+        var abono = String(nota.crudeta_monto);
+        var pendiente = "0";
+        var estado = "Pendiente";
+        ws_data.push([nombreCliente, factura, montoFactura, abono, pendiente, estado]);
+    });
+
+    var wb = XLSX.utils.book_new();
+    var ws = XLSX.utils.aoa_to_sheet(ws_data);
+
+    // Aplica fondo amarillo a la fila de encabezados (fila 4, índice 3)
+    for (var i = 0; i < encabezados.length; i++) {
+        var cell = ws[XLSX.utils.encode_cell({r: 3, c: i})];
+        if (!cell.s) cell.s = {};
+        cell.s.fill = { fgColor: { rgb: "FFFF00" } };
+        cell.s.font = { bold: true };
+    }
+
+    // Ajusta el ancho de las columnas para que coincidan visualmente con el PDF
+    ws['!cols'] = [
+        { wch: 30 }, // Nombre del Cliente (15 a 70)
+        { wch: 10 }, // Factura (71 a 90)
+        { wch: 12 }, // Monto (91 a 109)
+        { wch: 12 }, // Abono (110 a 130)
+        { wch: 12 }, // Pendiente (131 a 150)
+        { wch: 15 }  // Estado de la Nota (151 a 171)
+    ];
+
+    wb.SheetNames.push("Cruce");
+    wb.Sheets["Cruce"] = ws;
+
+    XLSX.writeFile(wb, "cruce_pre_aprobado.xlsx");
+};
+</script>
+<!-- Incluye la librería jsPDF desde CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+document.getElementById('btnPDF').onclick = function() {
+    // Usa los datos reales de datos_cruce
+    var forma_pago    = datos_cruce.forpago_descrip || '';
+    var monto_pago    = datos_cruce.pago_monto     || '';
+    var fecha_pago    = datos_cruce.pago_fecha     || '';
+    var titular_pago  = datos_cruce.pago_titular   || '';
+    var referencia_pago = datos_cruce.pago_ref     || '';
+    var titulo = forma_pago + " | " + monto_pago + " | " + fecha_pago + " | " + titular_pago + " | " + referencia_pago;
+
+    // Encabezados de la tabla
+    var encabezados = [
+        "Nombre del Cliente",
+        "Factura",
+        "Monto ",
+        "Abono ",
+        "Pendiente",
+        "Estado de la Nota"
+    ];
+
+    // Inicializa jsPDF
+    const { jsPDF } = window.jspdf;
+    var doc = new jsPDF();
+
+
+    var startY = 40;
+    const text = "CRUCE - PAGOS - NOTAS";
+    const textWidth = doc.getTextWidth(text);
+    const centerX = 15 + (180 - textWidth) / 2;
+    doc.text(text, centerX, startY + 7);
+    
+    // Título principal
+    doc.setFontSize(14);
+    doc.text("DATOS DEL PAGO", 15, 20);
+
+    // Título con datos del pago
+    doc.setFontSize(12);
+    doc.text(titulo, 15, 30);
+
+    // Línea en blanco
+    //var startY = 40;
+
+    // Encabezados de la tabla con fondo amarillo
+    doc.setFillColor(255, 255, 0); // amarillo
+    doc.rect(15, startY, 180, 10, 'F');
+
+    doc.setFontSize(8); // Letra más pequeña para el encabezado
+
+    // Definir posiciones de columnas para los datos
+var anchoCliente = 35;
+var anchoRestante = 180 - anchoCliente;
+var anchoCol = anchoRestante / 5; // 29
+
+// Posiciones X de cada columna
+var colPositions = [
+    15, // Nombre del Cliente
+    15 + anchoCliente, // Factura
+    15 + anchoCliente + anchoCol, // Monto Factura
+    15 + anchoCliente + anchoCol * 2, // Abono a la Nota
+    15 + anchoCliente + anchoCol * 3, // Monto Pendiente
+    15 + anchoCliente + anchoCol * 4  // Estado de la Nota
+];
+
+    // Imprime encabezados
+    for (var i = 0; i < encabezados.length; i++) {
+        doc.text(encabezados[i], colPositions[i] + 2, startY + 7.5); // +2 para separar del borde
+    }
+
+    // Imprime filas de datos
+    var filaY = startY + 15;
+    notas.forEach(function(nota) {
+        var nombreCliente = String(nota.clien_tipcli) + "-" + String(nota.clien_numiden) + " | " + String(nota.clien_nombre1).substring(0, 48);
+        var factura = String(nota.compra_num);
+        var montoFactura = (nota.compra_condicion == 0) ? nota.compra_monto : nota.compra_monto_credito;
+        var abono = String(nota.crudeta_monto);
+        var pendiente = "0";
+        var estado = "Pendiente";
+
+        doc.text(nombreCliente, colPositions[0] + 2, filaY);
+        doc.text(factura, colPositions[1] + 2, filaY);
+        doc.text(String(montoFactura), colPositions[2] + anchoCol - 2, filaY, { align: "right" });
+        doc.text(abono, colPositions[3] + anchoCol - 2, filaY, { align: "right" });
+        doc.text(pendiente, colPositions[4] + anchoCol - 2, filaY, { align: "right" });
+        doc.text(estado, colPositions[5] + 2, filaY);
+
+        filaY += 8;
+});
+
+    // Guarda el PDF
+    doc.save("cruce_pre_aprobado.pdf");
+};
+</script>
+<script>
+document.getElementById('btnPreviewPDF').onclick = function() {
+    var forma_pago    = datos_cruce.forpago_descrip || '';
+    var monto_pago    = datos_cruce.pago_monto     || '';
+    var fecha_pago    = datos_cruce.pago_fecha     || '';
+    var titular_pago  = datos_cruce.pago_titular   || '';
+    var referencia_pago = datos_cruce.pago_ref     || '';
+    var titulo = forma_pago + " | " + monto_pago + " | " + fecha_pago + " | " + titular_pago + " | " + referencia_pago;
+
+    var encabezados = [
+        "Nombre del Cliente",
+        "Factura",
+        "Monto ",
+        "Abono ",
+        "Pendiente",
+        "Estado de la Nota"
+    ];
+
+    const { jsPDF } = window.jspdf;
+    var doc = new jsPDF();
+
+    doc.setFontSize(14);
+    doc.text("DATOS DEL PAGO", 15, 20);
+    doc.setFontSize(12);
+    doc.text(titulo, 15, 30);
+
+    var startY = 40;
+    doc.setFillColor(255, 255, 0);
+    doc.rect(15, startY, 180, 10, 'F');
+    doc.setFontSize(8);
+
+    // Definir posiciones de columnas según el rango solicitado
+    var colPositions = [
+        15,   // Nombre del Cliente (15 a 70)
+        91,   // Factura (71 a 90)
+        110,   // Monto (91 a 109)
+        130,  // Abono (110 a 130)
+        151,  // Pendiente (131 a 150)
+        171   // Estado de la Nota (151 a 171)
+    ];
+
+    // Imprime encabezados
+    for (var i = 0; i < encabezados.length; i++) {
+        doc.text(encabezados[i], colPositions[i], startY + 7.5);
+    }
+
+    // Imprime filas de datos
+    var filaY = startY + 15;
+    notas.forEach(function(nota) {
+        var nombreCliente = String(nota.clien_tipcli) + "-" + String(nota.clien_numiden) + " | " + String(nota.clien_nombre1).substring(0, 30);
+        var factura = String(nota.compra_num);
+        var montoFactura = (nota.compra_condicion == 0) ? nota.compra_monto : nota.compra_monto_credito;
+        var abono = String(nota.crudeta_monto);
+        var pendiente = "0";
+        var estado = "Pendiente";
+
+        doc.text(nombreCliente, colPositions[0], filaY);
+        doc.text(factura, colPositions[1], filaY);
+        doc.text(String(montoFactura), colPositions[2] + 7, filaY, { align: "right" }); // ancho aprox 18
+        doc.text(abono, colPositions[3] + 10, filaY, { align: "right" }); // ancho aprox 20
+        doc.text(pendiente, colPositions[4] + 14, filaY, { align: "right" }); // ancho aprox 19
+        doc.text(estado, colPositions[5]+5, filaY);
+
+        filaY += 8;
+    });
+
+    // Preview en nueva ventana
+    window.open(doc.output('bloburl'), '_blank');
+};
 </script>
