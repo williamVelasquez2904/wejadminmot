@@ -24,9 +24,11 @@
 	}	
 
 	public function insert_encab() {
-		$sql = "SELECT sf_cruce_encab(?,?,?,?,?,?,?,?,?) AS res";
+		/*$sql = "SELECT sf_cruce_encab(?,?,?,?,?,?,?,?,?) AS res";*/
+		$sql = "SELECT sf_cruce_encab(?,?,?,?,?,?,?,?,?,?) AS res";
 		extract($_POST);
-		$datos = array(0,date('Y-m-d',strtotime($fec)),$hora,$pago,$mto,$arch_img,$tipo,1,$_SESSION['s_usua_ide']);
+		$sta=0; // 19/08/2025 Por defecto 0
+		$datos = array(0,date('Y-m-d',strtotime($fec)),$hora,$pago,$mto,$arch_img,$tipo,$sta,1,$_SESSION['s_usua_ide']);
 		return Enlace::sql($sql,$datos,4,'res');
 	}
 
@@ -47,5 +49,18 @@
 		$sql = "SELECT * FROM vw_cruce_encab WHERE cruce_encab_ide=?";
 		$datos = array($ide);
 		return Enlace::sql($sql,$datos,3,'');
+	}
+
+	public function reabrircerrar() {
+//		$sql = "SELECT sf_inforepi   (?,?,?,?,?,?,?,?,?) AS res";
+		
+		$sql = "SELECT sf_cruce_encab(?,?,?,?,?,?,?,?,?,?) AS res";
+
+		extract($_POST); 
+		$fec="2025-01-01";
+		$hora="12:00";
+		$datos = array($ide,date('Y-m-d',strtotime($fec)),$hora,0,0,"",0,$sta,4,$_SESSION['s_usua_ide']);
+
+		return Enlace::sql($sql,$datos,4,'res');
 	}
 } ?>

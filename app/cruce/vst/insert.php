@@ -38,7 +38,7 @@
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Fecha</label>
 			<div class="col-sm-12 col-xs-12">
 				<div class="input-group">
-					<input type="text" name="fec" id="fec" class="form-control fecha" value="">
+					<input type="text" name="fec" id="fec" class="form-control fecha" value="<?php echo date('d-m-Y'); ?>">
 					<span class="input-group-addon">
 						<i class="icon-calendar bigger-110"></i>
 					</span>
@@ -48,7 +48,7 @@
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Hora</label>
 				<div class="col-sm-12 col-xs-12">
-					<input type="text" class="form-control" name="hora" id="hora" value="16:00" >
+					<input type="text" class="form-control" name="hora" id="hora" value="<?php echo date('H:i'); ?>" >
 				</div>
 		</div>	
 		<div class="form-group col-sm-2 col-xs-12">

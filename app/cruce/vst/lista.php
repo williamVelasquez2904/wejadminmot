@@ -1,4 +1,4 @@
-<?php require '../../../cfg/base.php'; ?>
+<?php require '../../../cfg/base.php'; ?> 
 <?php 
 $row = $mcruce->lista_encab() ;
 ?>
@@ -19,7 +19,25 @@ $row = $mcruce->lista_encab() ;
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach($row as $r): ?>
+				<?php foreach($row as $r): 
+					$disup="disabled"; //Deshabilitar update
+					$disde="disabled"; //Deshabilitar delete
+					$disce="disabled"; //Deshabilitar cerrar
+					$disre="disabled"; //Deshabilitar reopen
+					if ($r->cruce_encab_status=="0") { 
+						$estatus="ABIERTO"; 
+						$disup="";
+						$disde="";
+						$disce="";
+					} elseif ($r->cruce_encab_status=="1") { 
+						$estatus="CERRADO"; 
+						$disre="";
+					} elseif ($r->cruce_encab_status=="2") { 
+						$estatus="TERMINADO"; 
+					} else { 
+						$estatus="NO DEFINIDO"; 
+					}
+					?>
 					<tr>
 						<?php  
 						$a= 0;
@@ -40,7 +58,7 @@ $row = $mcruce->lista_encab() ;
 							</div>
 							<?php echo $r->cruce_encab_img ?>
 						</td>
-						<td><?php echo $r->cruce_encab_status ?></td>
+						<td><?php echo $r->cruce_encab_status."-".$estatus ?></td>
 						<td>
 							<div class="btn-group">
 								<button class="btn btn-success btn-xs" title="Actualizar" onclick="modal('vst-pago-update','ide=<?php echo $r->banco_ide ?>')">
@@ -52,6 +70,20 @@ $row = $mcruce->lista_encab() ;
 								<button class="btn btn-danger btn-xs" title="Borrar" onclick="modal('vst-pago-delete','ide=<?php echo $r->banco_ide ?>')">
 									<i class="fa fa-trash"></i>
 								</button>
+								<?php if ($r->cruce_encab_status=="0" || $r->cruce_encab_status=="1") { ?>
+									<button class="btn btn-white btn-xs" disabled></button>
+									<?php if ($r->cruce_encab_status=="0") { ?>
+										<button class="btn btn-warning btn-xs" title="Cerrar" onclick="reabrircerrar(<?php echo $r->cruce_encab_ide ?>,1)" <?php echo $disce ?>>
+										<i class="fa fa-lock"></i>
+										</button>
+									<?php } ?>
+									<?php if ($r->cruce_encab_status=="1") { ?>
+										<button class="btn btn-purple btn-xs" title="Reabrir" onclick="reabrircerrar(<?php echo $r->cruce_encab_ide ?>,0)" <?php echo $disre ?>>
+											<i class="fa fa-unlock"></i>
+										</button>
+									<?php } ?>
+								<?php } ?>
+
 							</div>
 						</td>
 					</tr>
@@ -62,8 +94,30 @@ $row = $mcruce->lista_encab() ;
 <?php else: ?>
 	<div class="alert alert-info">No hay registros para mostrar.</div>
 <?php endif; ?>	
-<script>
+
+<!-- <script>
 	$(function(){
 		$('.table').dataTable();
 	})
+</script> -->
+
+<script>
+	$(function(){
+		$('.table').dataTable();
+	});
+
+
+	function reabrircerrar(ide,sta){
+		if (sta==0) { var menacc="REABRIR"; }
+		else { var menacc="CERRAR"; }
+		if (confirm("¿Desea realmente "+menacc+" el cruce con ID: "+ide+"?")==true){
+			$.post('prc-mcruce-reabrircerrar','ide='+ide+'&sta='+sta,function(data){
+				if(data==1) {
+					load('vst-cruce-lista','','.lista');
+				} else {
+					alert(data);
+				}
+			})
+		}
+	};
 </script>
