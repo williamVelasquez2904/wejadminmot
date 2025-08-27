@@ -1,7 +1,10 @@
-<?php require '../../../cfg/base.php'; 
+<?php require '../../../cfg/base.php';  // 27-08-25
 echo $fn->modalWidth('80%');
-$datos_cruce= $mcruce->poride($ide); // De aqui se obtiene los datos del pago
-
+$row_encab_cruce= $mcruce->poride($ide); 
+foreach ($row_encab_cruce as $r) {
+    $cruce_encab_status= $r->cruce_encab_status;
+}
+$datos_cruce= $mcruce->poride($ide); 
 $notas      = $mcruce->lista_detalle($ide);  //  ide de encabezado   ?>
 <script>
     // Pasa los datos PHP a JavaScript como un array de objetos
@@ -78,14 +81,7 @@ $notas      = $mcruce->lista_detalle($ide);  //  ide de encabezado   ?>
                 <button class="btn btn-info btn-sm pull-left col-sm-2 col-xs-12" id="btnPreviewPDF" style="margin-bottom:10px; margin-left:10px;">
                     <span class="fa fa-eye"></span>
                     <font size="4"> Preview PDF</font>
-                </button>
-                <?php if ($r->cruce_encab_status=="0" || $r->cruce_encab_status=="1") { ?>                
-                    <button type="button" class="btn btn-warning btn-sm pull-left col-sm-3 col-xs-12" id="btnCerrarAbrirCruce" style="margin-bottom:10px; margin-left:10px; white-space:normal; height:38px;">
-                        <span class="fa fa-exchange"></span>
-                        <span style="font-size:13px; line-height:24px;">Cerrar/Abrir Cruce</span>
-                    </button>
-                <?php } ?>
-
+                </button> 
             </fieldset>
 		</form>
 		<div class="lista_detalle"></div>		
@@ -101,20 +97,6 @@ $notas      = $mcruce->lista_detalle($ide);  //  ide de encabezado   ?>
 		$('.chosen').chosen();
 		$('.fecha').datepicker({format:'dd-mm-yyyy',endDate:'-1d'}); // formato dia mes año 
 	})
-
-    function reabrircerrar(ide,sta){
-        if (sta==0) { var menacc="REABRIR"; }
-        else { var menacc="CERRAR"; }
-        if (confirm("¿Desea realmente "+menacc+" el Cruce con ID: "+ide+"?")==true){
-            $.post('prc-mcruce-reabrircerrar','ide='+ide+'&sta='+sta,function(data){
-                if(data==1) {
-                    /*load('vst-inforepi-lista','','.lista');*/
-                } else {
-                    alert(data);
-                }
-            })
-        }
-    };
 </script>
 <script> 
 	$(function(){
