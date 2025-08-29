@@ -140,21 +140,28 @@ $notas      = $mcruce->lista_detalle($ide);  //  ide de encabezado   ?>
 			},
 
 			submitHandler: function (form) {
-				var v_ide        = document.getElementById('encab_ide').value;
-						
-				$.post('prc-mcruce-insert_detalle',$(formulario).serialize(),function(data){
-					if(!isNaN(data)) {
-						load('vst-cruce-lista_detalle','ide='+v_ide,'.lista_detalle');
-						if(confirm('Registro agregado correctamente.\n¿Desea agregar otro registro?')==true) {
-							$(formulario).each(function(){ this.reset() })
-						} else {
-							cerrarmodal();
-						}
-					} else {
-						alerta('.msj','danger',data)
-					}
-				})
-			},
+    var v_ide = document.getElementById('encab_ide').value;
+
+    $.post('prc-mcruce-insert_detalle', $(formulario).serialize(), function(data) {
+        if (!isNaN(data)) {
+            load('vst-cruce-lista_detalle', 'ide=' + v_ide, '.lista_detalle');
+            // Actualizar el campo Monto por cruzar
+/*            $.get('prc-mcruce-monto_porcruzar', 'ide=' + v_ide, function(resp) {
+                $('#mtoxcruzar').val(resp);
+            });*/
+            $.post('prc-mcruce-monto_porcruzar', $(formulario).serialize(), function(data) {
+                $('#mtoxcruzar').val(data);
+            });
+            if (confirm('Registro agregado correctamente.\n¿Desea agregar otro registro?') == true) {
+                $(formulario).each(function() { this.reset() })
+            } else {
+                cerrarmodal();
+            }
+        } else {
+            alerta('.msj', 'danger', data)
+        }
+    })
+},
 			invalidHandler: function (form) {
 			}
 		});

@@ -51,6 +51,17 @@
 		return Enlace::sql($sql,$datos,3,'');
 	}
 
+	public function monto_porcruzar(){
+		//var_dump($ide);
+		$monto_porcruzar=0;
+		extract($_POST);
+		$row_encab = $this->poride($encab_ide);
+		foreach ($row_encab as $r) {
+			$monto_porcruzar=$r->montoporcruzar;
+		}
+		return $monto_porcruzar;
+	}	
+
 	public function reabrircerrar() {
 //		$sql = "SELECT sf_inforepi   (?,?,?,?,?,?,?,?,?) AS res";
 		
