@@ -3,6 +3,8 @@ echo $fn->modalWidth('80%');
 $row_encab_cruce= $mcruce->poride($ide); 
 foreach ($row_encab_cruce as $r) {
     $cruce_encab_status= $r->cruce_encab_status;
+    $monto_cruce       = $r->cruce_encab_monto;
+    $monto_porcruzar   = $r->montoporcruzar;
 }
 $datos_cruce= $mcruce->poride($ide); 
 $notas      = $mcruce->lista_detalle($ide);  //  ide de encabezado   ?>
@@ -57,6 +59,13 @@ $notas      = $mcruce->lista_detalle($ide);  //  ide de encabezado   ?>
 							<input type="text" class="form-control" name="mto" id="mto"  >
 						</div>
 				</div>
+
+                <div class="form-group col-sm-2 col-xs-12">
+                        <label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto por cruzar:</label>
+                        <div class="col-sm-12 col-xs-12">
+                            <input type="text" class="form-control" name="mtoxcruzar" id="mtoxcruzar"  value="<?php echo $monto_porcruzar ?>">
+                        </div>
+                </div>
 
 				
 				<div class="clearfix"></div>
