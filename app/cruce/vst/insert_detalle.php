@@ -1,11 +1,14 @@
 <?php require '../../../cfg/base.php';  // 27-08-25
 echo $fn->modalWidth('80%');
 $row_encab_cruce= $mcruce->poride($ide); 
+$monto_porcruzar=0;
 foreach ($row_encab_cruce as $r) {
     $cruce_encab_status= $r->cruce_encab_status;
     $monto_cruce       = $r->cruce_encab_monto;
     $monto_porcruzar   = $r->montoporcruzar;
 }
+
+/*if  ($monto_porcruzar  ==0 ) $monto_porcruzar = $monto_cruce ;*/
 $datos_cruce= $mcruce->poride($ide); 
 $notas      = $mcruce->lista_detalle($ide);  //  ide de encabezado   ?>
 <script>
