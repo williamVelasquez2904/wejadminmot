@@ -1,4 +1,4 @@
-<?php require '../../../cfg/base.php';  // 27-08-25
+<?php require '../../../cfg/base.php';  // 02-09-25
 echo $fn->modalWidth('80%');
 $row_encab_cruce= $mcruce->poride($ide); 
 $monto_porcruzar=0;
