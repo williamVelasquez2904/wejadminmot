@@ -1,11 +1,9 @@
 <?php require '../../../cfg/base.php'; ?> 
-
 <?php 
 extract($_POST);
 //var_dump($ide);
 $row = $mcruce->lista_detalle($ide) ;
 /*$ide es ide de la nota*/
-
 // busco en cruce todas las notas por el ide la nota
 /*$row = $mcruce->detalle_por_nota_ide($ide) ;  */
 
@@ -56,7 +54,7 @@ $suma_detalle=0;
 								<button class="btn btn-success btn-xs" title="Detalle cruce" onclick="modal('vst-cruce-insert_detalle','ide=<?php echo $r->cruce_encab_ide ?>')">
 									<i class="fa fa-edit"></i>
 								</button>								
-								<button class="btn btn-danger btn-xs" title="Borrar" onclick="modal('vst-pago-delete','ide=<?php echo $r->banco_ide ?>')">
+								<button class="btn btn-danger btn-xs" title="Borrar" onclick="modal('vst-banco-delete','ide=<?php echo $r->crudeta_ide ?>')">
 									<i class="fa fa-trash"></i>
 								</button>
 							</div>
