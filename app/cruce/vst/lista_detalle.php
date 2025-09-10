@@ -1,4 +1,4 @@
-<?php require '../../../cfg/base.php'; ?> 
+<?php require '../../../cfg/base.php'; ?>
 <?php 
 extract($_POST);
 //var_dump($ide);
@@ -54,7 +54,7 @@ $suma_detalle=0;
 								<button class="btn btn-success btn-xs" title="Detalle cruce" onclick="modal('vst-cruce-insert_detalle','ide=<?php echo $r->cruce_encab_ide ?>')">
 									<i class="fa fa-edit"></i>
 								</button>								
-								<button class="btn btn-danger btn-xs" title="Borrar" onclick="modal('vst-banco-delete','ide=<?php echo $r->crudeta_ide ?>')">
+								<button class="btn btn-danger btn-xs" title="Borrar" onclick="modal('vst-cruce-delete_detalle','ide=<?php echo $r->crudeta_ide ?>')">
 									<i class="fa fa-trash"></i>
 								</button>
 							</div>

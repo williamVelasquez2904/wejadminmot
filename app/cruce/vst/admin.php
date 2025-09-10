@@ -11,6 +11,7 @@ extract($_POST);
 <div class="clearfix"></div>
 <div class="space-6"></div>
 <div class="lista"></div>
+<!-- <div class="insert_detalle"></div> -->
 <script>
 	load('vst-cruce-lista','','.lista');
 </script>

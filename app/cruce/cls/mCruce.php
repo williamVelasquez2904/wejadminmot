@@ -53,6 +53,15 @@
 		return Enlace::sql($sql,$datos,4,'res');
 	}
 
+	public function delete_detalle() { /*05-09-2025*/
+		/*$sql = "SELECT sf_cruce_detalle(?,?,?,?) AS res";*/
+		$sql = "SELECT sf_cruce_detalle(?,?,?,?,?,?) AS res";
+		extract($_POST); 
+		/*$datos = array($ide,0,3,$_SESSION['s_usua_ide']);*/
+		$datos = array($ide,0,0,0,3,$_SESSION['s_usua_ide']);
+		//return 1;
+		return Enlace::sql($sql,$datos,1,'res');
+	}
 	public function detalle_por_nota_ide($nota_ide){
 		$sql = "SELECT * FROM vw_cruce_detalle WHERE crudeta_nota_ide=?";
 		$datos = array($nota_ide);
@@ -66,7 +75,14 @@
 	}
 
 	public function poride_detalle($ide) {  // para detalle del cruce
-		$sql = "SELECT * FROM vw_cruce_detalle WHERE crudeta_encab_ide=?";
+/*		extract($_POST);*/
+
+		$ide = isset($_POST['ide']) ? (int)$_POST['ide'] : 0;
+		if ($ide <= 0) {
+			echo json_encode(['error' => 'ID de cruce no válido.']);
+			exit;
+		}
+		$sql = "SELECT * FROM vw_cruce_detalle WHERE crudeta_ide=?";
 		$datos = array($ide);
 		return Enlace::sql($sql,$datos,3,'');
 	}
@@ -101,9 +117,5 @@
 		return Enlace::sql($sql,$datos,1,'res');
 	}
 
-	public function delete_detalle() { /*05-09-2025*/
-		$sql = "SELECT sf_cruce_detalle(?,?,?,?) AS res";
-		extract($_POST); $datos = array($ide,0,3,$_SESSION['s_usua_ide']);
-		return Enlace::sql($sql,$datos,1,'res');
-	}
+	
 } ?>
