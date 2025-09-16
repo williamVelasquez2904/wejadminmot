@@ -22,18 +22,9 @@ $notas      = $mcruce->lista_detalle($ide);  //  ide de encabezado   ?>
 	<!-- <?php //echo $fn->modalHeader("[insert_detalle.php]. 13-Nov-24 -  Detalles del cruce : ".$r[0]->cruce_encab_ide." - ".$r[0]->pago_titular) ?>   -->
 	<!-- <?php //echo $fn->modalHeader("[insert_detalle.php]. 01-085 -  Detalles del cruce : ") ?> -->  
 	<?php echo $fn->modalHeader("Detalles del cruce : ".$ide) ?>
-
-
-
 	<div class="modal-body">
 
 		<div class="msj"></div>
-        <div style="position: absolute; top: 15px; right: 25px; z-index: 10;">
-            <button type="button" class="btn btn-secondary btn-sm" id="btnMarcarEnviado">
-                <span class="fa fa-upload"></span>
-                <font size="4"> Marcar como enviado</font>
-            </button>
-        </div>
 		<form action="" class="op_insert_det_cruce">	
 			<fieldset><legend> DATOS DE LA NOTA ASOCIADA AL CRUCE  
 				<div class="btn-group">
@@ -486,62 +477,4 @@ document.getElementById('btnPreviewPDF').onclick = function() {
 		alerta('.msj', 'danger', 'Error en la solicitud AJAX: ' + textStatus + ' - ' + errorThrown);
 	});
 };
-</script>
-
-
-<!-- Modal para subir PDF -->
-<div class="modal fade" id="modalUploadPDF" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <form id="formUploadPDF" enctype="multipart/form-data">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Subir PDF de Envío</h4>
-        </div>
-        <div class="modal-body">
-          <input type="file" name="pdf_file" id="pdf_file" accept="application/pdf" required class="form-control">
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-success">Subir y Marcar como Enviado</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-
-<script>
-$('#btnMarcarEnviado').on('click', function() {
-    $('#modalUploadPDF').modal('show');
-});
-
-$('#formUploadPDF').on('submit', function(e) {
-    e.preventDefault();
-    var formData = new FormData(this);
-    formData.append('ide', datos_cruce.cruce_encab_ide);
-
-    $.ajax({
-        url: 'app/cruce/prc/upload_pdf.php', // Debes crear este endpoint en PHP
-        type: 'POST',
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(resp) {
-            try {
-                var data = JSON.parse(resp);
-                if(data.success) {
-                    alert('PDF subido y cruce marcado como enviado.');
-                    $('#modalUploadPDF').modal('hide');
-                    location.reload();
-                } else {
-                    alert(data.message || 'Error al subir el PDF.');
-                }
-            } catch(e) {
-                alert('Error inesperado en la respuesta del servidor. ');
-            }
-        },
-        error: function() {
-            alert('Error en la subida del archivo.');
-        }
-    });
-});
 </script>

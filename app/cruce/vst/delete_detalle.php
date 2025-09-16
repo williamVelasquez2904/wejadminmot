@@ -25,6 +25,18 @@
         </form>
     <?php endforeach; ?>
 <?php endif; ?>
+<!-- Botón Marcar como enviado en la parte superior derecha -->
+<button type="button" class="btn btn-secondary btn-sm pull-right" id="btnMarcarEnviado" style="margin:10px;">
+    <span class="fa fa-upload"></span>
+    <font size="4"> Marcar como enviado</font>
+</button>
+
+<div class="modal-body">
+    <form action="" class="op_insert_det_cruce">
+        <!-- ...contenido del formulario... -->
+    </form>
+    <div class="lista_detalle"></div>
+</div>
 <script>
 	$(function(){
 		var formulario = '.op2';
