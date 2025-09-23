@@ -46,12 +46,12 @@
 		return Enlace::sql($sql,$datos,4,'res');
 	}
 
-	public function upd_est_encab($sta) { // 15-09-2025 Actualizar estatus de cruce
+	public function upd_est_encab($sta,$arch_img) { // 15-09-2025 Actualizar estatus de cruce
 		$sql = "SELECT sf_cruce_encab(?,?,?,?,?,?,?,?,?,?) AS res";
 		extract($_POST);
 		$fec="";$hora="";
 		$pago=$mto=0;
-		$arch_img="";
+		/*$arch_img="";*/
 		$tipo=0; 
 		/*$sta=1;*/
 		$datos = array($ide,date('Y-m-d',strtotime($fec)),$hora,$pago,$mto,$arch_img,$tipo,$sta,4,$_SESSION['s_usua_ide']);
