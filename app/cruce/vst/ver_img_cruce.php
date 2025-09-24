@@ -9,7 +9,7 @@ endforeach;
 ?>	
 	<?php 
 	echo $fn->modalWidth("80%");
-	echo $fn->modalHeader('Ver imagen cruce: '.$ruta_img);
+	echo $fn->modalHeader('24-09-25. Ver imagen cruce: '.$ruta_img.' - Encab_ide: '.$encab_ide);
 	?>
 	<div class="modal-body">
 		<div class="msj"></div>

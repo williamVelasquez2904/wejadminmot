@@ -4,7 +4,7 @@
 $row = $mcruce->lista_encab_pornota($compra_ide) ;
 /*$titulo_modal='Ceuce:'.$contrato_ide."   - Modalidad: ".'<b>'.$modalidad_text.'</b>';*/
 
-$titulo_modal="23Sep2025. lista_pornota.php - LISTADO DE CRUCES";
+$titulo_modal="24Sep2025. lista_pornota.php - LISTADO DE CRUCES";
 
 echo $fn->modalWidth('90%');
 echo $fn->modalHeader($titulo_modal);
@@ -39,7 +39,7 @@ echo $fn->modalHeader($titulo_modal);
 						<td>
 							<div class="btn-group">
 								<button class="btn btn-success btn-xs" title="Ver mágen" onclick="modal('vst-cruce-ver_img_cruce',
-								'encab_ide=15')">
+								'encab_ide=<?php echo $r->crudeta_encab_ide ?> ?>')">
 									<i class="fa fa-edit"></i>
 								</button>
 							</div>
