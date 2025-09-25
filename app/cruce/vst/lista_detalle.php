@@ -46,7 +46,7 @@ $suma_detalle=0;
 						<td><?php echo $r->compra_num ?></td>
 						<td align="right"><?php echo $r->crudeta_monto ?></td>
 
-						<td>
+						<td> 
 							<div class="btn-group">
 								<button class="btn btn-success btn-xs" title="Actualizar" onclick="modal('vst-pago-update','ide=<?php echo $r->banco_ide ?>')">
 									<i class="fa fa-edit"></i>

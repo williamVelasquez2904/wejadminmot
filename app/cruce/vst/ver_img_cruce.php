@@ -7,7 +7,7 @@ foreach($row as $r):
 endforeach; 
 //exit;
 ?>	
-	<?php 
+	<?php
 	echo $fn->modalWidth("80%");
 	echo $fn->modalHeader('24-09-25. Ver imagen cruce: '.$ruta_img.' - Encab_ide: '.$encab_ide);
 	?>

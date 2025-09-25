@@ -8,10 +8,10 @@
 <?php else: ?>
     <?php foreach($row_detalle as $r): ?>
         <form action="" class="op2 form-horizontal">
-            <?php echo $fn->modalHeader('Borrar detalle del cruce... 06-09-2025') ?>
+            <?php echo $fn->modalHeader('delete_detalle.php - Borrar detalle del cruce... 25-09-2025') ?>
 
             <div class="modal-body">
-                <div class="alert alert-danger">¿Realmente desea borrar el registro seleccionado AQUI.....?</div>
+                <div class="alert alert-danger">¿Realmente desea borrar el registro seleccionado .....?</div>
                 <div class="msj"></div>
                 <div class="form-group">
                     <label for="" class="control-label col-sm-3 bolder">Nota:</label>

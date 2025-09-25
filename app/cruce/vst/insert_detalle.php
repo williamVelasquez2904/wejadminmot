@@ -1,4 +1,4 @@
-<?php require '../../../cfg/base.php';  // 15-09-25
+<?php require '../../../cfg/base.php';  // 15-09-25 
 echo $fn->modalWidth('80%');
 $row_encab_cruce= $mcruce->poride($ide); 
 $monto_porcruzar=0;
@@ -518,6 +518,7 @@ $('#formUploadPDF').on('submit', function(e) {
     e.preventDefault();
     var formData = new FormData(this);
     formData.append('ide', datos_cruce.cruce_encab_ide);
+
 
     $.ajax({
         url: 'app/cruce/prc/upload_pdf.php', // Debes crear este endpoint en PHP
