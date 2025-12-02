@@ -177,12 +177,13 @@
  
 	public function update_img() {
 		$sql = "SELECT sf_compra_wh_matriz(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res";
+		$sql = "SELECT sf_compra_wh_matriz(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res"; // 30/11/2025
 		$nota_sustituida="";
 		extract($_POST); 
 		// Inicializar todas las variables a una cadena vacía
 		//$ide 
 		$prov_ide = $clien_ide = $nro = $fec = $fec_recep = $tasa = $porc = "";
-		$mto_contado = $mto_credito = $cond = $mto_dev =  $destino = $tipo = "";
+		$mto_contado = $mto_credito = $com_ex= $cond = $mto_dev =  $destino = $tipo = "";
 		// Se usa $nota_sustituida para el nombre del archivo
 		
 		$nota_sustituida=$nomarc;
@@ -198,6 +199,7 @@
 			$porc,
 			$mto_contado,
 			$mto_credito,
+			$com_ex,// comision en excel 30-11-2025
 			$cond,
 			$mto_dev,
 			$nota_sustituida,
