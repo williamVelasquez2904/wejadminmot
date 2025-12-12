@@ -2,7 +2,7 @@
 /*var_dump($ide);*/
 echo $fn->modalWidth('80%');
 $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?> 
-	<?php echo $fn->modalHeader("[verdetalles.php]. 140924 -  Detalles del recibo : ".$r[0]->recencab_num." - ".$r[0]->cliente) ?>  
+	<?php echo $fn->modalHeader("[verdetalles.php]. 04122024 -  Detalles del recibo : ".$r[0]->recencab_num." - ".$r[0]->cliente) ?>  
 	<div class="modal-body">
 		<div class="msj"></div>
 		<form action="" class="op2 form-horizontal">	
@@ -49,18 +49,23 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
 			</fieldset>
 			<div class="clearfix"></div>
 
-
 			<fieldset><legend>DATOS DEL PAGO</legend>
-<!-- 			<div class="form-group col-sm-2 col-xs-12">
-				<label for="" class="label control-label col-sm-12 bolder">TIPO De pago</label>
-					<div class="col-sm-12 col-xs-12">
-						<select class="form-control chosen" name="tipo" id="tipo">
-							<option value=1 selected>Completo</option>					
-							<option value=2>Parcial</option>
-						</select>
-				</div>
-			</div>				
- -->
+
+			<!-- 04-12-2025	 -->
+		<div class="form-group col-sm-9 col-xs-12">
+			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Pago</label>
+			<div class="col-sm-12 col-xs-12">
+				<select class="form-control chosen" title="Pago" name="pago_ide" id="pago_ide" >
+					<option value=""></option>
+					<?php foreach($mpago->lista() as $c): ?>
+						<option value="<?php echo $c->pago_ide ?>">
+						<?php echo $c->pago_ide.' - '.$c->pago_titular.' - '. $c->pago_monto.' - '. $c->pago_fecha ?></option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<!--  fin de actualizaciones de 04-12-2025	 -->		
 			<div class="form-group col-sm-2 col-xs-12">
 				<label for="" class="label control-label col-sm-12 bolder">Forma de pago</label>
 					<div class="col-sm-12 col-xs-12">
@@ -125,7 +130,48 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
 
 
 			</fieldset>
-		</form>
+
+            <!-- Nueva sección separada para PAGO EN EFECTIVO -->
+            <fieldset><legend>PAGO EN EFECTIVO</legend>
+                <div class="form-group col-sm-2 col-xs-12">
+                    <label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto Efectivo:</label>
+                    <div class="col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" name="mto_efectivo" id="mto_efectivo" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-2 col-xs-12">
+                    <label for="" class="label control-label col-sm-12 col-xs-12 bolder">Fecha Efectivo:</label>
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="input-group">
+                            <input type="text" name="fec_efectivo" id="fec_efectivo" class="form-control fecha">
+                            <span class="input-group-addon">
+                                <i class="icon-calendar bigger-110"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-2 col-xs-12">
+                    <label for="" class="label control-label col-sm-12 col-xs-12 bolder">Referencia Efectivo:</label>
+                    <div class="col-sm-12 col-xs-12">
+                        <input type="text" class="form-control" name="ref_efectivo" id="ref_efectivo" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="form-group pull-left">
+                    <div class="btn-group">
+                        <button class="btn btn-success btn-sm" title="Registrar Pago en Efectivo" onclick="registrarEfectivo()">
+                            <i class="fa fa-money"></i> 
+                            REGISTRAR EFECTIVO
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+
+        </form>
 		</div>			
 		
 		<div class="listadetalles"></div>
@@ -189,12 +235,18 @@ function insertPago(){
 		var v_pago_monto   = document.getElementById('mto').value;
 		var v_pago_fecha   = document.getElementById('fec').value;
 		var v_pago_ref     = document.getElementById('ref').value;
+
+		var v_pago_ide    = document.getElementById('pago_ide').value;
+
 		alert("v_pago_fecha: "+v_pago_fecha);
 /*		var v_pago_fecha   = "2024-01-01";*/
 		var v_pago_titular = "WV";
 
 		if (confirm("¿Desea realmente registrar este pago ? ")==true){
 			var datosform ='encab_ide='+v_encab_ide+'&pago_forma='+v_pago_forma+'&pago_monto='+v_pago_monto+'&pago_fecha='+v_pago_fecha+'&pago_titular='+v_pago_titular+'&pago_ref='+v_pago_ref;
+
+			var datosform ='encab_ide='+v_encab_ide+'&pago_ide='+v_pago_ide;			
+
 			$.post('prc-mrecibo-insert_pago',datosform,function(data){
 				if(!isNaN(data)) {
 					load('vst-recibo-lista_pagos','encab_ide=<?php echo $ide ?>','.lista_pagos');

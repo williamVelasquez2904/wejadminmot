@@ -91,11 +91,13 @@
 	public function insert_pago(){
 
 		extract($_POST);
-		var_dump("Pago fecha: ".$pago_fecha);
-		$sql = "SELECT sf_recibopago(?,?,?,?,?,?,?,?) AS res";
-
+		//var_dump("Pago fecha: ".$pago_fecha);
+		//$sql = "SELECT sf_recibopago(?,?,?,?,?,?,?,?) AS res";
+		 $sql = "SELECT sf_recibopago(?,?,?,?,?,?,?,?,?) AS res"; //04-12-2025
+		$pago_forma=$pago_monto=$pago_fecha=$pago_titular=$pago_ref="";
 		$datos = array(
 			$encab_ide, // Identificador
+			$pago_ide,
 			$pago_forma,
 			$pago_monto,
 			$pago_fecha,

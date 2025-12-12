@@ -39,7 +39,7 @@
 						<td><?php echo funciones::descrip_estatus('pago',($r->pago_status)) ?></td>
 						<td>
 							<div class="btn-group">
-								<button class="btn btn-success btn-xs" title="Actualizar" onclick="modal('vst-pago-update','ide=<?php echo $r->banco_ide ?>')">
+								<button class="btn btn-success btn-xs" title="Actualizar" onclick="modal('vst-pago-update','ide=<?php echo $r->pago_ide ?>')">
 									<i class="fa fa-edit"></i>
 								</button>
 								<button class="btn btn-danger btn-xs" title="Borrar" onclick="modal('vst-pago-delete','ide=<?php echo $r->banco_ide ?>')">
