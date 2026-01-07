@@ -1,13 +1,15 @@
+
 <?php require '../../../cfg/base.php'; 
 /*var_dump($ide);*/
 echo $fn->modalWidth('80%');
 $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?> 
-	<?php echo $fn->modalHeader("[verdetalles.php]. 04122024 -  Detalles del recibo : ".$r[0]->recencab_num." - ".$r[0]->cliente) ?>  
+	<?php echo $fn->modalHeader("[verdetalles.php]. 15dic25 -  Detalles del recibo : ".$r[0]->recencab_num." - ".$r[0]->cliente) ?>  
 	<div class="modal-body">
 		<div class="msj"></div>
-		<form action="" class="op2 form-horizontal">	
+		<!-- <form action="" class="op2 form-horizontal">	 -->
+		<form action="" class="op2">	
 			<fieldset><legend> DATOS DE LA NOTA ASOCIADA AL RECIBO  </legend>
-				<div class="form-group col-sm-4 col-xs-12">
+				<div class="form-group col-sm-10 col-xs-12">
 					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Seleccione la Nota</label>
 					<div class="col-sm-12 col-xs-12">
 							<select class="form-control chosen" title="nota" name="venta_ide" id="venta_ide">
@@ -22,8 +24,12 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
 						</select>
 					</div>
 				</div>
+				<button class="btn btn-primary btn-sm pull-right col-sm-2 col-xs-12" onclick="insertNota()">
+					<span class="i fa fa-plus fa-2x"></span> 
+					<font size="2"> Insertar Nota</font>
+				</button>
 				<input type="hidden" class="form-control" name="encab_ide" id="encab_ide" value="<?php echo $ide; ?>">
-
+			<div class="clearfix"></div>
 			<div class="form-group col-sm-2 col-xs-12">
 					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto venta:</label>
 					<div class="col-sm-12 col-xs-12">
@@ -40,19 +46,16 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
 					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">TOTAL:</label>
 					<div class="col-sm-12 col-xs-12 inp_mto_total"></div>
 			</div>			
+			<div class="clearfix"></div>
 
 
-				<button class="btn btn-primary btn-sm pull-right col-sm-2 col-xs-12" onclick="insertNota()">
-					<span class="i fa fa-plus fa-2x"></span> 
-					<font size="4"> Insertar</font>
-				</button>
 			</fieldset>
 			<div class="clearfix"></div>
 
 			<fieldset><legend>DATOS DEL PAGO</legend>
 
 			<!-- 04-12-2025	 -->
-		<div class="form-group col-sm-9 col-xs-12">
+			<div class="form-group col-sm-10 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Pago</label>
 			<div class="col-sm-12 col-xs-12">
 				<select class="form-control chosen" title="Pago" name="pago_ide" id="pago_ide" >
@@ -63,10 +66,16 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
 					<?php endforeach; ?>
 				</select>
 			</div>
-		</div>
+			</div>
+			<button class="btn btn-primary btn-sm pull-right col-sm-2 col-xs-12" onclick="insertPago()">
+					<span class="i fa fa-plus fa-2x"></span> 
+					<font size="2"> Insertar Pago</font>
+				</button>
+			
+
 		<div class="clearfix"></div>
 		<!--  fin de actualizaciones de 04-12-2025	 -->		
-			<div class="form-group col-sm-2 col-xs-12">
+			<div class="form-group col-sm-3 col-xs-12">
 				<label for="" class="label control-label col-sm-12 bolder">Forma de pago</label>
 					<div class="col-sm-12 col-xs-12">
 						<select class="form-control chosen" title="forma de Pago" name="forpago" id="forpago">
@@ -81,14 +90,14 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
 						</select>
 					</div>
 			</div>
-			<div class="form-group col-sm-2 col-xs-12">
+			<div class="form-group col-sm-3 col-xs-12">
 					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto:</label>
 					<div class="col-sm-12 col-xs-12">
 						<input type="text" class="form-control" name="mto" id="mto" autocomplete="off" >
 					</div>
 			</div>
 
-		<div class="form-group col-sm-2 col-xs-12">
+		<div class="form-group col-sm-3 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Fecha</label>
 			<div class="col-sm-12 col-xs-12">
 				<div class="input-group">
@@ -100,7 +109,7 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
 			</div>
 		</div>
 		
-			<div class="form-group col-sm-4 col-xs-12">
+			<div class="form-group col-sm-3 col-xs-12">
 					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Referencia:</label>
 					<div class="col-sm-12 col-xs-12">
 						<input type="text" class="form-control" name="ref" id="ref" autocomplete="off" >
@@ -120,27 +129,19 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
 						<input type="text" class="form-control" name="mto_dolar" id="mto_dolar" >
 					</div>
 			</div>		
-			<div class="form-group col-sm-2 col-xs-12">
-				<div class="btn-group">
-					<button class="btn btn-danger btn-sm" title="Registrar Pago" onclick="insertPago()">
-						<img src="img/imagenes/moneda1.png" alt = "Registrar Pago"/>
-					</button>
-				</div>
-			</div>		
-
 
 			</fieldset>
 
             <!-- Nueva sección separada para PAGO EN EFECTIVO -->
             <fieldset><legend>PAGO EN EFECTIVO</legend>
-                <div class="form-group col-sm-2 col-xs-12">
+                <div class="form-group col-sm-3 col-xs-12">
                     <label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto Efectivo:</label>
                     <div class="col-sm-12 col-xs-12">
                         <input type="text" class="form-control" name="mto_efectivo" id="mto_efectivo" autocomplete="off">
                     </div>
                 </div>
 
-                <div class="form-group col-sm-2 col-xs-12">
+                <div class="form-group col-sm-3 col-xs-12">
                     <label for="" class="label control-label col-sm-12 col-xs-12 bolder">Fecha Efectivo:</label>
                     <div class="col-sm-12 col-xs-12">
                         <div class="input-group">
@@ -152,23 +153,18 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
                     </div>
                 </div>
 
-                <div class="form-group col-sm-2 col-xs-12">
+                <div class="form-group col-sm-4 col-xs-12">
                     <label for="" class="label control-label col-sm-12 col-xs-12 bolder">Referencia Efectivo:</label>
                     <div class="col-sm-12 col-xs-12">
                         <input type="text" class="form-control" name="ref_efectivo" id="ref_efectivo" autocomplete="off">
                     </div>
                 </div>
 
+				<button class="btn btn-primary btn-sm pull-right col-sm-2 col-xs-12" onclick="registrarEfectivo()">
+					<span class="i fa fa-plus fa-2x"></span> 
+					<font size="2"> Registrar Efectivo</font>
+				</button>
                 <div class="clearfix"></div>
-
-                <div class="form-group pull-left">
-                    <div class="btn-group">
-                        <button class="btn btn-success btn-sm" title="Registrar Pago en Efectivo" onclick="registrarEfectivo()">
-                            <i class="fa fa-money"></i> 
-                            REGISTRAR EFECTIVO
-                        </button>
-                    </div>
-                </div>
             </fieldset>
 
         </form>

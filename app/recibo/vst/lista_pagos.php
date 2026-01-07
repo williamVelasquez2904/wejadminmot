@@ -48,7 +48,7 @@ $sum_monto =0 ;
 								<button class="btn btn-success btn-xs" title="Actualizar" onclick="modal('vst-orden-update','ide=<?php echo $r->orden_ide ?>')">
 									<i class="fa fa-edit"></i>
 								</button>
-								<button class="btn btn-danger btn-xs" title="Borrar" onclick="modal('vst-orden-delete','ide=<?php echo $r->orden_ide ?>')">
+								<button class="btn btn-danger btn-xs" title="Borrar" onclick="modal('vst-recibo-delete_recpago','ide=<?php echo $r->recpago_ide ?>')">
 									<i class="fa fa-trash"></i>
 								</button>
 							</div>

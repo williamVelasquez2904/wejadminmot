@@ -1,4 +1,4 @@
-<?php require '../../../cfg/base.php'; ?>
+<?php require '../../../cfg/base.php'; ?> <!-- 04/01/2026 -->
 
 <?php $cusuarios->redirectindex() ?>
 
@@ -10,7 +10,7 @@
 
 		<meta charset="utf-8" />
 
-		<title>WEJ SOLUTIONS - Login</title>
+		<title>WEJ SOLUTIONS - Login Version-1.0.2026 </title>
 
 
 
@@ -56,7 +56,7 @@
 
 			<h2 class="pull-left" style="padding-left:30px">
 
-				<span class="white"><?php echo "SOFTWARE ADMINISTRATIVO" ?></span>
+				<span class="white"><?php echo "SOFTWARE ADMINISTRATIVO Version 1.0.2026" ?></span>
 
 				<div class="space-0"></div>
 

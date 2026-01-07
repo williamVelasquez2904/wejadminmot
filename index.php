@@ -5,7 +5,7 @@ $rowt=$mtienda->poride($_SESSION['s_usua_tienda']); ?>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>WEJ Solutions</title>
+		<title>WEJ Solutions (index.php)</title>
 		<meta name="description" content="overview &amp; stats" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" href="img/logo.png" type="image/x-icon">

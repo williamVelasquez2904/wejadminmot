@@ -76,7 +76,8 @@
 
 	public function insert_nota(){
 		extract($_POST);
-		$sql = "SELECT sf_recibonota(?,?,?,?,?,?) AS res";
+		$sql = "SELECT 
+		(?,?,?,?,?,?) AS res";
 		$datos = array(
 			0, // Identificador
 			0,
