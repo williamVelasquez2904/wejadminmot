@@ -9,7 +9,7 @@ require '../../../cfg/base.php';
 
 <div class="modal-body">				
 	<div class="msj"></div>
-	<fieldset><legend>[insert.php] 15-ene-26 - Por favor ingrese los datos del Pago </legend>
+	<fieldset><legend>[insert.php] 11-ene-26 - Por favor ingrese los datos del Pago </legend>
 	<div class="clearfix"></div>	
 	<form action="cargarimg"  method="post" enctype="multipart/form-data">
 
@@ -53,10 +53,10 @@ require '../../../cfg/base.php';
 			<div class="col-sm-12 col-xs-12">
 				<select class="form-control chosen" name="forpago" id="forpago" onchange="generarNombreArchivo();" onclick="generarNombreArchivo();">
 					<option value="" selected=""></option>
-					<?php //foreach($mforpago->lista() as $f): ?>
-						<option value="<?php //echo $f->forpago_ide ?>">
-						<?php //echo $f->forpago_descrip ?></option>
-					<?php //endforeach; ?>
+					<?php foreach($mforpago->lista() as $f): ?>
+						<option value="<?php echo $f->forpago_ide ?>">
+						<?php echo $f->forpago_descrip ?></option>
+					<?php endforeach; ?>
 				</select>
 			</div>
 		</div>

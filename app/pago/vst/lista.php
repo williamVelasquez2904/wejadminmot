@@ -1,5 +1,4 @@
-<?php 
-require '../../../cfg/base.php'; ?>
+<?php require '../../../cfg/base.php'; ?>
 <?php $row = $mpago->lista();
 $texto_tasa=""; 
 ?>
