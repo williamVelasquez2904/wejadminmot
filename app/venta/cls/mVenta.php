@@ -22,11 +22,12 @@
 	}	
 
 	//public function lista_cobranza($clien_ide,$vende_ide,$f_ini,$f_fin){
-	public function lista_cobranza($clien_ide,$origen,$vende_ide,$f_ini,$f_fin){		
+	public function lista_cobranza($clien_ide,$prov_ide,$origen,$vende_ide,$f_ini,$f_fin){		// 30/03/2026
 
 		$condicion =" ";
 		$condicion_origen  = " ";
 		$condicion_cliente = " ";
+		$condicion_prov    = " ";
 		$condicion_vende   = " ";
 		$condicion_fecha   = " ";
 		$orden             = " ORDER BY  venta_ide"  ;
@@ -49,8 +50,14 @@
 			$condicion_cliente =" AND venta_clien_ide = ".$clien_ide;
 		}
 
+		if ($prov_ide != 0  ){
+			$condicion_prov =" AND prov_ide = ".$prov_ide;
+		}
+
+
 		$sql .= $condicion_origen;
 		$sql .= $condicion_cliente ;
+		$sql .= $condicion_prov ;
 		$sql .= $condicion_vende ;
 		$sql .= $condicion_fecha ;
 		$sql .= $orden ;

@@ -1,78 +1,15 @@
 <?php require '../../../cfg/base.php'; 
-// --- Estilos modernos y localizados para verdetalles.php ---
-echo '<style>
-	.verdetalles-card {
-		background: #fff;
-		border-radius: 12px;
-		box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-		padding: 32px 24px 24px 24px;
-		margin-bottom: 32px;
-		border: 1px solid #e0e0e0;
-	}
-	.verdetalles-section-title {
-		font-size: 1.2rem;
-		font-weight: 700;
-		color: #2c3e50;
-		margin-bottom: 18px;
-		border-left: 4px solid #007bff;
-		padding-left: 10px;
-		background: #f7faff;
-		border-radius: 4px;
-	}
-	.verdetalles-form-group {
-		margin-bottom: 18px;
-		padding-bottom: 8px;
-	}
-	.verdetalles-label {
-		font-weight: 600;
-		color: #34495e;
-		margin-bottom: 4px;
-		display: block;
-	}
-	.verdetalles-btn {
-		border-radius: 6px !important;
-		font-weight: 600;
-		letter-spacing: 0.5px;
-		box-shadow: 0 2px 6px rgba(0,123,255,0.08);
-		margin-top: 8px;
-		margin-bottom: 8px;
-	}
-	.verdetalles-btn i {
-		margin-right: 4px;
-	}
-	.verdetalles-fieldset {
-		border: 1px solid #e0e0e0;
-		border-radius: 8px;
-		padding: 18px 18px 8px 18px;
-		margin-bottom: 24px;
-		background: #fafbfc;
-	}
-	.verdetalles-legend {
-		font-size: 1.05rem;
-		font-weight: 600;
-		color: #007bff;
-		padding: 0 8px;
-		margin-left: 8px;
-	}
-	.verdetalles-input[disabled] {
-		background: #f3f3f3;
-		color: #888;
-	}
-	@media (max-width: 600px) {
-		.verdetalles-card { padding: 12px 4px; }
-		.verdetalles-fieldset { padding: 8px 4px; }
-	}
-</style>';
+/*var_dump($ide);*/
 echo $fn->modalWidth('80%');
 $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?> 
-	<?php echo $fn->modalHeader("[verdetalles.php] -  Detalles del recibo : ".$r[0]->recencab_num." - ".$r[0]->cliente) ?>  
-	<div class="modal-body verdetalles-card">
+	<?php echo $fn->modalHeader("[verdetalles.php]. 15marzo2026 -  Detalles del recibo : ".$r[0]->recencab_num." - ".$r[0]->cliente) ?>  
+	<div class="modal-body">
 		<div class="msj"></div>
 		<!-- <form action="" class="op2 form-horizontal">	 -->
 		<form action="" class="op2">	
-			<fieldset class="verdetalles-fieldset"><legend class="verdetalles-legend"> DATOS DE LA NOTA ASOCIADA AL RECIBO  </legend>
-				<div class="form-group col-sm-10 col-xs-12 verdetalles-form-group">
-				<label for="" class="verdetalles-label label control-label col-sm-12 col-xs-12 bolder">Seleccione la Nota</label>
+			<fieldset><legend> DATOS DE LA NOTA ASOCIADA AL RECIBO  </legend>
+				<div class="form-group col-sm-10 col-xs-12">
+					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Seleccione la Nota</label>
 					<div class="col-sm-12 col-xs-12">
 							<select class="form-control chosen" title="nota" name="venta_ide" id="venta_ide">
 							<option value="">Seleccione</option>
@@ -86,26 +23,26 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
 						</select>
 					</div>
 				</div>
-				<button class="btn btn-primary btn-sm pull-right col-sm-2 col-xs-12 verdetalles-btn" onclick="insertNota()" type="button">
-				<span class="i fa fa-plus fa-2x"></span> 
-				<span style="font-size:0.95em;">Insertar Nota</span>
+				<button class="btn btn-primary btn-sm pull-right col-sm-2 col-xs-12" onclick="insertNota()">
+					<span class="i fa fa-plus fa-2x"></span> 
+					<font size="2"> Insertar Nota</font>
 				</button>
 				<input type="hidden" class="form-control" name="encab_ide" id="encab_ide" value="<?php echo $ide; ?>">
 			<div class="clearfix"></div>
-			<div class="form-group col-sm-2 col-xs-12 verdetalles-form-group">
-			<label for="" class="verdetalles-label label control-label col-sm-12 col-xs-12 bolder">Monto venta:</label>
+			<div class="form-group col-sm-2 col-xs-12">
+					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto venta:</label>
 					<div class="col-sm-12 col-xs-12">
 						<input type="text" class="form-control" name="mto_venta" id="mto_venta" disabled >
 					</div>
 			</div>
-			<div class="form-group col-sm-2 col-xs-12 verdetalles-form-group">
-			<label for="" class="verdetalles-label label control-label col-sm-12 col-xs-12 bolder">Flete:</label>
+			<div class="form-group col-sm-2 col-xs-12">
+					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Flete:</label>
 					<div class="col-sm-12 col-xs-12">
 						<input type="text" class="form-control" name="mto_flete" id="mto_flete" disabled >
 					</div>
 			</div>			
-			<div class="form-group col-sm-2 col-xs-12 verdetalles-form-group">
-			<label for="" class="verdetalles-label label control-label col-sm-12 col-xs-12 bolder">TOTAL:</label>
+			<div class="form-group col-sm-2 col-xs-12">
+					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">TOTAL:</label>
 					<div class="col-sm-12 col-xs-12 inp_mto_total"></div>
 			</div>			
 			<div class="clearfix"></div>
@@ -114,11 +51,11 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
 			</fieldset>
 			<div class="clearfix"></div>
 
-			<fieldset class="verdetalles-fieldset"><legend class="verdetalles-legend">DATOS DEL PAGO</legend>
+			<fieldset><legend>DATOS DEL PAGO</legend>
 
 			<!-- 04-12-2025	 -->
-			<div class="form-group col-sm-10 col-xs-12 verdetalles-form-group">
-			<label for="" class="verdetalles-label label control-label col-sm-12 col-xs-12 bolder">Pago</label>
+			<div class="form-group col-sm-10 col-xs-12">
+			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Pago</label>
 			<div class="col-sm-12 col-xs-12">
 				<select class="form-control chosen" title="Pago" name="pago_ide" id="pago_ide" >
 					<option value=""></option>
@@ -129,16 +66,16 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
 				</select>
 			</div>
 			</div>
-			<button class="btn btn-primary btn-sm pull-right col-sm-2 col-xs-12 verdetalles-btn" onclick="insertPago()" type="button">
-			<span class="i fa fa-plus fa-2x"></span> 
-			<span style="font-size:0.95em;">Insertar Pago</span>
-			</button>
+			<button class="btn btn-primary btn-sm pull-right col-sm-2 col-xs-12" onclick="insertPago()">
+					<span class="i fa fa-plus fa-2x"></span> 
+					<font size="2"> Insertar Pago</font>
+				</button>
 			
 
 		<div class="clearfix"></div>
 		<!--  fin de actualizaciones de 04-12-2025	 -->		
-			<div class="form-group col-sm-3 col-xs-12 verdetalles-form-group">
-			<label for="" class="verdetalles-label label control-label col-sm-12 bolder">Forma de pago</label>
+			<div class="form-group col-sm-3 col-xs-12">
+				<label for="" class="label control-label col-sm-12 bolder">Forma de pago</label>
 					<div class="col-sm-12 col-xs-12">
 						<select class="form-control chosen" title="forma de Pago" name="forpago" id="forpago">
 							<option value="">Seleccione</option>
@@ -152,15 +89,15 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
 						</select>
 					</div>
 			</div>
-			<div class="form-group col-sm-3 col-xs-12 verdetalles-form-group">
-			<label for="" class="verdetalles-label label control-label col-sm-12 col-xs-12 bolder">Monto:</label>
+			<div class="form-group col-sm-3 col-xs-12">
+					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto:</label>
 					<div class="col-sm-12 col-xs-12">
 						<input type="text" class="form-control" name="mto" id="mto" autocomplete="off" >
 					</div>
 			</div>
 
-		<div class="form-group col-sm-3 col-xs-12 verdetalles-form-group">
-		<label for="" class="verdetalles-label label control-label col-sm-12 col-xs-12 bolder">Fecha</label>
+		<div class="form-group col-sm-3 col-xs-12">
+			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Fecha</label>
 			<div class="col-sm-12 col-xs-12">
 				<div class="input-group">
 					<input type="text" name="fec" id="fec" class="form-control fecha">
@@ -171,22 +108,22 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
 			</div>
 		</div>
 		
-			<div class="form-group col-sm-3 col-xs-12 verdetalles-form-group">
-			<label for="" class="verdetalles-label label control-label col-sm-12 col-xs-12 bolder">Referencia:</label>
+			<div class="form-group col-sm-3 col-xs-12">
+					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Referencia:</label>
 					<div class="col-sm-12 col-xs-12">
 						<input type="text" class="form-control" name="ref" id="ref" autocomplete="off" >
 					</div>
 			</div>			
 			<div class="clearfix"></div>
 
-			<div class="form-group col-sm-2 col-xs-12 verdetalles-form-group">
-			<label for="" class="verdetalles-label label control-label col-sm-12 col-xs-12 bolder">Factor de cambio :</label>
+			<div class="form-group col-sm-2 col-xs-12">
+					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Factor de cambio :</label>
 					<div class="col-sm-12 col-xs-12">
-						<input type="text" class="form-control" name="factor" id="factor" onchange="calculaMontoEnDolares();">
+						<input type="text" class="form-control" name="factor" id="factor" onchange="calculaMontoenDolares();">
 					</div>
 			</div>			
-			<div class="form-group col-sm-2 col-xs-12 verdetalles-form-group">
-			<label for="" class="verdetalles-label label control-label col-sm-12 col-xs-12 bolder">Monto en Dolares :</label>
+			<div class="form-group col-sm-2 col-xs-12">
+					<label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto en Dolares :</label>
 					<div class="col-sm-12 col-xs-12">
 						<input type="text" class="form-control" name="mto_dolar" id="mto_dolar" >
 					</div>
@@ -195,16 +132,16 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
 			</fieldset>
 
             <!-- Nueva sección separada para PAGO EN EFECTIVO -->
-			<fieldset class="verdetalles-fieldset"><legend class="verdetalles-legend">PAGO EN EFECTIVO</legend>
-				<div class="form-group col-sm-3 col-xs-12 verdetalles-form-group">
-				<label for="" class="verdetalles-label label control-label col-sm-12 col-xs-12 bolder">Monto Efectivo:</label>
+            <fieldset><legend>PAGO EN EFECTIVO</legend>
+                <div class="form-group col-sm-3 col-xs-12">
+                    <label for="" class="label control-label col-sm-12 col-xs-12 bolder">Monto Efectivo:</label>
                     <div class="col-sm-12 col-xs-12">
                         <input type="text" class="form-control" name="mto_efectivo" id="mto_efectivo" autocomplete="off">
                     </div>
                 </div>
 
-				<div class="form-group col-sm-3 col-xs-12 verdetalles-form-group">
-				<label for="" class="verdetalles-label label control-label col-sm-12 col-xs-12 bolder">Fecha Efectivo:</label>
+                <div class="form-group col-sm-3 col-xs-12">
+                    <label for="" class="label control-label col-sm-12 col-xs-12 bolder">Fecha Efectivo:</label>
                     <div class="col-sm-12 col-xs-12">
                         <div class="input-group">
                             <input type="text" name="fec_efectivo" id="fec_efectivo" class="form-control fecha">
@@ -215,16 +152,16 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
                     </div>
                 </div>
 
-				<div class="form-group col-sm-4 col-xs-12 verdetalles-form-group">
-				<label for="" class="verdetalles-label label control-label col-sm-12 col-xs-12 bolder">Referencia Efectivo:</label>
+                <div class="form-group col-sm-4 col-xs-12">
+                    <label for="" class="label control-label col-sm-12 col-xs-12 bolder">Referencia Efectivo:</label>
                     <div class="col-sm-12 col-xs-12">
                         <input type="text" class="form-control" name="ref_efectivo" id="ref_efectivo" autocomplete="off">
                     </div>
                 </div>
 
-				<button class="btn btn-primary btn-sm pull-right col-sm-2 col-xs-12 verdetalles-btn" onclick="registrarEfectivo()" type="button">
-				<span class="i fa fa-plus fa-2x"></span> 
-				<span style="font-size:0.95em;">Registrar Efectivo</span>
+				<button class="btn btn-primary btn-sm pull-right col-sm-2 col-xs-12" onclick="registrarEfectivo()">
+					<span class="i fa fa-plus fa-2x"></span> 
+					<font size="2"> Registrar Efectivo</font>
 				</button>
                 <div class="clearfix"></div>
             </fieldset>
@@ -232,80 +169,23 @@ $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?>
         </form>
 		</div>			
 		
-<!-- 		<div class="verdetalles-saldo-notas">
-			<div class="verdetalles-saldo-box">
-				<span class="verdetalles-saldo-label"><i class="fa fa-money"></i> Saldo por pagar en NOTAS:</span>
-				<span class="verdetalles-saldo-valor" id="saldo_notas"></span>
-			</div>
-		</div>
-		 -->
 		<div class="listadetalles"></div>
 		<div class="lista_notas"></div>
 		<div class="lista_pagos"></div>
-<!-- 		<div class="btn-group">
-			<button class="verdetalles-btn-distr btn btn-gradient-pago btn-sm" title="Distribuir el pagado entre todas las notas" onclick="distribuir()" type="button">
-				<i class="fa fa-random"></i>
-				<span style="font-size:1em;"><u>D</u>ISTRIBUIR PAGO</span>
-			</button>
-		</div> -->
-<!-- 	</div> -->
+	<div class="btn-group">
+				<button class="btn btn-danger btn-sm" title="Distribuir el pagado entre todas las notas" onclick="distribuir()">
+					<i class="fa fa-plus"></i> 
+					<u>D</u>ISTRIBUIR PAGO.&nbsp;&nbsp;
+				</button>
+		</div>
+	</div>
 	<?php echo $fn->modalFooter(2); ?>
-<style>
-.verdetalles-saldo-notas {
-	margin: 18px 0 10px 0;
-	display: flex;
-}
-.verdetalles-saldo-box {
-	background: linear-gradient(90deg, #e3f2fd 0%, #fceabb 100%);
-	border-radius: 10px;
-	box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-	padding: 14px 28px;
-	display: flex;
-	align-items: center;
-	font-size: 1.1rem;
-	border: 1.5px solid #b3d8fd;
-	min-width: 320px;
-	gap: 12px;
-}
-.verdetalles-saldo-label {
-	color: #007bff;
-	font-weight: 700;
-	margin-right: 10px;
-	display: flex;
-	align-items: center;
-	gap: 6px;
-}
-.verdetalles-saldo-valor {
-	color: #e67e22;
-	font-size: 1.25em;
-	font-weight: 700;
-	letter-spacing: 1px;
-	margin-left: 8px;
-}
-.verdetalles-btn-distr {
-	background: linear-gradient(90deg, #ff5858 0%, #f09819 100%) !important;
-	color: #fff !important;
-	border: none !important;
-	border-radius: 8px !important;
-	font-weight: 700;
-	box-shadow: 0 2px 8px rgba(255,88,88,0.10);
-	padding: 10px 28px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	transition: background 0.2s;
-}
-.verdetalles-btn-distr:hover {
-	background: linear-gradient(90deg, #f09819 0%, #ff5858 100%) !important;
-	color: #fff !important;
-	box-shadow: 0 4px 16px rgba(255,88,88,0.18);
-}
-</style>
 <script>
 load('vst-recibo-lista_notas','encab_ide=<?php echo $ide ?>','.lista_notas');
 load('vst-recibo-lista_pagos','encab_ide=<?php echo $ide ?>','.lista_pagos');
 
 function distribuir(){ 
-		alert("Paso 13 may 26");
+		alert("Paso 1");
 		var v_encab_ide    = document.getElementById('encab_ide').value;
 		if (confirm("¿Desea distribuir el monto : "+v_encab_ide+"?")==true){
 			$.post('prc-mrecibo-distribuir_pago','encab_ide='+v_encab_ide,function(data){
@@ -315,9 +195,7 @@ function distribuir(){
 				if (data.trim()==false)
 					alert("No hay monto para distribuir");
 				else 
-					alert("Monto distribuido......130526: "+data);
-					load('vst-recibo-lista_notas','encab_ide=<?php echo $ide ?>','.lista_notas');
-
+					alert("Monto distribuido......1503: "+data);
 
 /*				if(!isNaN(data.trim())) {
 					alert("Paso.... 21/08/2024");	
@@ -355,14 +233,6 @@ function insertPago(){
 
 		var v_pago_ide    = document.getElementById('pago_ide').value;
 
-		// VALIDAR SI SE SELECCIONÓ UN PAGO
-		if(v_pago_ide.trim() == ''){
-			alert('Debe seleccionar un pago.');
-			document.getElementById('pago_ide').focus();
-			return false;
-		}
-
-
 		alert("v_pago_fecha: "+v_pago_fecha);
 /*		var v_pago_fecha   = "2024-01-01";*/
 		var v_pago_titular = "WV";
@@ -390,14 +260,10 @@ function insertNota(){
 		if (v_venta_ide.trim().length==0){
 				alert('Debe Seleccionar una venta.');
 				$flag=false;
-				return false;
-				
 		}
 		if (v_encab_ide.trim().length==0){
 				alert('encabezado en blanco.');
 				$flag=false;
-				return false;
-				
 		}
 
 		if (confirm("¿Desea realmente registrar esta NOTA  ? ")==true){
@@ -452,17 +318,17 @@ function insertNota(){
 			focusInvalid: true,
 			rules: {
 				des: {
-					required: true
+					required: true,
 				}
 			},
 
 			messages: {
 				des: {
-					required: 'Obligatorio'
+					required: 'Obligatorio',
 				}
 			},
 
-			invalidHandler: function (event, validator) { //display error alert on form submit
+			invalidHandler: function (event, validator) { //display error alert on form submit   
 				$('.alert-danger', $(formulario)).show();
 			},
 
@@ -477,6 +343,9 @@ function insertNota(){
 
 			submitHandler: function (form) {
 
+			},
+
+			invalidHandler: function (form) {
 			}
 		});
 	})

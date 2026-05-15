@@ -36,7 +36,7 @@
 					<option value=""></option>
 					<?php foreach($mcliente->lista() as $c): ?>
 						<option value="<?php echo $c->clien_ide ?>" <?php echo $fn->select($c->clien_ide,$r->clien_ide) ?>>
-						<?php echo $c->clien_ide.' - '. $c->clien_nombre1.' - '. $c->clien_nombre2 ?></option>
+						<?php echo $c->clien_ide.' - '. utf8_encode($c->clien_nombre1).' - '. $c->clien_nombre2 ?></option>
 					<?php endforeach; ?>
 				</select>
 			</div>

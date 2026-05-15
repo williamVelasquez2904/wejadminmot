@@ -172,10 +172,7 @@
 		/*$monto_nota = $row_monto_nota->total_pago;*/
 		//$monto_notas=$row_monto_nota["total_pago"];
 		/*$monto_pagos =  $row_monto_nota->total_pago;*/
-		$monto_pagos = 0.0;
-		if (is_array($row_monto_nota) && count($row_monto_nota) > 0 && isset($row_monto_nota[0]->total_pago)) {
-			$monto_pagos = floatval($row_monto_nota[0]->total_pago);
-		}
+		$monto_pagos = $row_monto_nota[0];
 /*
         foreach($row_monto_nota as $r):
         	$monto_pagos =	$r->total_pago;   // sumamos los montos de todos los pagos asociados a un recibo
@@ -225,13 +222,14 @@
 		*/
 
 		foreach($row_nota_del_recibo as $n):
-			$status = (int)$n->recnota_status;
+			var_dump($n);
+			$status = (int)$n->recnota_status; 
 
     			if ($status === 0 && $saldo_dispobible > 0):
 			
 		        $flag = true;
-				$ide = $n->recnota_ide;
-				$monto_deuda = floatval($n->venta_saldo);
+		        $ide = $n->recnota_ide;
+		        $monto_deuda = $n->venta_saldo;
 
 		        // Determinamos cuánto podemos pagar: el total de la deuda o lo que queda de saldo
 		        $monto_asignado = min($saldo_dispobible, $monto_deuda);

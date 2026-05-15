@@ -1,5 +1,5 @@
 <?php require '../../../cfg/base.php';
-extract($_POST);
+extract($_POST); //30/03/26
 /*$row = $mventa->lista_sinabono(); */
 //$row = $mventa->lista(); 
 $row = $mventa->lista_sinabono();
@@ -25,10 +25,10 @@ $cantidad_ventas = 0;
 						 $ancho_vendedor="8%";
 
 					?>
-					<th width="3%">Id [19-06-2025]</th>
+					<th width="3%">Id [29-03-2026]</th>
 					<th width="<?php echo $ancho; ?>">Num</th>
 					<th width="<?php echo $ancho; ?>">Fec. Proc.</th>
-					<th width="<?php echo $ancho; ?>">Fec. Venc.</th>
+					<th width="<?php echo $ancho; ?>">Fec. Venc(38)</th>
 					<th width="<?php echo $ancho; ?>">Fec. Recep.</th>
 					<th width="<?php echo $ancho_cliente; ?>">Cliente</th>
 					<th width="<?php echo $ancho_monto; ?>">Monto Contado</th>
@@ -62,7 +62,7 @@ $cantidad_ventas = 0;
 
 							if ($fecha_original<>"0000-00-00"){
 								$fecha_obj = new DateTime($fecha_original);
-								$fecha_obj->modify('+30 days'); 
+								$fecha_obj->modify('+38 days'); 
 								$fec_venc = $fecha_obj->format('Y-m-d'); 
 							}
 						    
@@ -89,12 +89,12 @@ $cantidad_ventas = 0;
 						
 						<td align="left">  <?php echo $r->venta_ide ?></td>
 						<td align="center"><?php echo $r->venta_num ?></td>
-						<td align="center"><?php echo implode('-', array_reverse(explode('-', $r->venta_fecha_registro)));?></td>
+						<td align="center"><?php echo implode('-', array_reverse(explode('-', $r->venta_fecha)));?></td>
 
 						<!-- <td align="center"><?php //echo $r->venta_fecha_registro ?> -->
 
 						<td align="center"><?php echo implode('-', array_reverse(explode('-', $fec_venc)));?></td>
-						<td align="center"><?php echo implode('-', array_reverse(explode('-', $r->venta_fecha)));?></td>
+						<td align="center"><?php //echo implode('-', array_reverse(explode('-', $r->venta_fecha)));?></td>
 <!-- 						<?php 	
 						//	if 	(len(trim($r->venta_fecha))>0)
 						//			echo "Paso". date_format(date_create($r->venta_fecha),'d-m-Y'); 

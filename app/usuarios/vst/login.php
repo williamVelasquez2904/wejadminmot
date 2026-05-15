@@ -1,127 +1,56 @@
-<?php require '../../../cfg/base.php'; ?> <!-- 04/01/2026 -->
-
-<?php $cusuarios->redirectindex() ?>
-
+<?php require '../../../cfg/base.php'; /* prueba */  ?>
+<?php $cusuarios->redirectindex();
+?>
 <!DOCTYPE html>
-
-<html lang="en">
-
+<html lang="es">
 	<head>
-
-		<meta charset="utf-8" />
-
-		<title>WEJ SOLUTIONS - Login Version-1.0.2026 </title>
-
-
-
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>WEJ SOLUTIONS - Login Versi&oacute;n-1.0.04-02-26 </title>
 		<meta name="description" content="User login page" />
-
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 		<link rel="shortcut icon" href="../../../img/logo.png" type="image/x-icon">
-
 		<?php require '../../../css/ace.php'; ?>
-
 		<?php require '../../../js/ace.php'; ?>
-
 	</head>
-
-
-
 	<body class="login-layout" style="background:#FFFFFF">
-
-
-
 		<script type="text/javascript">
-
 			function show_box(id) {
-
 			 jQuery('.widget-box.visible').removeClass('visible');
-
 			 jQuery('#'+id).addClass('visible');
-
 			}
-
 		</script>
-
-		
-
 		<div class="col-sm-12" style="background:#101820">
-
 			<div class="clearfix"></div>
-
 			<div class="space-2"></div>
-
 			<img src="img/logo.png" align="" class="pull-left" height="80 px">	
-
 			<h2 class="pull-left" style="padding-left:30px">
-
-				<span class="white"><?php echo "SOFTWARE ADMINISTRATIVO Version 1.0.2026" ?></span>
-
+				<span class="white"><?php echo "SOFTWARE ADMINISTRATIVO Versi&oacute;n 1.0.1 Fecha 04-02-2026 ...2 " ?></span>
 				<div class="space-0"></div>
-
-				<span class="white"><?php echo "Gestión de Comisiones" ?></span>
-
+				<span class="white"><?php echo "Gesti&oacute;n de Comisiones" ?></span>
 			</h2>
-
 			<img src="img/logo.png" align="" class="pull-right" height="80 px">	
-
 			<div class="clearfix"></div>
-
 			<div class="space-1"></div>
-
 		</div>
-
-
-
 		<div class="clearfix"></div>
-
 		<div class="space-20"></div>
-
 		<div class="main-container">
-
 			<div class="main-content">
-
 				<div class="row">
-
 					<div class="col-sm-10 col-sm-offset-1">
-
 						<div class="login-container">
-
-
-
 							<div class="space-6"></div>
-
-
-
 							<div class="position-relative">
-
 								<div id="login-box" class="login-box visible widget-box no-border">
-
 									<div class="widget-body">
-
 										<div class="widget-main" style="background:#101820">
-
 											<h4 class="header green lighter bigger">
-
 												<!--<i class="icon-coffee green"></i>-->
-
 												Indique datos de acceso
-
 											</h4>
-
 											<div class="msj"></div>
-
 											<div class="space-6"></div>
-
-											
-
 											<form class="loginform">
-
-
-
-												
-
 												<fieldset>
 
 													<label class="block clearfix">

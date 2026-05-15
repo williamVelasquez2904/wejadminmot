@@ -214,8 +214,6 @@ $fecha_hoy = date('d-m-Y');
 	})
 
 
-
-
 /*	$(function(){
 		$('.chosen').chosen();
 		$('.fecha').datepicker({format:'yyyy-mm-dd',endDate:'-0d'});

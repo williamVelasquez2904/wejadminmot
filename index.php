@@ -29,7 +29,7 @@ $rowt=$mtienda->poride($_SESSION['s_usua_tienda']); ?>
 				<div class="space-2"></div>
 				<img src="img/logo.png" align="" class="pull-left" height="80 px">	
 				<h2 class="pull-left" style="padding-left:30px">
-					<span class="<?php echo $rowt[0]->empresa_col_nombre ?>"><?php echo "AMBIENTE DE DESARROLLO" ?></span>
+					<span class="<?php echo $rowt[0]->empresa_col_nombre ?>"><?php echo "AMBIENTE DE PRUEBA-FEB 2026" ?></span>
 					<div class="space-0"></div>
 					<span class="<?php echo $rowt[0]->empresa_col_nombre ?>"><?php echo $rowt[0]->empresa_nombre ?></span>
 					<span class="<?php echo $rowt[0]->empresa_col_nombre ?>"><?php echo "RIF: ".$rowt[0]->empresa_rif ?></span>

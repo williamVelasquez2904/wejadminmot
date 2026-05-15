@@ -1,4 +1,4 @@
-<?php require '../../../cfg/base.php'; 
+<?php require '../../../cfg/base.php'; //Proibando 13-03-26
 /*var_dump($ide);*/
 echo $fn->modalWidth('80%');
 $r = $mrecibo->poride($ide)  //	 encabezado  del recibo  ?> 

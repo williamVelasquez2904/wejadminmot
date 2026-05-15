@@ -1,0 +1,17 @@
+Insertar un registro en la tabla tbl_recibo_nota
+
+- En mysql crear la funcion sf_reciboNota. Crea la funcion para recibir los datos de las notas relacionadas para un recibo
+
+
+
+1. En la clase mRecibo crear el metodo insert_nota_recibo
+
+recnota_encab_ide
+recnota_venta_ide
+recnota_monto_aplicado valor, 0
+recnota_status con valor, 0
+recnota_fecha_proceso, now
+
+
+
+public function insert_nota_recibo()

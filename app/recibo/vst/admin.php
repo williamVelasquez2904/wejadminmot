@@ -3,7 +3,7 @@
 </div>
 <form action="" class="op1">
 	<div class="msj1"></div>
-	<fieldset><legend>[admin.php]-140924 - DATOS DEL RECIBO</legend>	
+	<fieldset><legend>[admin.php]-14marzo26 - DATOS DEL RECIBO</legend>	
 
 		<div class="form-group col-sm-2 col-xs-12">
 			<label for="" class="label control-label col-sm-12 col-xs-12 bolder">No. Recibo</label>

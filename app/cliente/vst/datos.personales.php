@@ -28,20 +28,29 @@ $row_fich = $mpermfich->poride(1);
 					<div class="table-responsive">
 						<table class="table table-bordered">
 							<tr>
-								<th class="active text-right">Número de Identificación:....</th>
+								<th class="active text-right">Número de Identificación 23feb:</th>
 								<td><?php echo $row[0]->clien_tipcli.'-'.$row[0]->clien_numiden ?></td>
 								<th class="active text-right">Razón Social o Nombre:</th>
 								<td><?php echo $row[0]->clien_nombre1.' '.$row[0]->clien_nombre2.' '.$row[0]->clien_apelli1.' '.$row[0]->clien_apelli2 ?></td>
 							</tr>
 							<tr>
-								<th class="active text-right">Fecha de Nacimiento aqui:</th>
+								<th class="active text-right">Fecha de Nacimiento:</th>
 								<td><?php echo date('d-m-Y',strtotime($row[0]->clien_fecnaci)); ?> (<?php echo $ccliente->edad($row[0]->clien_fecnaci); ?>)</td>
 								<th class="active text-right">Teléfono Móvil:</th>
-								<td><?php echo $row[0]->clien_telmovi ?></td>
+								<td>
+									<?php //echo $row[0]->clien_telmovi ?>
+									<?php 
+            							echo $row[0]->clien_telmovi; 
+            							// Verificamos si clien_telmovi2 existe y no está vacío
+            							if (!empty($row[0]->clien_telmovi2)) {
+                							echo " | " . $row[0]->clien_telmovi2;
+            							}
+        							?>
+									</td>
 							</tr>
 							<tr>
 								<th class="active text-right">Dirección de Habitación:</th>
-								<td colspan="3"><?php echo $row[0]->clien_direcci ?></td>
+								<td colspan="3"><?php echo $row[0]->clien_direcci; ?></td>
 							</tr>
 							<tr>
 								<th class="active text-right">Correo Electronico:</th>
@@ -57,6 +66,11 @@ $row_fich = $mpermfich->poride(1);
 								<th class="active text-right">Zona:</th>
 								<td><?php echo $rowz[0]->zona_descrip ?></td>
 							</tr>
+							<tr>
+							<th class="active text-right">Sector:</th>
+								<td colspan="3"><?php echo $row[0]->sector_nombre ?></td>
+							</tr>
+
 						</table>
 					</div>
 					<?php if (strlen($row[0]->clien_ubimap)>10) { ?>

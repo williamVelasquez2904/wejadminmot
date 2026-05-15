@@ -16,8 +16,9 @@
 		/*prueba         27-06-2025*/
 		$usuario   = 'root';
 		$clave     = '';
+        $charset = 'utf8';
 		try {
-			$con = new PDO($driver.':host='.$host.';dbname='.$basedatos,$usuario,$clave,array(PDO::ATTR_PERSISTENT=>true));
+			$con = new PDO($driver.':host='.$host.';dbname='.$basedatos.';charset='.$charset, $usuario, $clave, array(PDO::ATTR_PERSISTENT=>true));
 			return $con;
 		} catch(PDOException $e) {
 			echo $e->getMessage();

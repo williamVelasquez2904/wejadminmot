@@ -21,7 +21,7 @@ $row = $mcompra_wh->lista(); ?>
 					<th width="7%">Prov</th>
 					<th width="5%">Fecha Fac.</th>
 					<th width="5%">Fecha Recep.</th>
-					<th width="18%">Cliente [02-12-25] lista.php</th>
+					<th width="18%">Cliente [16-02-26] lista.php</th>
 					<th width="6%">Num Fac.</th>
 					<th width="3%">% Desc.</th>
 					<th width="5%">Monto Contado </th>
@@ -161,7 +161,7 @@ $row = $mcompra_wh->lista(); ?>
 						<!-- <td align="center"><?php //echo date_format(date_create($r->compra_fecha),'d-m-Y') ?></td> -->
 						<td align="center"><?php echo implode('-', array_reverse(explode('-', $r->compra_fecha)));?></td>
 						<td align="center"><?php echo implode('-', array_reverse(explode('-', $r->compra_fecha_recep)));?></td>						
-						<td align="left"><?php echo $r->nombre1.'<b>'.$texto_destino.'</b> -  ' .'<b>'.$r->compra_sustitucion.'</b>' ?> <font color="<?php echo $color_tipo; ?>"><b><?php echo $tipo_text; ?></b></font> </td>
+						<td align="left"><?php echo utf8_encode($r->nombre1).'<b>'.$texto_destino.'</b> -  ' .'<b>'.$r->compra_sustitucion.'</b>' ?> <font color="<?php echo $color_tipo; ?>"><b><?php echo $tipo_text; ?></b></font> </td>
 						<!-- <td align="left"><?php //echo $r->nombre1.$texto_destino ?></td> -->
 						<td align="center"><?php echo $r->compra_num ?></td>
 						<td align="center"><?php echo $r->compra_porc_desc ?></td>

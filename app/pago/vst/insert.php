@@ -4,12 +4,12 @@ require '../../../cfg/base.php';
 <?php
 	$fecha_actual=date("d-m-Y");
 	echo $fn->modalWidth('80%');
-	echo $fn->modalHeader('REPORTAR PAGO') 
+	echo $fn->modalHeader('REPORTAR PAGO 23-03-26');
 ?>
 
 <div class="modal-body">				
 	<div class="msj"></div>
-	<fieldset><legend>[insert.php] 15-ene-26 - Por favor ingrese los datos del Pago </legend>
+	<fieldset><legend>[insert.php] Por favor ingrese los datos del Pago </legend>
 	<div class="clearfix"></div>	
 	<form action="cargarimg"  method="post" enctype="multipart/form-data">
 
@@ -20,11 +20,11 @@ require '../../../cfg/base.php';
 					<option value=""></option>
 
 					<?php
-					//foreach($mproveedor->lista() as $p): ?>
-						<option value="<?php //echo $p->prove_ide ?>" <?php //if ($p->prove_ide==2) { echo "selected"; } ?>> 
-						<?php //echo  $p->prove_razonsocial ?>
+					foreach($mproveedor->lista() as $p): ?>
+						<option value="<?php echo $p->prove_ide ?>" <?php if ($p->prove_ide==2) { echo "selected"; } ?>> 
+						<?php echo  $p->prove_razonsocial ?>
 						</option>
-					<?php //endforeach; ?>
+					<?php endforeach; ?>
 					
 				</select>
 			</div>

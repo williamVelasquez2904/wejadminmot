@@ -57,22 +57,20 @@
 		return Enlace::sql($sql,$datos,3,'');
 	}
 
-	public function insert() {  // insert a encabezado de recibo
-		extract($_POST);
-		$sql = "SELECT sf_recibo(?,?,?,?,?,?,?,?) AS res";
-		$datos = array(
-			0, // Identificador
-			$num,
-			"$fec",
-			$mto,
-			$clien_ide,
-			$vende_ide,
-			1, 	 //  operación
-			$_SESSION['s_usua_ide'] #Usuario que realiza operación
-		);
-		/* */
-		return Enlace::sql($sql,$datos,4,'res');
-	} 
+	       public function insert() {  // insert a encabezado de recibo
+		       extract($_POST);
+		       $sql = "SELECT sf_recibo(?,?,?,?,?,?,?,?) AS res";
+		       $datos = array(
+			       0, // Identificador
+			       $num,
+			       "$fec",
+			       $mto,
+			       $vende_ide,
+			       1,   //  operación
+			       $_SESSION['s_usua_ide'] // Usuario que realiza operación
+		       );
+		       return Enlace::sql($sql,$datos,4,'res');
+	       }
 
 
 	public function insert_nota(){
@@ -100,6 +98,52 @@
 		$datos = array(
 			$encab_ide, // Identificador
 			$pago_ide,
+	}
+	// Validar entrada
+	if (!isset($_POST['encab_ide']) || empty($_POST['encab_ide'])) {
+		// No se recibió el identificador del recibo
+		return false;
+	}
+	$encab_ide = $_POST['encab_ide'];
+	// Recalcular saldo de notas asociadas
+	$row_nota_del_recibo = $this->recibo_nota_lista($encab_ide);
+	if (!is_array($row_nota_del_recibo) || empty($row_nota_del_recibo)) {
+		// No hay notas asociadas
+		return false;
+	}
+	foreach($row_nota_del_recibo as $s) {
+		$this->recalcular_saldo_nota($s->recnota_venta_ide);
+	}
+	// Volver a buscar las notas actualizadas
+	$row_nota_del_recibo = $this->recibo_nota_lista($encab_ide);
+	$saldo_disponible = $monto_pagos;
+	foreach($row_nota_del_recibo as $n) {
+		if ($n->recnota_status == 0) {
+			$flag = true;
+			$ide = $n->recnota_ide;
+			$monto = floatval($n->venta_saldo);
+			// Asignar el monto posible
+			$monto_asignado = min($saldo_disponible, $monto);
+			if ($monto_asignado > 0) {
+				// Ejecutar la asignación (ajustar SQL según tu lógica real)
+				$sql = "SELECT (?,?,?,?,?,?) AS res";
+				$datos = array($ide, $monto_asignado, 0, 0, 5, $_SESSION['s_usua_ide']);
+				$res = Enlace::sql($sql, $datos, 4, 'res');
+				// Puedes validar $res si tu función retorna éxito/fallo
+			}
+			$saldo_disponible -= $monto_asignado;
+			if ($saldo_disponible <= 0) {
+				break; // Ya no hay saldo para distribuir
+			}
+		}
+	}
+	// Recalcular saldos finales
+	$row_nota_del_recibo = $this->recibo_nota_lista($encab_ide);
+	foreach($row_nota_del_recibo as $s) {
+		$this->recalcular_saldo_nota($s->recnota_venta_ide);
+	}
+	return $flag;
+}
 			$pago_forma,
 			$pago_monto,
 			$pago_fecha,
@@ -154,8 +198,8 @@
 			var_dump($saldo);
 			var_dump("</pre>");*/
 
-	        $sql = "SELECT sf_venta_wh(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res"; 
-		$datos = array($venta_ide,0,0,0,"",0,0,0,0,0,0,0,0,0,$saldo,$_SESSION['s_usua_tienda'] ,8,$_SESSION['s_usua_ide']);
+	        $sql = "SELECT sf_venta_wh(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) AS res"; 
+		$datos = array($venta_ide,0,0,0,"",0,0,0,0,0,0,0,$saldo,$_SESSION['s_usua_tienda'] ,8,$_SESSION['s_usua_ide']);
 		return Enlace::sql($sql,$datos,4,'res');
 
 	}
@@ -171,16 +215,12 @@
 		//var_dump($row_monto_nota);
 		/*$monto_nota = $row_monto_nota->total_pago;*/
 		//$monto_notas=$row_monto_nota["total_pago"];
-		/*$monto_pagos =  $row_monto_nota->total_pago;*/
-		$monto_pagos = 0.0;
-		if (is_array($row_monto_nota) && count($row_monto_nota) > 0 && isset($row_monto_nota[0]->total_pago)) {
-			$monto_pagos = floatval($row_monto_nota[0]->total_pago);
-		}
+		$monto_pagos=$row_monto_nota[0];
 /*
         foreach($row_monto_nota as $r):
         	$monto_pagos =	$r->total_pago;   // sumamos los montos de todos los pagos asociados a un recibo
 		endforeach; */
-		/*var_dump($monto_pagos);*/
+		var_dump($monto_pagos);
 
 		$row_nota_del_recibo=$this->recibo_nota_lista($encab_ide);
 
@@ -198,16 +238,14 @@
 		$saldo_dispobible=$monto_pagos;
 		$monto_asignado=0;
 		$ide=0;
-
-		/*
 		foreach($row_nota_del_recibo as $n):
 			if ($n->recnota_status == 0 ){
 				$flag=true;
 
 				$ide=$n->recnota_ide;
 				$monto_asignado=0;
-	        		$monto   = $n->venta_saldo;
-	        		$sum=$sum +$monto;
+	        	$monto   = $n->venta_saldo;
+	        	$sum=$sum +$monto;
 	        	if ($saldo_dispobible >= $monto){
 	        		$monto_asignado= $monto;
 	        	}	
@@ -216,36 +254,12 @@
 	        	}
 	        	$saldo_dispobible = $saldo_dispobible - $monto;
 	        	if ($monto_asignado > 0 ){
-					$sql = "SELECT 	sf_recibonota(?,?,?,?,?,?) AS res";
+					$sql = "SELECT 	(?,?,?,?,?,?) AS res";
 					$datos = array($ide,$monto_asignado,0,0,5,$_SESSION['s_usua_ide']);
 					Enlace::sql($sql,$datos,4,'res');				
 				}
 			}
 		endforeach; 
-		*/
-
-		foreach($row_nota_del_recibo as $n):
-			$status = (int)$n->recnota_status;
-
-    			if ($status === 0 && $saldo_dispobible > 0):
-			
-		        $flag = true;
-				$ide = $n->recnota_ide;
-				$monto_deuda = floatval($n->venta_saldo);
-
-		        // Determinamos cuánto podemos pagar: el total de la deuda o lo que queda de saldo
-		        $monto_asignado = min($saldo_dispobible, $monto_deuda);
-
-		        if ($monto_asignado > 0):
-		            // RESTA CORRECTA: Restamos lo que acabamos de asignar
-		            $saldo_dispobible = $saldo_dispobible - $monto_asignado;
-
-		            $sql = "SELECT sf_recibonota(?,?,?,?,?,?) AS res";
-		            $datos = array($ide, $monto_asignado, 0, 0, 5, $_SESSION['s_usua_ide']);
-		            Enlace::sql($sql, $datos, 4, 'res');
-		        endif;
-		    endif;
-		endforeach;
 		$row_nota_del_recibo=$this->recibo_nota_lista($encab_ide);
 		foreach($row_nota_del_recibo as $s):
 			$this->recalcular_saldo_nota($s->recnota_venta_ide);

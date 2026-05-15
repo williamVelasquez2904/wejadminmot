@@ -35,7 +35,7 @@ $suma_notas=0;
 			<h4 class="ln-title">NOTAS DEL RECIBO</h4>
 			<div class="small-muted">Registros: <?php echo count($row) ?></div>
 		</div>
-		<table class="ln-table table table-striped table-hover table-bordered table-condensed table_nota" width="100%">
+		<table class="ln-table table table-striped table-hover table-bordered table-condensed table_pago" width="100%">
 			<thead>
 				<tr>
 					<th>Id.</th>
@@ -110,8 +110,10 @@ $suma_notas=0;
 <?php else: ?>
 	<div class="alert alert-info">No hay registros para mostrar.</div>
 <?php endif; ?>	
+<div class="alert alert-info"><?php echo "<b>Saldo por pagar en NOTAS : ".number_format($sum_monto,2,",",".")."</b>" ?></div>
+<div class="alert alert-info"><?php echo "<b>Sumatoria de las Notas: ".number_format($suma_notas,2,",",".")."</b>" ?></div>
 <script>
 	$(function(){
-		$('.table_nota').dataTable();
+		$('.table_pago').dataTable();
 	})
 </script> 

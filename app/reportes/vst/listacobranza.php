@@ -1,11 +1,11 @@
-<?php require '../../../cfg/base.php';
+<?php require '../../../cfg/base.php'; //30/03/2026
 extract($_POST); 
-/*var_dump("<pre>");
+var_dump("<pre>");
 var_dump($_POST);
 var_dump("</pre>");
-*/
+
 //$row = $mventa->lista_cobranza($clien_ide,$vende_ide,$f_ini,$f_fin); 
-$row = $mventa->lista_cobranza($clien_ide,$origen,$vende_ide,$f_ini,$f_fin); 
+$row = $mventa->lista_cobranza($clien_ide,$prov_ide,$origen,$vende_ide,$f_ini,$f_fin); 
 $saldo_calculado = 0;
 $mensaesta="";
 $nombrecliente="";
@@ -20,7 +20,7 @@ $acum_saldo    = 0;
 		<table class="table_recibo table-hover table-bordered">
 			<thead>
 				<tr>
-					<th width="4%">Id</th>
+					<th width="4%">Id 30-03-26</th>
 					<th width="8%">Num</th>
 					<th width="6%">Fecha</th>
 					<th width="20%">Cliente</th>
@@ -29,7 +29,7 @@ $acum_saldo    = 0;
 					<th width="5%">Flete</th>
 					<th width="5%">Total Venta</th>
 					<th width="5%">Total Abonos</th>
-					<th width="5%">Total saldo</th>
+					<th width="5%">Saldo</th>
 					<th width="8%">Vendedor</th>
 					<th width="5%">Condición</th>
 					<th width="5%">Estatus</th>
@@ -43,6 +43,8 @@ $acum_saldo    = 0;
 						$mensaje_condicion = Funciones::descrip_condicion($r->venta_condicion); 
 						$saldo_calculado = 0;
 						$total_venta=0;
+						$total_venta= $r->venta_monto+$r->venta_flete;
+						/* Verificar 22-03-26 
 						if  ($mensaje_condicion=="CONTADO") {
 							$total_venta= $r->venta_monto+$r->venta_flete;
 							
@@ -51,7 +53,9 @@ $acum_saldo    = 0;
 						if  ($mensaje_condicion=="CREDITO") {
 							$total_venta=$r->venta_monto_credito+$r->venta_flete;							
 						}
-						$saldo_calculado = $total_venta - $r->abono_recibo;
+						*/
+						//$saldo_calculado = $total_venta - $r->abono_recibo;
+						$saldo_calculado =  $r->saldo_calculado;
 						$acum_saldo = $acum_saldo + $saldo_calculado;
 						/*$saldo_calculado = 0;*/
 						?>
